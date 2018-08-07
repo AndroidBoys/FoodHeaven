@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "442491605639",
+    "firebase_url": "https://foodheaven-b91b6.firebaseio.com",
+    "project_id": "foodheaven-b91b6",
+    "storage_bucket": "foodheaven-b91b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:442491605639:android:da935585d1672fc5",
+        "android_client_info": {
+          "package_name": "drunkcoder.com.foodheaven"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "442491605639-rhsj3oqcadskl1m9810jo7m53kcuka5t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "drunkcoder.com.foodheaven",
+            "certificate_hash": "191fe12e246f81ff6a1ed1b972d9b629013fb624"
+          }
+        },
+        {
+          "client_id": "442491605639-70kkgi65mmvf5i6ok698tgl0250t9m6i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvMCqxq30y7ypFLPsoSpC46DGsKB2kGd0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "442491605639-70kkgi65mmvf5i6ok698tgl0250t9m6i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
