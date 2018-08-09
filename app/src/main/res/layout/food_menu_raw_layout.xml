@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="290dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="3dp"
+    app:cardElevation="4dp"
+    android:layout_marginEnd="5dp"
+    app:cardCornerRadius="8dp"
+    android:layout_height="300dp">
+
+    <LinearLayout
+        android:weightSum="10"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/foodImageView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            android:layout_weight="7"
+            android:src="@drawable/ic_launcher_background"/>
+
+        <TextView
+            android:id="@+id/foodNameTextView"
+            android:layout_width="match_parent"
+            android:textColor="@color/redColor"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="food Name"
+            android:layout_height="0dp"/>
+
+        <TextView
+            android:id="@+id/foodDescriptionTextView"
+            android:layout_width="wrap_content"
+            android:textStyle="italic"
+            android:text="food Description will be here . This food is one of the best food in the market Here your are getting the facility of not only eating but"
+            android:layout_weight="1"
+            android:maxLines="3"
+            android:layout_height="0dp"/>
+
+        <TextView
+            android:id="@+id/foodQuantityTextView"
+            android:layout_width="wrap_content"
+            android:textColor="@color/blackColor"
+            android:textStyle="bold"
+            android:text="Quantity : 1"
+            android:layout_weight="1"
+            android:layout_height="0dp"/>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -14,10 +14,8 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_marginStart="8sp"
-            android:layout_marginEnd="8sp"
             android:layout_marginTop="8sp"
-            android:layout_height="250dp">
+            android:layout_height="340dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -29,6 +27,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:text="BreakFast"
+                    android:layout_marginStart="8dp"
                     android:textSize="20sp"
                     android:layout_weight="1"
                     android:textColor="@color/blackColor"
@@ -39,6 +38,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_weight="9"
+                    android:layout_marginBottom="5dp"
                     android:layout_height="0dp"/>
 
             </LinearLayout>
@@ -47,10 +47,8 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_marginStart="8sp"
-            android:layout_marginEnd="8sp"
             android:layout_marginTop="8sp"
-            android:layout_height="250dp">
+            android:layout_height="340dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -62,6 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:text="Lunch"
+                    android:layout_marginStart="8dp"
                     android:textSize="20sp"
                     android:layout_weight="1"
                     android:textColor="@color/blackColor"
@@ -80,10 +79,8 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_marginStart="8sp"
-            android:layout_marginEnd="8sp"
             android:layout_marginTop="8sp"
-            android:layout_height="250dp">
+            android:layout_height="340dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -94,6 +91,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
                     android:text="Dinner"
                     android:textSize="20sp"
                     android:layout_weight="1"
@@ -110,6 +108,10 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
+
+
+
 
 
     </LinearLayout>

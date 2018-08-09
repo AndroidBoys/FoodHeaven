@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import drunkcoder.com.foodheaven.Fragments.SpecialOrders;
 import drunkcoder.com.foodheaven.Fragments.SubscribedUserTodaysMenu;
-import drunkcoder.com.foodheaven.Fragments.Wallet;
+import drunkcoder.com.foodheaven.Fragments.WalletFragment;
 
 public class ViewPagerAdapter  extends FragmentPagerAdapter {
 
@@ -19,13 +19,13 @@ public class ViewPagerAdapter  extends FragmentPagerAdapter {
 
         switch(position) {
             case 0:
-                return SubscribedUserTodaysMenu.getInstance();
+                return SubscribedUserTodaysMenu.newInstance();
 
             case 1:
-                return SpecialOrders.getInstance();
+                return SpecialOrders.newInstance();
 
             case 2:
-                return Wallet.getInstance();
+                return WalletFragment.newInstance();
         }
         return null;
     }

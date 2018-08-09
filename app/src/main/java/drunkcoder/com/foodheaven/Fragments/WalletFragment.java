@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class Wallet extends Fragment {
+public class WalletFragment extends Fragment {
 
     @Nullable
     @Override
@@ -17,8 +17,13 @@ public class Wallet extends Fragment {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
-    public static Fragment getInstance(){
-        return new Wallet();
+    public static WalletFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        WalletFragment fragment = new WalletFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
 }
