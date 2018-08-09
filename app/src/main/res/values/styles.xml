@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- auth theme -->
+    <style name="AuthTheme" parent="AppTheme">
+    <item name="android:windowTranslucentNavigation">true</item>
+    <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
 </resources>

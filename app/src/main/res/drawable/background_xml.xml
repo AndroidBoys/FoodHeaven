@@ -1,0 +1,7 @@
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:tint="@color/colorPrimaryDark"
+    android:tintMode="multiply"
+    tools:ignore="UnusedAttribute"
+    android:src="@drawable/indian"
+    android:gravity="center"/>
