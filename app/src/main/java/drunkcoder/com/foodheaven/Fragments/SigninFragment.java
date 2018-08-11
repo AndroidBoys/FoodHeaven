@@ -1,5 +1,6 @@
 package drunkcoder.com.foodheaven.Fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -138,7 +139,8 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
                         if(task.isSuccessful())
                         {
                             Toast.makeText(hostingActivity, "Signed in sucessfully!", Toast.LENGTH_SHORT).show();
-                            moveToHomeActivity();
+                            hostingActivity.moveToHomeActivity();
+                            kProgressHUD.dismiss();
                         }
                         else
                         {
@@ -147,13 +149,6 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
                         }
                     }
                 });
-    }
-
-   public void moveToHomeActivity()
-    {
-        Intent intent = new Intent(hostingActivity, HomeActivity.class);
-        startActivity(intent);
-        kProgressHUD.dismiss();
     }
 
     @Override

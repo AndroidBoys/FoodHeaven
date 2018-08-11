@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 import drunkcoder.com.foodheaven.Fragments.SigninFragment;
 import drunkcoder.com.foodheaven.R;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -29,13 +30,19 @@ public class AuthenticationActivity extends AppCompatActivity {
         SigninFragment signinFragment = SigninFragment.newInstance();
 
         if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
-            signinFragment.moveToHomeActivity();
+            moveToHomeActivity();
 
         }
         else{
 
             addDifferentFragment(signinFragment);
         }
+    }
+
+    public void moveToHomeActivity()
+    {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
     }
 
 
