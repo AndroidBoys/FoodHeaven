@@ -33,8 +33,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:16.0.1'
     implementation 'com.kaopiz:kprogresshud:1.2.0'
     implementation 'com.labo.kaji:fragmentanimations:0.1.1'
-    implementation 'com.payu.india:payu-sdk:4.4.3'
-
 
     //For firebase RecyclerView Adapter
     implementation 'com.firebaseui:firebase-ui-database:1.2.0'
@@ -42,6 +40,7 @@ dependencies {
     //Pressable Button
     implementation 'info.hoang8f:fbutton:1.0.5'
 
+    implementation 'com.payumoney.sdkui:plug-n-play:1.2.0'
     //khat khat button
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
 
