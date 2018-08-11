@@ -4,13 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import drunkcoder.com.foodheaven.Fragments.CallForAssistanceFragment;
+import drunkcoder.com.foodheaven.Fragments.FaqFragment;
 import drunkcoder.com.foodheaven.Fragments.OurPlansFragment;
+import drunkcoder.com.foodheaven.Fragments.WeeklyMenuFragment;
 import drunkcoder.com.foodheaven.R;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 public class Description extends AppCompatActivity {
 
@@ -34,13 +38,13 @@ public class Description extends AppCompatActivity {
                 addDifferentFragment(OurPlansFragment.newInstance());
                 break;
             case R.id.weeklyMenuButton:
-                addDifferentFragment(OurPlansFragment.newInstance());
+                addDifferentFragment(WeeklyMenuFragment.newInstance());
                 break;
             case R.id.callForAssistenceTextView:
                 addDifferentFragment(CallForAssistanceFragment.newInstance());
                 break;
             case R.id.faqTextView:
-                addDifferentFragment(OurPlansFragment.newInstance());
+                addDifferentFragment(FaqFragment.newInstance());
                 break;
             case R.id.whyHeavenFoodsTextView:
                 addDifferentFragment(OurPlansFragment.newInstance());
@@ -54,6 +58,12 @@ public class Description extends AppCompatActivity {
         Log.i("Inside","Different fragment function");
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.descriptionFrameLayout,replacableFragment,null).commit();
+    }
+
+    //this method will call when user select a week day from the weeklyMenuFragment
+    void showTodaysMenu(View view){
+        Toast.makeText(this, "hello", Toast.LENGTH_SHORT).show();
+
     }
 
 }
