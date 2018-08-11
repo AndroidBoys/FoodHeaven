@@ -12,4 +12,12 @@
     <string name="enter_otp_hint">Enter OTP</string>
     <string name="detecting_otp_text">Autodetecting the OTP</string>
     <string name="send_otp_text">Send OTP</string>
+
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
 </resources>

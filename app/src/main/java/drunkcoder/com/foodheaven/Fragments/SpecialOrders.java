@@ -17,7 +17,12 @@ public class SpecialOrders extends Fragment {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
-    public static Fragment getInstance(){
-        return new SpecialOrders();
+    public static SpecialOrders newInstance() {
+
+        Bundle args = new Bundle();
+
+        SpecialOrders fragment = new SpecialOrders();
+        fragment.setArguments(args);
+        return fragment;
     }
 }
