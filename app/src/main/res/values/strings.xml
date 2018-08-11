@@ -3,9 +3,13 @@
     <string name="hint_email">Enter email address</string>
     <string name="hint_password">Enter password</string>
     <string name="hint_password_confirm">Confirm password</string>
-    <string name="btn_login">Login</string><string name="btn_signup">Sign Up</string>
-    <string name="text_signup">Need Sign Up?</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_signup">Sign Up</string>
+    <string name="text_signup">New here? Sign Up</string>
     <string name="text_signin">Login</string>
     <string name="text_forgot_password">Forgot Password?</string>
     <string name="phone_number_hint">Your Phone number?</string>
+    <string name="enter_otp_hint">Enter OTP</string>
+    <string name="detecting_otp_text">Autodetecting the OTP</string>
+    <string name="send_otp_text">Send OTP</string>
 </resources>

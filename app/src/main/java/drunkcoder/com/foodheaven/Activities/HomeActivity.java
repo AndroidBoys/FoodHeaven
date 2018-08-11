@@ -1,9 +1,10 @@
-package drunkcoder.com.foodheaven;
+package drunkcoder.com.foodheaven.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import drunkcoder.com.foodheaven.Fragments.SubscribedUserFragment;
+import drunkcoder.com.foodheaven.R;
 
 import android.os.Bundle;
 import android.util.Log;
