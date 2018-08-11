@@ -1,4 +1,4 @@
-package drunkcoder.com.foodheaven.Model;
+package drunkcoder.com.foodheaven.Models;
 
 public class TodayMenu {
     public String imageUrl;

@@ -16,7 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import drunkcoder.com.foodheaven.Model.TodayMenu;
+import drunkcoder.com.foodheaven.Models.TodayMenu;
 import drunkcoder.com.foodheaven.R;
 import drunkcoder.com.foodheaven.ViewHolders.FoodMenuViewHolder;
 

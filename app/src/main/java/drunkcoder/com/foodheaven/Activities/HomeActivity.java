@@ -1,4 +1,4 @@
-package drunkcoder.com.foodheaven;
+package drunkcoder.com.foodheaven.Activities;
 
 import android.os.Bundle;
 
@@ -18,6 +18,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import drunkcoder.com.foodheaven.Fragments.SubscribedUserFragment;
+import drunkcoder.com.foodheaven.R;
 
 import android.view.Menu;
 import android.view.MenuItem;

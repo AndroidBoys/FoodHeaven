@@ -5,10 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="drunkcoder.com.foodheaven.Activities.HomeActivity"
-    tools:showIn="@layout/app_bar_home">
-
+    tools:context=".Activities.HomeActivity">
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -18,8 +15,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

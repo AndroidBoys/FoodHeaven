@@ -20,23 +20,27 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+    implementation 'androidx.appcompat:appcompat:1.0.0-rc01'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
-    implementation 'com.google.android.material:material:1.0.0-beta01'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0-rc01'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+
     implementation 'com.google.firebase:firebase-core:16.0.1'
+    implementation 'com.google.android.material:material:1.0.0-rc01'
+    implementation 'com.google.firebase:firebase-auth:16.0.2'
     implementation 'com.google.firebase:firebase-database:16.0.1'
-    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.kaopiz:kprogresshud:1.2.0'
+    implementation 'com.labo.kaji:fragmentanimations:0.1.1'
+    implementation 'com.payu.india:payu-sdk:4.4.3'
+
 
     //For firebase RecyclerView Adapter
-    compile 'com.firebaseui:firebase-ui-database:1.2.0'
-
+    implementation 'com.firebaseui:firebase-ui-database:1.2.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     //Pressable Button
-    compile 'info.hoang8f:fbutton:1.0.5'
+    implementation 'info.hoang8f:fbutton:1.0.5'
 
 }
 apply plugin: 'com.google.gms.google-services'
