@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +32,8 @@ public class SubscribedUserTodaysMenu extends Fragment {
     private FirebaseRecyclerAdapter<TodayMenu,FoodMenuViewHolder> breakFastAdapter;
     private FirebaseRecyclerAdapter<TodayMenu,FoodMenuViewHolder> lunchAdapter;
     private FirebaseDatabase todayMenuFirebaseDatabase;
+    private TextView markAbsenceTextView;
+    private TextView wantToEatTextView;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,6 +42,8 @@ public class SubscribedUserTodaysMenu extends Fragment {
         breakFastRecyclerView=view.findViewById(R.id.breakFastRecyclerView);
         lunchRecyclerView=view.findViewById(R.id.lunchRecyclerView);
         dinnerRecyclerView=view.findViewById(R.id.dinnerRecyclerView);
+        markAbsenceTextView=view.findViewById(R.id.markAbsenceTextView);
+        wantToEatTextView=view.findViewById(R.id.wantToEatTextView);
         context=getContext();
 
         todayMenuFirebaseDatabase=FirebaseDatabase.getInstance();
@@ -50,7 +55,25 @@ public class SubscribedUserTodaysMenu extends Fragment {
         showlunchImages();
         showDinnerImages();
 
+        markAbsenceTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAbsenceDialog();
+            }
+        });
+
+        wantToEatTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         return view;
+    }
+
+    private void showAbsenceDialog() {
+
     }
 
     private void setRecyclerView(RecyclerView recyclerView) {
@@ -61,7 +84,7 @@ public class SubscribedUserTodaysMenu extends Fragment {
     }
 
     private void showDinnerImages() {
-        DatabaseReference databaseReference= todayMenuFirebaseDatabase.getReference("todayMenu").child("dinner");
+        DatabaseReference databaseReference= todayMenuFirebaseDatabase.getReference("TodayMenu").child("dinner");
         dinnerAdapter=new FirebaseRecyclerAdapter<TodayMenu, FoodMenuViewHolder>(
                 TodayMenu.class,R.layout.food_menu_raw_layout,FoodMenuViewHolder.class,databaseReference) {
             @Override
@@ -79,12 +102,12 @@ public class SubscribedUserTodaysMenu extends Fragment {
         foodMenuViewHolder.foodNameTextView.setText(todayMenu.getFoodName());
         foodMenuViewHolder.foodDescriptionTextView.setText(todayMenu.getFoodDescription());
         foodMenuViewHolder.foodQuantityTextView.setText("Quantity: "+todayMenu.getFoodQuantity());
-        Picasso.with(getContext()).load(todayMenu.getImageUrl()).into(foodMenuViewHolder.foodImageView);
+        Picasso.with(context).load(todayMenu.getImageUrl()).into(foodMenuViewHolder.foodImageView);
 
     }
 
     private void showlunchImages() {
-        DatabaseReference databaseReference= todayMenuFirebaseDatabase.getReference("todayMenu").child("lunch");
+        DatabaseReference databaseReference= todayMenuFirebaseDatabase.getReference("TodayMenu").child("lunch");
         lunchAdapter=new FirebaseRecyclerAdapter<TodayMenu, FoodMenuViewHolder>(
                 TodayMenu.class,R.layout.food_menu_raw_layout,FoodMenuViewHolder.class,databaseReference) {
             @Override
@@ -99,7 +122,7 @@ public class SubscribedUserTodaysMenu extends Fragment {
     }
 
     private void showBreakFastImages() {
-        DatabaseReference databaseReference= todayMenuFirebaseDatabase.getReference("todayMenu").child("breakFast");
+        DatabaseReference databaseReference= todayMenuFirebaseDatabase.getReference("TodayMenu").child("breakFast");
         breakFastAdapter=new FirebaseRecyclerAdapter<TodayMenu, FoodMenuViewHolder>(
                 TodayMenu.class,R.layout.food_menu_raw_layout,FoodMenuViewHolder.class,databaseReference) {
             @Override

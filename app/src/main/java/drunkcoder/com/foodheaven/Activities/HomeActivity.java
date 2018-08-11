@@ -1,5 +1,7 @@
 package drunkcoder.com.foodheaven.Activities;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -9,7 +11,10 @@ import android.util.Log;
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -19,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import drunkcoder.com.foodheaven.Fragments.SubscribedUserFragment;
 import drunkcoder.com.foodheaven.Fragments.UnsubscribedUser;
+import drunkcoder.com.foodheaven.Payments.PaymentsActivity;
 import drunkcoder.com.foodheaven.R;
 
 import android.view.Menu;
@@ -41,7 +47,6 @@ public class HomeActivity extends AppCompatActivity
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
 //            }
-//        });
 
         addDifferentFragment(UnsubscribedUser.newInstance());
 
@@ -66,9 +71,24 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
         }
+
+        new AlertDialog.Builder(this)
+                .setMessage("You will exit this app")
+                .setTitle("Do you really want to exit?")
+                .setIcon(R.drawable.thali_graphic)
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .setPositiveButton("Exit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                }).show();
     }
 
     @Override
@@ -108,13 +128,55 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
+            startActivity(new Intent(HomeActivity.this, PaymentsActivity.class));
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_logout) {
 
+            logOutDialog();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public void logOut()
+    {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if(user!=null)
+        {
+            FirebaseAuth.getInstance().signOut();
+            moveToAuthenticationActivity();
+        }
+
+    }
+
+    public void moveToAuthenticationActivity()
+    {
+//        Intent intent = new Intent(this,AuthenticationActivity.class);
+//        startActivity(intent);
+          finish();
+    }
+
+    public void logOutDialog()
+    {
+        new AlertDialog.Builder(this)
+                .setMessage("You will be loged out")
+                .setTitle("Do you really want to log out?")
+                .setIcon(R.drawable.thali_graphic)
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        logOut();
+                    }
+                }).show();
+    }
+
 }

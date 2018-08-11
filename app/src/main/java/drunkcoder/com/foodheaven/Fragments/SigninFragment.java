@@ -1,7 +1,5 @@
 package drunkcoder.com.foodheaven.Fragments;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,7 +22,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import drunkcoder.com.foodheaven.Activities.AuthenticationActivity;
-import drunkcoder.com.foodheaven.Activities.HomeActivity;
 import drunkcoder.com.foodheaven.R;
 
 public class SigninFragment extends Fragment implements View.OnClickListener {
