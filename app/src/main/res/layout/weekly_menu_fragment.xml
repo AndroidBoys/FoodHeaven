@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        app:cardElevation="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Select A Day"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_margin="8dp"
+            android:fontFamily="@font/josefin_bold"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        app:cardElevation="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <GridLayout
+            android:layout_margin="32dp"
+            android:layout_width="match_parent"
+            android:rowCount="4"
+            android:columnCount="2"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:onClick="showTodaysMenu"
+                android:layout_margin="8dp"
+                android:layout_gravity="fill"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:src="@mipmap/ic_launcher"
+                android:scaleType="fitXY"
+                android:tag="MON"
+                />
+
+            <ImageView
+
+                android:onClick="showTodaysMenu"
+                android:layout_margin="8dp"
+                android:layout_gravity="fill"
+                android:tag="TUES"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:src="@mipmap/ic_launcher"
+                android:scaleType="fitXY"
+                />
+            <ImageView
+                android:onClick="showTodaysMenu"
+                android:layout_margin="8dp"
+                android:layout_gravity="fill"
+                android:tag="WED"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:src="@mipmap/ic_launcher"
+                android:scaleType="fitXY"
+                />
+            <ImageView
+                android:onClick="showTodaysMenu"
+                android:layout_margin="8dp"
+                android:layout_gravity="fill"
+                android:tag="THRUS"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:src="@mipmap/ic_launcher"
+                android:scaleType="fitXY"
+                />
+            <ImageView
+                android:onClick="showTodaysMenu"
+                android:layout_margin="8dp"
+                android:layout_gravity="fill"
+                android:tag="FRI"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:src="@mipmap/ic_launcher"
+                android:scaleType="fitXY"
+                />
+            <ImageView
+                android:layout_margin="8dp"
+                android:layout_gravity="fill"
+                android:tag="SAT"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:src="@mipmap/ic_launcher"
+                android:scaleType="fitXY"
+                />
+            <ImageView
+                android:layout_margin="8dp"
+                android:layout_gravity="fill"
+                android:tag="SUN"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:src="@mipmap/ic_launcher"
+                android:scaleType="fitXY"
+                />
+        </GridLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
