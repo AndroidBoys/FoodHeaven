@@ -36,11 +36,13 @@ dependencies {
 
     //For firebase RecyclerView Adapter
     implementation 'com.firebaseui:firebase-ui-database:1.2.0'
-    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
     //Pressable Button
     implementation 'info.hoang8f:fbutton:1.0.5'
 
     implementation 'com.payumoney.sdkui:plug-n-play:1.2.0'
+    //khat khat button
+    implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
 
 }
 apply plugin: 'com.google.gms.google-services'
