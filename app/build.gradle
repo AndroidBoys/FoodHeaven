@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         release {
@@ -35,12 +36,15 @@ dependencies {
     implementation 'com.labo.kaji:fragmentanimations:0.1.1'
     implementation 'com.payu.india:payu-sdk:4.4.3'
 
-
     //For firebase RecyclerView Adapter
     implementation 'com.firebaseui:firebase-ui-database:1.2.0'
-    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
     //Pressable Button
     implementation 'info.hoang8f:fbutton:1.0.5'
+    //slider
+
+    implementation 'com.nineoldandroids:library:2.4.0'
+    implementation 'com.daimajia.slider:library:1.1.5@aar'
 
 }
 apply plugin: 'com.google.gms.google-services'

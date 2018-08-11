@@ -79,7 +79,7 @@ public class SubscribedUserTodaysMenu extends Fragment {
         foodMenuViewHolder.foodNameTextView.setText(todayMenu.getFoodName());
         foodMenuViewHolder.foodDescriptionTextView.setText(todayMenu.getFoodDescription());
         foodMenuViewHolder.foodQuantityTextView.setText("Quantity: "+todayMenu.getFoodQuantity());
-        Picasso.get().load(todayMenu.getImageUrl()).into(foodMenuViewHolder.foodImageView);
+        Picasso.with(getContext()).load(todayMenu.getImageUrl()).into(foodMenuViewHolder.foodImageView);
 
     }
 
