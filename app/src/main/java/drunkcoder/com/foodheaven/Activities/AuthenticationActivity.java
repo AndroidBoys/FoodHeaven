@@ -9,6 +9,8 @@ import drunkcoder.com.foodheaven.R;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class AuthenticationActivity extends AppCompatActivity {
 
     @Override
@@ -17,8 +19,26 @@ public class AuthenticationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_authentication);
         getSupportActionBar().hide();
 
-        addDifferentFragment(SigninFragment.newInstance());
+
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        SigninFragment signinFragment = SigninFragment.newInstance();
+
+        if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
+            signinFragment.moveToHomeActivity();
+
+        }
+        else{
+
+            addDifferentFragment(signinFragment);
+        }
+    }
+
+
 
     public void addDifferentFragment(Fragment replacableFragment){
         Log.i("Inside","Different fragment function");

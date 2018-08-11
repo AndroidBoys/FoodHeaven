@@ -149,7 +149,7 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
                 });
     }
 
-    private  void moveToHomeActivity()
+   public void moveToHomeActivity()
     {
         Intent intent = new Intent(hostingActivity, HomeActivity.class);
         startActivity(intent);
