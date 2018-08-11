@@ -1,7 +1,7 @@
 package drunkcoder.com.foodheaven.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,14 +23,15 @@ import com.squareup.picasso.Picasso;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import drunkcoder.com.foodheaven.Activities.Description;
 import drunkcoder.com.foodheaven.R;
 
-public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSliderClickListener{
+public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSliderClickListener,View.OnClickListener{
     private SliderLayout bannerSlider;
     private ImageView packsImageView;
     private Button ourPlansButton,
                     weeklyMenuButton;
-    private TextView howItWorksTextView,
+    private TextView whyHeavenFoodsTextView,
             faqTextView,
             callForAssistanceTextView;
 
@@ -44,9 +45,16 @@ public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSlide
         bannerSlider=(SliderLayout)view.findViewById(R.id.bannerSlider);
         ourPlansButton=view.findViewById(R.id.ourPlansButton);
         weeklyMenuButton=view.findViewById(R.id.weeklyMenuButton);
-        howItWorksTextView=view.findViewById(R.id.howItWorksTextView);
-        callForAssistanceTextView=view.findViewById(R.id.callForAssisteneTextView);
+        whyHeavenFoodsTextView =view.findViewById(R.id.whyHeavenFoodsTextView);
+        callForAssistanceTextView=view.findViewById(R.id.callForAssistenceTextView);
         faqTextView=view.findViewById(R.id.faqTextView);
+
+        //setting clicklistener
+        ourPlansButton.setOnClickListener(this);
+        callForAssistanceTextView.setOnClickListener(this);
+        weeklyMenuButton.setOnClickListener(this);
+        whyHeavenFoodsTextView.setOnClickListener(this);
+        faqTextView.setOnClickListener(this);
 
         getBannerFromFirebase();
         getpackImageFromFirebase();
@@ -117,7 +125,16 @@ public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSlide
 
     @Override
     public void onSliderClick(BaseSliderView slider) {
-
-        Toast.makeText(getActivity(), "move to other fragment", Toast.LENGTH_SHORT).show();
+        onClick(ourPlansButton);
     }
+
+    @Override
+    public void onClick(View view) {
+
+        Intent intent=new Intent(getContext(),Description.class);
+        intent.putExtra("ID",view.getId());//PASSING TAG AS VIEW ID
+        startActivity(intent);
+
+    }
+
 }

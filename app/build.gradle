@@ -38,6 +38,7 @@ dependencies {
 
     //For firebase RecyclerView Adapter
     implementation 'com.firebaseui:firebase-ui-database:1.2.0'
+//do not update this library since update don't have with() method
     implementation 'com.squareup.picasso:picasso:2.5.2'
     //Pressable Button
     implementation 'info.hoang8f:fbutton:1.0.5'
