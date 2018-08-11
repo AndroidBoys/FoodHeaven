@@ -7,6 +7,8 @@ import drunkcoder.com.foodheaven.Fragments.CallForAssistanceFragment;
 import drunkcoder.com.foodheaven.Fragments.FaqFragment;
 import drunkcoder.com.foodheaven.Fragments.OurPlansFragment;
 import drunkcoder.com.foodheaven.Fragments.WeeklyMenuFragment;
+import drunkcoder.com.foodheaven.Fragments.WhyHeavensFoodFragment;
+import drunkcoder.com.foodheaven.Models.WhyHeavenFood;
 import drunkcoder.com.foodheaven.R;
 
 import android.content.Intent;
@@ -47,7 +49,7 @@ public class Description extends AppCompatActivity {
                 addDifferentFragment(FaqFragment.newInstance());
                 break;
             case R.id.whyHeavenFoodsTextView:
-                addDifferentFragment(OurPlansFragment.newInstance());
+                addDifferentFragment(WhyHeavensFoodFragment.newInstance());
                 break;
         }
 

@@ -25,7 +25,6 @@
             <com.daimajia.slider.library.SliderLayout
                 android:focusable="true"
                 android:id="@+id/bannerSlider"
-                android:background="@color/colorAccent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 />
@@ -83,7 +82,6 @@
                     <ImageView
 
                         android:layout_margin="8dp"
-                        android:src="@mipmap/ic_launcher"
                         android:id="@+id/packsImageView"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
