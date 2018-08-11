@@ -54,7 +54,13 @@ public class SubscribedUserFragment extends Fragment {
         return view;
     }
 
-    public static Fragment getInstance(){
-        return new SubscribedUserFragment();
+
+    public static SubscribedUserFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        SubscribedUserFragment fragment = new SubscribedUserFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 }
