@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="3dp"
+    app:cardElevation="4dp"
+    android:layout_marginEnd="5dp"
+    app:cardCornerRadius="8dp"
+    android:layout_marginBottom="25dp"
+    android:layout_height="340dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="230dp">
+
+            <ImageView
+                android:id="@+id/specialFoodImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/indian"/>
+            <TextView
+                android:id="@+id/specialFoodNameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_alignBottom="@id/specialFoodImageView"
+                android:text="food Name"
+                android:textSize="20dp"
+                android:background="#8888"
+                android:fontFamily="@font/josefin_bold"
+                android:textColor="@color/blackColor"
+                android:textStyle="bold"/>
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/specialFoodDescriptionTextView"
+            android:layout_width="wrap_content"
+            android:fontFamily="@font/josefin_bold"
+            android:layout_marginTop="20dp"
+            android:text="food Description will be here . This food is one of the best food in the market Here your are getting the facility of not only eating but"
+            android:layout_weight="1"
+            android:maxLines="4"
+            android:layout_height="0dp"/>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_marginTop="4dp"
+            android:weightSum="10"
+            android:layout_height="0dp">
+
+            <LinearLayout
+                android:layout_weight="8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                    android:id="@+id/elegantNumberButton"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    app:textSize="8sp"
+                    android:layout_marginBottom="3dp"
+                    app:initialNumber="1"
+                    app:finalNumber="30"
+                    android:background="@color/md_green_200"
+                    android:layout_marginStart="10sp"/>
+
+
+            </LinearLayout>
+
+            <CheckBox
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:id="@+id/specialFoodCheckBox"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
