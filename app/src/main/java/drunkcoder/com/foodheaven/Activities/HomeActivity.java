@@ -48,7 +48,7 @@ public class HomeActivity extends AppCompatActivity
 //                        .setAction("Action", null).show();
 //            }
 
-        addDifferentFragment(UnsubscribedUser.newInstance());
+        addDifferentFragment(SubscribedUserFragment.newInstance());
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -119,13 +119,16 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.subscribedFragment) {
+            addDifferentFragment(SubscribedUserFragment.newInstance());
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.unsubscriber) {
+            addDifferentFragment(UnsubscribedUser.newInstance());
 
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
+            addDifferentFragment(SubscribedUserFragment.newInstance());
 
         } else if (id == R.id.nav_share) {
             startActivity(new Intent(HomeActivity.this, PaymentsActivity.class));

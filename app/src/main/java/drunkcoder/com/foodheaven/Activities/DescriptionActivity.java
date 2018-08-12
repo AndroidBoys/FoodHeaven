@@ -20,7 +20,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-public class Description extends AppCompatActivity {
+public class DescriptionActivity extends AppCompatActivity {
 
     private FrameLayout frameLayout;
     @Override
@@ -61,7 +61,7 @@ public class Description extends AppCompatActivity {
     }
 
 
-    private void addDifferentFragment(Fragment replacableFragment){
+    public void addDifferentFragment(Fragment replacableFragment){
         Log.i("Inside","Different fragment function");
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.descriptionFrameLayout,replacableFragment,null).commit();
@@ -69,9 +69,9 @@ public class Description extends AppCompatActivity {
 
     //this method will call when user select a week day from the weeklyMenuFragment
 
-    void showTodaysMenu(View view){
+    public void showTodaysMenu(View view){
         Toast.makeText(this, view.getTag().toString()+"selected", Toast.LENGTH_SHORT).show();
-    addDifferentFragment(WeeklyMenuNestedFragment.newInstance(view.getTag().toString()));
+        addDifferentFragment(WeeklyMenuNestedFragment.newInstance(view.getTag().toString()));
 
     }
 

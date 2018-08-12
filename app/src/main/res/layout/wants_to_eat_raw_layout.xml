@@ -52,6 +52,7 @@
                 android:id="@+id/wantsFoodDescriptionTextView"
                 android:layout_width="wrap_content"
                 android:fontFamily="@font/josefin_bold"
+                android:textSize="15sp"
                 android:text="food Description will be here . This food is one of the best food in the market Here your are getting the facility of not only eating but"
                 android:maxLines="4"
                 android:layout_height="match_parent"/>
