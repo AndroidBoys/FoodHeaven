@@ -8,10 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.Toast;
 
-import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,7 +25,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import drunkcoder.com.foodheaven.Models.SpecialFood;
-import drunkcoder.com.foodheaven.Models.TodayMenu;
 import drunkcoder.com.foodheaven.R;
 import drunkcoder.com.foodheaven.ViewHolders.SpecialFoodViewHolder;
 
@@ -111,10 +108,10 @@ public class SpecialOrders extends Fragment {
                 });
             }
         };
-//        final FirebaseRecyclerAdapter<TodayMenu,SpecialFoodViewHolder> foodAdapter=new FirebaseRecyclerAdapter<TodayMenu, SpecialFoodViewHolder>(TodayMenu.class
+//        final FirebaseRecyclerAdapter<FoodMenu,SpecialFoodViewHolder> foodAdapter=new FirebaseRecyclerAdapter<FoodMenu, SpecialFoodViewHolder>(FoodMenu.class
 //        , R.layout.special_food_raw_layout,SpecialFoodViewHolder.class,specialFoodDatabaseReference) {
 //            @Override
-//            protected void populateViewHolder(final SpecialFoodViewHolder specialFoodViewHolder, final TodayMenu todayMenu, final int i) {
+//            protected void populateViewHolder(final SpecialFoodViewHolder specialFoodViewHolder, final FoodMenu todayMenu, final int i) {
 //                specialFoodViewHolder.specialFoodDescriptionTextView.setText(todayMenu.getFoodDescription());
 //                specialFoodViewHolder.specialFoodNameTextView.setText(todayMenu.getFoodName());
 //                specialFoodViewHolder.specialFoodQuantityTextView.setText(todayMenu.getFoodQuantity());

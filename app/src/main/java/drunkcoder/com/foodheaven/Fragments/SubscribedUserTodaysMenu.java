@@ -19,7 +19,6 @@ import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 import androidx.annotation.NonNull;
@@ -27,7 +26,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import drunkcoder.com.foodheaven.Models.TodayMenu;
+import drunkcoder.com.foodheaven.Models.FoodMenu;
 import drunkcoder.com.foodheaven.R;
 import drunkcoder.com.foodheaven.ViewHolders.FoodMenuViewHolder;
 
@@ -38,9 +37,9 @@ public class SubscribedUserTodaysMenu extends Fragment {
     private RecyclerView dinnerRecyclerView;
     private LinearLayoutManager linearLayoutManager;
     private Context context;
-    private FirebaseRecyclerAdapter<TodayMenu,FoodMenuViewHolder> dinnerAdapter;
-    private FirebaseRecyclerAdapter<TodayMenu,FoodMenuViewHolder> breakFastAdapter;
-    private FirebaseRecyclerAdapter<TodayMenu,FoodMenuViewHolder> lunchAdapter;
+    private FirebaseRecyclerAdapter<FoodMenu,FoodMenuViewHolder> dinnerAdapter;
+    private FirebaseRecyclerAdapter<FoodMenu,FoodMenuViewHolder> breakFastAdapter;
+    private FirebaseRecyclerAdapter<FoodMenu,FoodMenuViewHolder> lunchAdapter;
     private FirebaseDatabase todayMenuFirebaseDatabase;
     private TextView markAbsenceTextView;
     private TextView wantToEatTextView;
@@ -154,11 +153,11 @@ public class SubscribedUserTodaysMenu extends Fragment {
 
     private void showDinnerImages() {
         DatabaseReference databaseReference= todayMenuFirebaseDatabase.getReference("TodayMenu").child("dinner");
-        dinnerAdapter=new FirebaseRecyclerAdapter<TodayMenu, FoodMenuViewHolder>(
-                TodayMenu.class,R.layout.food_menu_raw_layout,FoodMenuViewHolder.class,databaseReference) {
+        dinnerAdapter=new FirebaseRecyclerAdapter<FoodMenu, FoodMenuViewHolder>(
+                FoodMenu.class,R.layout.food_menu_row_layout,FoodMenuViewHolder.class,databaseReference) {
             @Override
-            protected void populateViewHolder(FoodMenuViewHolder foodMenuViewHolder, TodayMenu todayMenu, int i) {
-                setFoodDetails(foodMenuViewHolder,todayMenu);
+            protected void populateViewHolder(FoodMenuViewHolder foodMenuViewHolder, FoodMenu foodMenu, int i) {
+                setFoodDetails(foodMenuViewHolder, foodMenu);
 
             }
         };
@@ -167,21 +166,20 @@ public class SubscribedUserTodaysMenu extends Fragment {
         //Download the images from the firebase
     }
 
-    private void setFoodDetails(FoodMenuViewHolder foodMenuViewHolder,TodayMenu todayMenu) {
-        foodMenuViewHolder.foodNameTextView.setText(todayMenu.getFoodName());
-        foodMenuViewHolder.foodDescriptionTextView.setText(todayMenu.getFoodDescription());
-        foodMenuViewHolder.foodQuantityTextView.setText("Quantity: "+todayMenu.getFoodQuantity());
-        Picasso.with(context).load(todayMenu.getImageUrl()).into(foodMenuViewHolder.foodImageView);
+    private void setFoodDetails(FoodMenuViewHolder foodMenuViewHolder,FoodMenu foodMenu) {
+        foodMenuViewHolder.foodNameTextView.setText(foodMenu.getFoodName());
+        foodMenuViewHolder.foodDescriptionTextView.setText(foodMenu.getFoodDescription());
+        Picasso.with(context).load(foodMenu.getImageUrl()).into(foodMenuViewHolder.foodImageView);
 
     }
 
     private void showlunchImages() {
         DatabaseReference databaseReference= todayMenuFirebaseDatabase.getReference("TodayMenu").child("lunch");
-        lunchAdapter=new FirebaseRecyclerAdapter<TodayMenu, FoodMenuViewHolder>(
-                TodayMenu.class,R.layout.food_menu_raw_layout,FoodMenuViewHolder.class,databaseReference) {
+        lunchAdapter=new FirebaseRecyclerAdapter<FoodMenu, FoodMenuViewHolder>(
+                FoodMenu.class,R.layout.food_menu_row_layout,FoodMenuViewHolder.class,databaseReference) {
             @Override
-            protected void populateViewHolder(FoodMenuViewHolder foodMenuViewHolder, TodayMenu todayMenu, int i) {
-                setFoodDetails(foodMenuViewHolder,todayMenu);
+            protected void populateViewHolder(FoodMenuViewHolder foodMenuViewHolder, FoodMenu foodMenu, int i) {
+                setFoodDetails(foodMenuViewHolder, foodMenu);
 
             }
         };
@@ -192,11 +190,11 @@ public class SubscribedUserTodaysMenu extends Fragment {
 
     private void showBreakFastImages() {
         DatabaseReference databaseReference= todayMenuFirebaseDatabase.getReference("TodayMenu").child("breakFast");
-        breakFastAdapter=new FirebaseRecyclerAdapter<TodayMenu, FoodMenuViewHolder>(
-                TodayMenu.class,R.layout.food_menu_raw_layout,FoodMenuViewHolder.class,databaseReference) {
+        breakFastAdapter=new FirebaseRecyclerAdapter<FoodMenu, FoodMenuViewHolder>(
+                FoodMenu.class,R.layout.food_menu_row_layout,FoodMenuViewHolder.class,databaseReference) {
             @Override
-            protected void populateViewHolder(FoodMenuViewHolder foodMenuViewHolder, TodayMenu todayMenu, int i) {
-                setFoodDetails(foodMenuViewHolder,todayMenu);
+            protected void populateViewHolder(FoodMenuViewHolder foodMenuViewHolder, FoodMenu foodMenu, int i) {
+                setFoodDetails(foodMenuViewHolder, foodMenu);
 
             }
         };

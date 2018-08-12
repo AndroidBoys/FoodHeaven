@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, AuthenticationActivity.class));
 
 //        DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("todayMenu");
-//        TodayMenu todayMenu=new TodayMenu();
+//        FoodMenu todayMenu=new FoodMenu();
 //        todayMenu.setImageUrl("http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg");
 //        todayMenu.setFoodName("Apna Food");
 //        todayMenu.setFoodDescription("looking good");

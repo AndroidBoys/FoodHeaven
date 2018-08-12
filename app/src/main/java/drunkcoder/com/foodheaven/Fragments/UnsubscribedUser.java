@@ -33,7 +33,8 @@ public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSlide
                     weeklyMenuButton;
     private TextView whyHeavenFoodsTextView,
             faqTextView,
-            callForAssistanceTextView;
+            callForAssistanceTextView,
+            attractUserTextView;
 
 
     @Nullable
@@ -48,6 +49,7 @@ public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSlide
         whyHeavenFoodsTextView =view.findViewById(R.id.whyHeavenFoodsTextView);
         callForAssistanceTextView=view.findViewById(R.id.callForAssistenceTextView);
         faqTextView=view.findViewById(R.id.faqTextView);
+        attractUserTextView=view.findViewById(R.id.attractUser);
 
         //setting clicklistener
         ourPlansButton.setOnClickListener(this);
@@ -58,10 +60,25 @@ public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSlide
 
         getBannerFromFirebase();
         getpackImageFromFirebase();
+        getAttractiveSloganFromFirebase();
 
 
 
         return view;
+    }
+
+    private void getAttractiveSloganFromFirebase() {
+    FirebaseDatabase.getInstance().getReference("AttractiveQuotes").addListenerForSingleValueEvent(new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            attractUserTextView.setText(dataSnapshot.getValue().toString());
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+        }
+    });
     }
 
     private void setBanners(String imageUrl) {

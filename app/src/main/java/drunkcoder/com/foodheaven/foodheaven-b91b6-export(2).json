@@ -61,19 +61,16 @@
       "01" : {
         "foodDescription" : "good food",
         "foodName" : "FINGER FOOD1",
-        "foodQuantity" : "2",
         "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
       },
       "02" : {
         "foodDescription" : "good food",
         "foodName" : "Western Soup",
-        "foodQuantity" : "2",
         "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg"
       },
       "03" : {
         "foodDescription" : "good food",
         "foodName" : "Soup",
-        "foodQuantity" : "2",
         "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-easternsoup.jpg"
       }
     },
@@ -81,19 +78,16 @@
       "01" : {
         "foodDescription" : "Snacks",
         "foodName" : "FINGER FOOD1",
-        "foodQuantity" : "2",
         "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-snacks.jpg"
       },
       "02" : {
         "foodDescription" : "good food",
         "foodName" : "Western Soup",
-        "foodQuantity" : "2",
         "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg"
       },
       "03" : {
         "foodDescription" : "good food",
         "foodName" : "Soup",
-        "foodQuantity" : "2",
         "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-easternsoup.jpg"
       }
     },
@@ -101,25 +95,21 @@
       "01" : {
         "foodDescription" : "good food",
         "foodName" : "Sandwich",
-        "foodQuantity" : "2",
         "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-sandwich.jpg"
       },
       "02" : {
         "foodDescription" : "good food",
         "foodName" : "Western Soup",
-        "foodQuantity" : "2",
         "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg"
       },
       "03" : {
         "foodDescription" : "good food",
         "foodName" : "Soup",
-        "foodQuantity" : "2",
         "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-easternsoup.jpg"
       },
       "04" : {
         "foodDescription" : "looking good",
         "foodName" : "Apna Food",
-        "foodQuantity" : "4",
         "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
       }
     }

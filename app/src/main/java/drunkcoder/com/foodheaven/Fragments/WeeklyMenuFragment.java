@@ -25,13 +25,13 @@ public class WeeklyMenuFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.weekly_menu_fragment, container, false);
-        sunImageView=view.findViewWithTag("SUN");
-        monImageView=view.findViewWithTag("MON");
-        tuesImageView=view.findViewWithTag("TUES");
-        wedImageView=view.findViewWithTag("WED");
-        thrusImageView=view.findViewWithTag("THRUS");
-        friImageView=view.findViewWithTag("FRI");
-        satImageView=view.findViewWithTag("SAT");
+        sunImageView=view.findViewWithTag("Sun");
+        monImageView=view.findViewWithTag("Mon");
+        tuesImageView=view.findViewWithTag("Tues");
+        wedImageView=view.findViewWithTag("Wed");
+        thrusImageView=view.findViewWithTag("Thrus");
+        friImageView=view.findViewWithTag("Fri");
+        satImageView=view.findViewWithTag("Sat");
 
         setImageTextDrawable(sunImageView);
         setImageTextDrawable(monImageView);
@@ -56,10 +56,6 @@ public class WeeklyMenuFragment extends Fragment {
 
     }
 
-    void showTodaysMenu(View view){
-        Toast.makeText(getContext(), "hello", Toast.LENGTH_SHORT).show();
-
-    }
 
     public static WeeklyMenuFragment newInstance() {
         
