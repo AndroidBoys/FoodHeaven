@@ -14,10 +14,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthProvider;
-import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -51,7 +48,7 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
     private List<User> users;
     private boolean isPhoneNumber;
     private boolean isEmail;
-    private String username;
+    private String username="Sample@test.com";
 
     public static SigninFragment newInstance() {
 
@@ -221,7 +218,7 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
             }
         }
 
-        return "";
+        return "Sample@test.com";
     }
 
     public void vailidateDetails(){
