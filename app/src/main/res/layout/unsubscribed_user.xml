@@ -81,13 +81,13 @@
 
                     <ImageView
 
-                        android:layout_margin="8dp"
                         android:id="@+id/packsImageView"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:scaleType="fitXY"
                         android:layout_alignParentStart="true"
-                        android:layout_marginTop="8dp" />
+                        android:layout_margin="8dp"
+                        android:layout_marginTop="8dp"
+                        android:scaleType="fitXY" />
 
 
                     <info.hoang8f.widget.FButton
@@ -98,7 +98,8 @@
                         android:background="@drawable/button_background"
                         android:fontFamily="@font/josefin_bold"
                         android:textColor="@android:color/white"
-                        android:textSize="25sp" />
+                        android:textSize="25sp"
+                        app:buttonColor="@color/colorPrimary"/>
 
                     <androidx.cardview.widget.CardView
                         app:cardElevation="8dp"
@@ -169,7 +170,8 @@
                         android:background="@drawable/button_background"
                         android:fontFamily="@font/josefin_bold"
                         android:textColor="@android:color/white"
-                        android:textSize="25sp" />
+                        android:textSize="25sp"
+                        app:buttonColor="@color/colorPrimary"/>
 
                 </LinearLayout>
 

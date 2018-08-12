@@ -24,11 +24,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import drunkcoder.com.foodheaven.Activities.DescriptionActivity;
 import drunkcoder.com.foodheaven.R;
+import info.hoang8f.widget.FButton;
 
 public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSliderClickListener,View.OnClickListener{
     private SliderLayout bannerSlider;
     private ImageView packsImageView;
-    private Button ourPlansButton,
+    private FButton ourPlansButton,
                     weeklyMenuButton;
     private TextView whyHeavenFoodsTextView,
             faqTextView,
@@ -43,12 +44,16 @@ public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSlide
 
         packsImageView=view.findViewById(R.id.packsImageView);
         bannerSlider= view.findViewById(R.id.bannerSlider);
-        ourPlansButton=view.findViewById(R.id.ourPlansButton);
-        weeklyMenuButton=view.findViewById(R.id.weeklyMenuButton);
+        ourPlansButton=(FButton)view.findViewById(R.id.ourPlansButton);
+        weeklyMenuButton=(FButton)view.findViewById(R.id.weeklyMenuButton);
         whyHeavenFoodsTextView =view.findViewById(R.id.whyHeavenFoodsTextView);
         callForAssistanceTextView=view.findViewById(R.id.callForAssistenceTextView);
         faqTextView=view.findViewById(R.id.faqTextView);
         attractUserTextView=view.findViewById(R.id.attractUser);
+
+        //customize button color
+        ourPlansButton.setButtonColor(getActivity().getResources().getColor(R.color.colorPrimary));
+        weeklyMenuButton.setButtonColor(getActivity().getResources().getColor(R.color.colorPrimary));
 
         //setting clicklistener
         ourPlansButton.setOnClickListener(this);

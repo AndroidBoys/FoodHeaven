@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import drunkcoder.com.foodheaven.Models.SpecialFood;
 import drunkcoder.com.foodheaven.R;
 import drunkcoder.com.foodheaven.ViewHolders.SpecialFoodViewHolder;
+import info.hoang8f.widget.FButton;
 
 public class SpecialOrders extends Fragment {
 
@@ -36,7 +37,7 @@ public class SpecialOrders extends Fragment {
     private DatabaseReference specialFoodDatabaseReference;
     private FirebaseRecyclerAdapter<SpecialFood, SpecialFoodViewHolder> specialFoodAdapter;
     private ArrayList<SpecialFood> specialFoodArrayList;
-    private Button orderNowButton;
+    private FButton orderNowButton;
 //    private ElegantNumberButton elegantNumberButton;
 
     @Nullable
@@ -52,6 +53,7 @@ public class SpecialOrders extends Fragment {
         specialOrderRecyclerView.setHasFixedSize(true);
         specialOrderRecyclerView.setLayoutManager(layoutManager);
 
+        orderNowButton.setButtonColor(getActivity().getResources().getColor(R.color.colorPrimary));
         showSpecialFoodList();
         orderNowButton.setOnClickListener(new View.OnClickListener() {
             @Override

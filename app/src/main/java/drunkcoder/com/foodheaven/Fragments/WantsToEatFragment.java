@@ -32,6 +32,8 @@ import drunkcoder.com.foodheaven.R;
 import drunkcoder.com.foodheaven.ViewHolders.FoodMenuViewHolder;
 import drunkcoder.com.foodheaven.ViewHolders.SpecialFoodViewHolder;
 import drunkcoder.com.foodheaven.ViewHolders.WantsToEatViewHolder;
+import info.hoang8f.widget.FButton;
+
 
 public class WantsToEatFragment extends Fragment {
 
@@ -40,7 +42,7 @@ public class WantsToEatFragment extends Fragment {
     private Context context;
     private FirebaseRecyclerAdapter<FoodMenu, WantsToEatViewHolder> wantsToEatFoodAdapter;
     private DatabaseReference wantsToEatDatabaseReference;
-    private Button wantsSubmitButton;
+    private FButton wantsSubmitButton;
     private int maxLimit;
     private ArrayList<String> foodChooseList;
 
@@ -70,9 +72,12 @@ public class WantsToEatFragment extends Fragment {
                         //wantsToEatDatabaseReference.child("ChoosedBy").child(foodChooseList.get(i)).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue()
                     }
                 }
-                
+
             }
         });
+
+        wantsSubmitButton.setButtonColor(getActivity().getResources().getColor(R.color.colorPrimary));
+
         return view;
     }
 
@@ -127,6 +132,7 @@ public class WantsToEatFragment extends Fragment {
             }
         };
         wantsToEatRecyclerView.setAdapter(wantsToEatFoodAdapter);
+        //
     }
 
     public static WantsToEatFragment newInstance() {

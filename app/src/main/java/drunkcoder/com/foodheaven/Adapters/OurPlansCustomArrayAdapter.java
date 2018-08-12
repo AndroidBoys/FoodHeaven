@@ -17,6 +17,7 @@ import drunkcoder.com.foodheaven.Activities.DescriptionActivity;
 import drunkcoder.com.foodheaven.Fragments.BuySubscriptionFragment;
 import drunkcoder.com.foodheaven.Models.OurPlans;
 import drunkcoder.com.foodheaven.R;
+import info.hoang8f.widget.FButton;
 
 public class OurPlansCustomArrayAdapter extends ArrayAdapter {
     private ArrayList<OurPlans> ourPlans=new ArrayList<>();
@@ -31,7 +32,9 @@ public class OurPlansCustomArrayAdapter extends ArrayAdapter {
         View view=layoutInflater.inflate(R.layout.our_plans_fragment_listview_row,parent,false);
         planImageView=view.findViewById(R.id.packsImageView);
         planNameTextView=view.findViewById(R.id.packName);
-        showDetailButton = view.findViewById(R.id.showDetailsButton);
+        showDetailButton = (FButton)view.findViewById(R.id.showDetailsButton);
+
+        ((FButton) showDetailButton).setButtonColor(hostingActivity.getResources().getColor(R.color.colorPrimary));
         showDetailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
