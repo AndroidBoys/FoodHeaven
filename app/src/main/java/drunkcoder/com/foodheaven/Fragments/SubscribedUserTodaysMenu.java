@@ -33,7 +33,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import drunkcoder.com.foodheaven.Models.FoodMenu;
 import drunkcoder.com.foodheaven.Activities.Description;
 import drunkcoder.com.foodheaven.Activities.HomeActivity;
-import drunkcoder.com.foodheaven.Models.TodayMenu;
 import drunkcoder.com.foodheaven.R;
 import drunkcoder.com.foodheaven.ViewHolders.FoodMenuViewHolder;
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -89,6 +90,7 @@
                 android:scaleType="fitXY"
                 />
             <ImageView
+                android:onClick="showTodaysMenu"
                 android:layout_margin="8dp"
                 android:layout_gravity="fill"
                 android:tag="Sat"
@@ -98,6 +100,7 @@
                 android:scaleType="fitXY"
                 />
             <ImageView
+                android:onClick="showTodaysMenu"
                 android:layout_margin="8dp"
                 android:layout_gravity="fill"
                 android:tag="Sun"
