@@ -22,6 +22,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import drunkcoder.com.foodheaven.Fragments.OurPlansFragment;
+import drunkcoder.com.foodheaven.Fragments.SpecialOrders;
 import drunkcoder.com.foodheaven.Fragments.SubscribedUserFragment;
 import drunkcoder.com.foodheaven.Fragments.UnsubscribedUser;
 import drunkcoder.com.foodheaven.Payments.PaymentsActivity;
@@ -48,7 +50,7 @@ public class HomeActivity extends AppCompatActivity
 //                        .setAction("Action", null).show();
 //            }
 
-        addDifferentFragment(UnsubscribedUser   .newInstance());
+        addDifferentFragment(UnsubscribedUser.newInstance());
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -119,21 +121,45 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_home) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_mySubscription) {
+            addDifferentFragment(SubscribedUserFragment.newInstance());
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_weeklyMenu) {
 
-        } else if (id == R.id.nav_manage) {
+            Intent intent=new Intent(HomeActivity.this,Description.class);
+            intent.putExtra("ID",R.id.weeklyMenuButton);//since we have to show the weeklyMenu on the screen which will be host by the description activity
+            startActivity(intent);
 
-        } else if (id == R.id.nav_share) {
-            startActivity(new Intent(HomeActivity.this, PaymentsActivity.class));
+        } else if (id == R.id.nav_specialOrder) {
+            SubscribedUserFragment subscribedUserFragment=SubscribedUserFragment.newInstance();
+            Bundle bundle=new Bundle();
+            bundle.putInt("POSITION",1);//SINCE position of the special order position is 1 in view pager
+            subscribedUserFragment.setArguments(bundle);
+            addDifferentFragment(subscribedUserFragment);
+
+        } else if (id == R.id.nav_contectUs) {
 
         } else if (id == R.id.nav_logout) {
 
             logOutDialog();
         }
+        else if (id == R.id.nav_wallet) {
+            SubscribedUserFragment subscribedUserFragment=SubscribedUserFragment.newInstance();
+            Bundle bundle=new Bundle();
+            bundle.putInt("POSITION",2);//SINCE position of the wallet position is 1 in view pager
+            subscribedUserFragment.setArguments(bundle);
+            addDifferentFragment(subscribedUserFragment);
+
+
+        }else if (id == R.id.nav_rate) {
+
+        }else if (id == R.id.nav_profile) {
+
+        }
+
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

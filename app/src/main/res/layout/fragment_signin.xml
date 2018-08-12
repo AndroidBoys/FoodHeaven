@@ -61,6 +61,9 @@
         android:layout_weight="1"
         >
         <Button
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+
             android:layout_gravity="center"
             android:id="@+id/signinButton"
             android:layout_width="170dp"
@@ -75,10 +78,11 @@
     </LinearLayout>
 
         <TextView
-            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_weight=".5"
             android:id="@+id/signupTextview"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/josefin_bold"
             android:text="@string/text_signup"
             android:textAlignment="center"
@@ -86,14 +90,15 @@
             android:textSize="22sp"/>
 
         <TextView
-            android:layout_weight="1"
+            android:layout_weight=".5"
             android:id="@+id/forgotTextview"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
             android:fontFamily="@font/josefin_bold"
             android:text="@string/text_forgot_password"
             android:textAlignment="center"
             android:textColor="@android:color/white"
-            android:textSize="22sp"/>
+            android:textSize="22sp"
+            android:layout_height="wrap_content" />
+
 
     </LinearLayout>

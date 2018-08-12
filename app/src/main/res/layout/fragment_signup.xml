@@ -67,7 +67,7 @@
             android:layout_height="0dp">
 
             <Button
-                android:layout_gravity="bottom"
+                android:layout_gravity="center"
                 android:id="@+id/signupButton"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"

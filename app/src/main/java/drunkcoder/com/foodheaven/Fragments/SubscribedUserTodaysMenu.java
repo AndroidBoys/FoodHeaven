@@ -186,7 +186,7 @@ public class SubscribedUserTodaysMenu extends Fragment{
     }
 
     private void showDinnerImages() {
-        DatabaseReference databaseReference= todayMenuFirebaseDatabase.getReference("TodayMenu").child("dinner");
+        DatabaseReference databaseReference= todayMenuFirebaseDatabase.getReference("TodayMenu").child("Dinner");
         dinnerAdapter=new FirebaseRecyclerAdapter<FoodMenu, FoodMenuViewHolder>(
                 FoodMenu.class,R.layout.food_menu_row_layout,FoodMenuViewHolder.class,databaseReference) {
             @Override
@@ -208,7 +208,7 @@ public class SubscribedUserTodaysMenu extends Fragment{
     }
 
     private void showlunchImages() {
-        DatabaseReference databaseReference= todayMenuFirebaseDatabase.getReference("TodayMenu").child("lunch");
+        DatabaseReference databaseReference= todayMenuFirebaseDatabase.getReference("TodayMenu").child("Lunch");
         lunchAdapter=new FirebaseRecyclerAdapter<FoodMenu, FoodMenuViewHolder>(
                 FoodMenu.class,R.layout.food_menu_row_layout,FoodMenuViewHolder.class,databaseReference) {
             @Override
@@ -223,7 +223,7 @@ public class SubscribedUserTodaysMenu extends Fragment{
     }
 
     private void showBreakFastImages() {
-        DatabaseReference databaseReference= todayMenuFirebaseDatabase.getReference("TodayMenu").child("breakFast");
+        DatabaseReference databaseReference= todayMenuFirebaseDatabase.getReference("TodayMenu").child("BreakFast");
         breakFastAdapter=new FirebaseRecyclerAdapter<FoodMenu, FoodMenuViewHolder>(
                 FoodMenu.class,R.layout.food_menu_row_layout,FoodMenuViewHolder.class,databaseReference) {
             @Override

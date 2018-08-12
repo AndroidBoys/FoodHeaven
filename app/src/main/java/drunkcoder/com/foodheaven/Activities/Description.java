@@ -61,7 +61,7 @@ public class Description extends AppCompatActivity {
     }
 
 
-    private void addDifferentFragment(Fragment replacableFragment){
+    public void addDifferentFragment(Fragment replacableFragment){
         Log.i("Inside","Different fragment function");
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.descriptionFrameLayout,replacableFragment,null).commit();
