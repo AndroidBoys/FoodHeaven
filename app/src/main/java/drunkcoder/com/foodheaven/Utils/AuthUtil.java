@@ -10,7 +10,7 @@ public class AuthUtil {
     }
 
     public static boolean isVailidPhone(CharSequence target){
-        return (!TextUtils.isEmpty(target.toString().trim()) && Patterns.PHONE.matcher(target).matches());
+        return (!TextUtils.isEmpty(target.toString().trim()) && Patterns.PHONE.matcher(target).matches()&&target.length()==10);
 
     }
 }
