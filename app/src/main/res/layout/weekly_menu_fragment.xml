@@ -3,10 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/light_gray"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
+
+        app:cardBackgroundColor="@color/transparent"
         app:cardElevation="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -25,6 +28,8 @@
 
     <androidx.cardview.widget.CardView
         app:cardElevation="8dp"
+
+        app:cardBackgroundColor="@color/transparent"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -37,80 +42,142 @@
 
 
 
-            <ImageView
-                android:src="@mipmap/ic_launcher"
-                android:background="@color/transparent"
+            <com.google.android.material.button.MaterialButton
+               android:background="@color/transparent"
                 android:onClick="showTodaysMenu"
                 android:layout_margin="8dp"
                 android:layout_gravity="fill"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:scaleType="fitXY"
+                android:textAppearance="@style/Widget.MaterialComponents.Button"
+
+                android:text="Mon"
+                android:elevation="8dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                app:cornerRadius="@dimen/dimen_20dp"
+                android:fontFamily="@font/josefin_bold"
+                android:textAlignment="center"
+                android:textSize="@dimen/cb_thirtysix"
                 android:tag="Mon"
                 />
 
-            <ImageView
-
-                android:src="@mipmap/ic_launcher"
+            <com.google.android.material.button.MaterialButton
+                android:background="@color/transparent"
                 android:onClick="showTodaysMenu"
                 android:layout_margin="8dp"
+            android:textAppearance="@style/Widget.MaterialComponents.Button"
                 android:layout_gravity="fill"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:text="Tues"
+              
+                android:elevation="8dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                app:cornerRadius="@dimen/dimen_20dp"
+                android:fontFamily="@font/josefin_bold"
+                android:textAlignment="center"
+                android:textSize="@dimen/cb_thirtysix"
                 android:tag="Tues"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:background="@color/transparent"
-                android:scaleType="fitXY"
                 />
-            <ImageView
-                android:src="@mipmap/ic_launcher"
+
+            <com.google.android.material.button.MaterialButton
+                android:background="@color/transparent"
                 android:onClick="showTodaysMenu"
                 android:layout_margin="8dp"
                 android:layout_gravity="fill"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:text="Wed"
+                android:textAppearance="@style/Widget.MaterialComponents.Button"
+              
+                android:elevation="8dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                app:cornerRadius="@dimen/dimen_20dp"
+                android:fontFamily="@font/josefin_bold"
+                android:textAlignment="center"
+                android:textSize="@dimen/cb_thirtysix"
                 android:tag="Wed"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:background="@color/transparent"
-                android:scaleType="fitXY"
                 />
-            <ImageView
+            <com.google.android.material.button.MaterialButton
+                android:background="@color/transparent"
                 android:onClick="showTodaysMenu"
                 android:layout_margin="8dp"
                 android:layout_gravity="fill"
+                android:layout_rowWeight="1"
+
+                android:textAppearance="@style/Widget.MaterialComponents.Button"
+                android:layout_columnWeight="1"
+                android:text="Thrus"
+                   
+                android:elevation="8dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                app:cornerRadius="@dimen/dimen_20dp"
+                android:fontFamily="@font/josefin_bold"
+                android:textAlignment="center"
+                android:textSize="@dimen/cb_thirtysix"
                 android:tag="Thrus"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
+               />
+            <com.google.android.material.button.MaterialButton
                 android:background="@color/transparent"
-                android:scaleType="fitXY"
-                />
-            <ImageView
                 android:onClick="showTodaysMenu"
                 android:layout_margin="8dp"
                 android:layout_gravity="fill"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:text="Fri"
+
+                android:textAppearance="@style/Widget.MaterialComponents.Button"
+                android:elevation="8dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                app:cornerRadius="@dimen/dimen_20dp"
+                android:fontFamily="@font/josefin_bold"
+                android:textAlignment="center"
+                android:textSize="@dimen/cb_thirtysix"
                 android:tag="Fri"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:background="@color/transparent"
-                android:scaleType="fitXY"
                 />
-            <ImageView
+            <com.google.android.material.button.MaterialButton
+                android:background="@color/transparent"
                 android:onClick="showTodaysMenu"
                 android:layout_margin="8dp"
+                android:textAppearance="@style/Widget.MaterialComponents.Button"
                 android:layout_gravity="fill"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:text="Sat"
+              
+                android:elevation="8dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                app:cornerRadius="@dimen/dimen_20dp"
+                android:fontFamily="@font/josefin_bold"
+                android:textAlignment="center"
+                android:textSize="@dimen/cb_thirtysix"
                 android:tag="Sat"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:background="@color/transparent"
-                android:scaleType="fitXY"
                 />
-            <ImageView
+            <com.google.android.material.button.MaterialButton
+                android:background="@color/transparent"
                 android:onClick="showTodaysMenu"
                 android:layout_margin="8dp"
                 android:layout_gravity="fill"
-                android:tag="Sun"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:background="@color/transparent"
-                android:scaleType="fitXY"
+                android:text="Sun"
+              
+
+                android:elevation="8dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textAppearance="@style/Widget.MaterialComponents.Button"
+                app:cornerRadius="@dimen/dimen_20dp"
+                android:fontFamily="@font/josefin_bold"
+                android:textAlignment="center"
+                android:textSize="@dimen/cb_thirtysix"
+                android:tag="Sun"
                 />
         </GridLayout>
     </androidx.cardview.widget.CardView>

@@ -23,8 +23,8 @@
 
 
             <androidx.cardview.widget.CardView
+                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_marginTop="8sp"
                 app:cardElevation="3dp"
                 android:layout_height="340dp">
 
@@ -35,14 +35,16 @@
                     android:layout_height="match_parent">
 
                     <TextView
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/whiteColor"
+                        android:background="@color/colorPrimary"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:text="BreakFast"
-                        android:layout_marginStart="8dp"
-                        android:textSize="20sp"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                         android:layout_weight="1"
                         android:fontFamily="@font/josefin_bold"
-                        android:textColor="@color/blackColor"
                         android:textStyle="bold"/>
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -59,7 +61,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_marginTop="38sp"
+                android:layout_marginTop="8dp"
                 app:cardElevation="3dp"
                 android:layout_height="340dp">
 
@@ -73,11 +75,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:text="Lunch"
-                        android:layout_marginStart="8dp"
-                        android:textSize="20sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/whiteColor"
+                        android:background="@color/colorPrimary"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                         android:fontFamily="@font/josefin_bold"
                         android:layout_weight="1"
-                        android:textColor="@color/blackColor"
                         android:textStyle="bold"/>
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -93,7 +97,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_marginTop="38sp"
+                android:layout_marginTop="8dp"
                 app:cardElevation="3dp"
                 android:layout_height="340dp">
 
@@ -105,13 +109,14 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginStart="8dp"
+                        android:layout_height="0dp"                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/whiteColor"
+                        android:background="@color/colorPrimary"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                         android:text="Dinner"
-                        android:textSize="20sp"
                         android:fontFamily="@font/josefin_bold"
                         android:layout_weight="1"
-                        android:textColor="@color/blackColor"
                         android:textStyle="bold"/>
 
                     <androidx.recyclerview.widget.RecyclerView
