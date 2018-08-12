@@ -69,9 +69,9 @@ public class Description extends AppCompatActivity {
 
     //this method will call when user select a week day from the weeklyMenuFragment
 
-    void showTodaysMenu(View view){
+    public void showTodaysMenu(View view){
         Toast.makeText(this, view.getTag().toString()+"selected", Toast.LENGTH_SHORT).show();
-    addDifferentFragment(WeeklyMenuNestedFragment.newInstance(view.getTag().toString()));
+        addDifferentFragment(WeeklyMenuNestedFragment.newInstance(view.getTag().toString()));
 
     }
 

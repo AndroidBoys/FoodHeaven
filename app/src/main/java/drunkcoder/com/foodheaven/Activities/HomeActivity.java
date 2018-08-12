@@ -126,6 +126,7 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
+            addDifferentFragment(SubscribedUserFragment.newInstance());
 
         } else if (id == R.id.nav_share) {
             startActivity(new Intent(HomeActivity.this, PaymentsActivity.class));
