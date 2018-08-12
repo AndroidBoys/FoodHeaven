@@ -38,7 +38,7 @@ dependencies {
 
     //For firebase RecyclerView Adapter
     implementation 'com.firebaseui:firebase-ui-database:1.2.0'
-//do not update this library since update don't have with() method
+    //do not update this library since update don't have with() method
 
     //For firebase RecyclerView Adapter
     implementation 'com.firebaseui:firebase-ui-database:1.2.0'
@@ -56,6 +56,9 @@ dependencies {
 
     //textDrawable
     implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+
+    //Date Picker
+    compile 'com.wdullaer:materialdatetimepicker:3.6.3'
 
 }
 apply plugin: 'com.google.gms.google-services'
