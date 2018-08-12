@@ -40,9 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:fontFamily="@fonart/josefin_bold"
-                android:singleLine="true"
-                android:scrollbarAlwaysDrawHorizontalTrack="true"
-                android:text="Name"
+                android:text="Nfgdfgdfgdme"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textStyle="bold"
 
