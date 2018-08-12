@@ -24,7 +24,6 @@
                     android:id="@+id/packsImageView"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:layout_marginBottom="4dp"
                     android:scaleType="fitXY"
                     android:src="@mipmap/ic_launcher" />
 
@@ -45,6 +44,8 @@
             </RelativeLayout>
 
             <info.hoang8f.widget.FButton
+
+                android:layout_marginBottom="8dp"
                 android:id="@+id/showDetailsButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
