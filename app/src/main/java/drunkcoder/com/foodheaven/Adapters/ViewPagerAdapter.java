@@ -41,7 +41,7 @@ public class ViewPagerAdapter  extends FragmentPagerAdapter {
 
         switch(position){
             case 0:
-                return "Menu";
+                return "Today's Menu";
 
             case 1:
                 return "Special Order";

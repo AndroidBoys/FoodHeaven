@@ -1,7 +1,9 @@
 package drunkcoder.com.foodheaven.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,15 +12,28 @@ import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.labo.kaji.fragmentanimations.PushPullAnimation;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import drunkcoder.com.foodheaven.Activities.AuthenticationActivity;
+import drunkcoder.com.foodheaven.Models.User;
 import drunkcoder.com.foodheaven.R;
+import drunkcoder.com.foodheaven.Utils.AuthUtil;
 
 public class SignupFragment extends Fragment implements View.OnClickListener {
 
@@ -33,6 +48,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
     private String email;
     private String password;
 
+    private List<User> users;
 
 
     public static SignupFragment newInstance() {
@@ -51,6 +67,10 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
 
         View view = inflater.inflate(R.layout.fragment_signup,container,false);
         hostingActivity=(AuthenticationActivity)getActivity();
+
+
+        fetchUsers();
+
 
         emailEditText = view.findViewById(R.id.emailEdittext);
         phoneEditText = view.findViewById(R.id.phonenumberEdittext);
@@ -83,13 +103,13 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
         email = emailEditText.getText().toString();
         password = passwordEditText.getText().toString();
 
-        if( !isValidEmail(email))
+        if( !(AuthUtil.isValidEmail(email)))
         {
             emailEditText.setError("Enter a valid email");
             emailEditText.requestFocus();
             return;
         }
-        if(mobileNumber.isEmpty() || mobileNumber.length() < 10 ){
+        if(!(AuthUtil.isVailidPhone(mobileNumber))){
             phoneEditText.setError("Enter a valid mobile number");
             phoneEditText.requestFocus();
             return;
@@ -102,7 +122,13 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
             return;
         }
 
-        verifyPhoneNumber();
+
+        if(!checkAlreadyExists()) {
+            verifyPhoneNumber();
+        }else {
+            Toast.makeText(hostingActivity, "You are already registered,Please Login", Toast.LENGTH_SHORT).show();
+            hostingActivity.addDifferentFragment(SigninFragment.newInstance());
+        }
 
     }
 
@@ -113,13 +139,57 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    public static boolean isValidEmail(CharSequence target) {
-        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
-    }
-
     @Override
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
         return PushPullAnimation.create(PushPullAnimation.LEFT,enter,1000);
     }
+
+    public void fetchUsers()
+    {
+        users = new ArrayList<>();
+
+        FirebaseDatabase.getInstance().getReference("Users").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                User user = dataSnapshot.getValue(User.class);
+                users.add(user);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public boolean checkAlreadyExists()
+    {
+        for(int i=0;i<users.size();i++)
+        {
+            User user = users.get(i);
+            if(user.getEmail().equals(email)||user.getPhoneNumber().equals(mobileNumber)){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
 
 }

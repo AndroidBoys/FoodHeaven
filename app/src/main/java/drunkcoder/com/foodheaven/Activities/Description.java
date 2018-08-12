@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 import drunkcoder.com.foodheaven.Fragments.CallForAssistanceFragment;
 import drunkcoder.com.foodheaven.Fragments.FaqFragment;
 import drunkcoder.com.foodheaven.Fragments.OurPlansFragment;
+import drunkcoder.com.foodheaven.Fragments.WantsToEatFragment;
 import drunkcoder.com.foodheaven.Fragments.WeeklyMenuFragment;
 import drunkcoder.com.foodheaven.Fragments.WeeklyMenuNestedFragment;
 import drunkcoder.com.foodheaven.Fragments.WhyHeavensFoodFragment;
@@ -32,7 +33,6 @@ public class Description extends AppCompatActivity {
         int viewId=intent.getIntExtra("ID",0);
         selectFragmentByViewId(viewId);
 
-
     }
 
     private void selectFragmentByViewId(int id) {
@@ -52,9 +52,9 @@ public class Description extends AppCompatActivity {
             case R.id.whyHeavenFoodsTextView:
                 addDifferentFragment(WhyHeavensFoodFragment.newInstance());
                 break;
-//            case R.id.markAbsenceTextView:
-//                addDifferentFragment(OurPlansFragment.newInstance());
-//                break;
+            case R.id.wantToEatTextView:
+                addDifferentFragment(WantsToEatFragment.newInstance());
+                break;
 
         }
 
