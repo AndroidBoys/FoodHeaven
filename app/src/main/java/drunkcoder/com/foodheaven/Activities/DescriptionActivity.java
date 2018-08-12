@@ -20,7 +20,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-public class Description extends AppCompatActivity {
+public class DescriptionActivity extends AppCompatActivity {
 
     private FrameLayout frameLayout;
     @Override

@@ -56,6 +56,7 @@ public class WantsToEatFragment extends Fragment {
     }
 
     private void loadWantToEatImages() {
+
         wantsToEatDatabaseReference= FirebaseDatabase.getInstance().getReference("FavouriteFood").child("FoodImages");
         
         wantsToEatFoodAdapter=new FirebaseRecyclerAdapter<FoodMenu, WantsToEatViewHolder>(FoodMenu.class,
@@ -79,6 +80,7 @@ public class WantsToEatFragment extends Fragment {
                 });
             }
         };
+        wantsToEatRecyclerView.setAdapter(wantsToEatFoodAdapter);
     }
 
     public static WantsToEatFragment newInstance() {

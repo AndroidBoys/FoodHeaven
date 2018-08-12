@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
@@ -23,7 +22,7 @@ import com.squareup.picasso.Picasso;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import drunkcoder.com.foodheaven.Activities.Description;
+import drunkcoder.com.foodheaven.Activities.DescriptionActivity;
 import drunkcoder.com.foodheaven.R;
 
 public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSliderClickListener,View.OnClickListener{
@@ -148,7 +147,7 @@ public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSlide
     @Override
     public void onClick(View view) {
 
-        Intent intent=new Intent(getContext(),Description.class);
+        Intent intent=new Intent(getContext(), DescriptionActivity.class);
         intent.putExtra("ID",view.getId());//PASSING TAG AS VIEW ID
         startActivity(intent);
 

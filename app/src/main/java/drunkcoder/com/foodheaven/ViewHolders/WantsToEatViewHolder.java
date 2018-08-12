@@ -21,10 +21,10 @@ public class WantsToEatViewHolder extends RecyclerView.ViewHolder implements Vie
 
     public WantsToEatViewHolder(@NonNull View itemView) {
         super(itemView);
-        wantsFoodImageView=itemView.findViewById(R.id.specialFoodImageView);
-        wantsFoodNameTextView=itemView.findViewById(R.id.specialFoodNameTextView);
-        wantsFoodDescriptionTextView=itemView.findViewById(R.id.specialFoodDescriptionTextView);
-        wantsFoodCheckBox=itemView.findViewById(R.id.specialFoodCheckBox);
+        wantsFoodImageView=itemView.findViewById(R.id.wantsFoodImageView);
+        wantsFoodNameTextView=itemView.findViewById(R.id.wantsFoodNameTextView);
+        wantsFoodDescriptionTextView=itemView.findViewById(R.id.wantsFoodDescriptionTextView);
+        wantsFoodCheckBox=itemView.findViewById(R.id.wantsFoodCheckBox);
 
         itemView.setOnClickListener(this);
     }

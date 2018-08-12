@@ -23,7 +23,7 @@
             android:name=".Activities.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".Activities.AuthenticationActivity" />
-        <activity android:name=".Activities.Description"></activity>
+        <activity android:name=".Activities.DescriptionActivity"></activity>
         <activity android:name=".Payments.PaymentsActivity">
         </activity>
     </application>

@@ -30,8 +30,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import drunkcoder.com.foodheaven.Activities.DescriptionActivity;
 import drunkcoder.com.foodheaven.Models.FoodMenu;
-import drunkcoder.com.foodheaven.Activities.Description;
+import drunkcoder.com.foodheaven.Activities.HomeActivity;
+import drunkcoder.com.foodheaven.Models.FoodMenu;
 import drunkcoder.com.foodheaven.Activities.HomeActivity;
 import drunkcoder.com.foodheaven.Models.FoodMenu;
 import drunkcoder.com.foodheaven.R;
@@ -91,7 +93,7 @@ public class SubscribedUserTodaysMenu extends Fragment{
             public void onClick(View view) {
 
                 //Moving into description activity and passed text id.
-                Intent intent=new Intent(context, Description.class);
+                Intent intent=new Intent(context, DescriptionActivity.class);
                 intent.putExtra("ID",wantToEatTextView.getId());
                 startActivity(intent);
 
