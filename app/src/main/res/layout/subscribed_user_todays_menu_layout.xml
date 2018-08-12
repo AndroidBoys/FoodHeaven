@@ -137,7 +137,7 @@
         android:orientation="horizontal"
         android:layout_weight="1"
         android:weightSum="10"
-        android:background="@color/blackColor"
+        android:background="@color/colorPrimary"
         android:layout_alignBottom="@id/scrollView">
 
         <TextView

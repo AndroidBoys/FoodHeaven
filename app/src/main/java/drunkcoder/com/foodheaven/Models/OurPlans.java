@@ -1,6 +1,8 @@
 package drunkcoder.com.foodheaven.Models;
 
-public class OurPlans {
+import java.io.Serializable;
+
+public class OurPlans implements Serializable {
     public String packName,
                     description,
                     packImageUrl;

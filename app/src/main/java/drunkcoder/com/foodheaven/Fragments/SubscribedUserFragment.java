@@ -49,12 +49,15 @@ public class SubscribedUserFragment extends Fragment {
 
         //And then we set the viewPager on the tabLayout
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.colorPrimary));
+        tabLayout.setSelectedTabIndicatorColor(getActivity().getColor(R.color.white));
 
         //This below one is used to set the custom textview on tabLayout items.
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
             //noinspection ConstantConditions
             TextView tv=(TextView)LayoutInflater.from(context).inflate(R.layout.custom_tab,null);
 //            tv.setTypeface(Typeface);null
+            tv.setTextColor(getActivity().getResources().getColor(R.color.white));
             tabLayout.getTabAt(i).setCustomView(tv);
 
         }
