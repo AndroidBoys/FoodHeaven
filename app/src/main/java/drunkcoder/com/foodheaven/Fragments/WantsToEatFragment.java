@@ -25,6 +25,7 @@ import drunkcoder.com.foodheaven.R;
 import drunkcoder.com.foodheaven.ViewHolders.FoodMenuViewHolder;
 import drunkcoder.com.foodheaven.ViewHolders.SpecialFoodViewHolder;
 import drunkcoder.com.foodheaven.ViewHolders.WantsToEatViewHolder;
+import info.hoang8f.widget.FButton;
 
 public class WantsToEatFragment extends Fragment {
 
@@ -33,7 +34,7 @@ public class WantsToEatFragment extends Fragment {
     private Context context;
     private FirebaseRecyclerAdapter<FoodMenu, WantsToEatViewHolder> wantsToEatFoodAdapter;
     private DatabaseReference wantsToEatDatabaseReference;
-    private Button wantsSubmitButton;
+    private FButton wantsSubmitButton;
 
     @Nullable
     @Override
@@ -52,6 +53,9 @@ public class WantsToEatFragment extends Fragment {
                 
             }
         });
+
+        wantsSubmitButton.setButtonColor(getActivity().getResources().getColor(R.color.colorPrimary));
+
         return view;
     }
 
