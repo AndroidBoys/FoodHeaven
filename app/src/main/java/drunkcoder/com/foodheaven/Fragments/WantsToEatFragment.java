@@ -132,6 +132,7 @@ public class WantsToEatFragment extends Fragment {
             }
         };
         wantsToEatRecyclerView.setAdapter(wantsToEatFoodAdapter);
+        //
     }
 
     public static WantsToEatFragment newInstance() {
