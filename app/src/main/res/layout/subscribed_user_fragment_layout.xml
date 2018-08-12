@@ -9,7 +9,7 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true">
 

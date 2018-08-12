@@ -198,11 +198,13 @@ public class VerificationFragment extends Fragment implements View.OnClickListen
         user.setPhoneNumber(mobile);
         user.setPassword(password);
 
+        // Entry into Users table
         FirebaseDatabase.getInstance()
                 .getReference("Users")
                 .child(mAuth.getCurrentUser().getUid())
                 .setValue(user);
         kProgressHUD.dismiss();
+
         Toast.makeText(hostingActivity, "Signed up successfully:Please log in", Toast.LENGTH_SHORT).show();
 
     }
