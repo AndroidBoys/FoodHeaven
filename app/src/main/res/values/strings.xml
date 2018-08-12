@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Food Heaven</string>
+    <string name="app_name">Heavens Food</string>
     <string name="hint_email">Enter email or phone number</string>
     <string name="hint_password">Enter password</string>
     <string name="hint_password_confirm">Confirm password</string>
