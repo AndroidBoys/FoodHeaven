@@ -45,14 +45,14 @@ public class WeeklyMenuFragment extends Fragment {
 
     private void setImageTextDrawable(ImageView imageView) {
         Typeface custom_font=null;
-            custom_font=ResourcesCompat.getFont(getContext(),R.font.josefin_bold);
-        TextDrawable textDrawable=TextDrawable.builder()
-                .beginConfig().textColor(Color.BLACK)
-                .useFont(custom_font)
-                .fontSize(60).endConfig()
-                .buildRoundRect(imageView.getTag().toString(), Color.CYAN,10);
-
-        imageView.setImageDrawable(textDrawable);
+//            custom_font=ResourcesCompat.getFont(getContext(),R.font.josefin_bold);
+//        TextDrawable textDrawable=TextDrawable.builder()
+//                .beginConfig().textColor(Color.BLACK)
+//                .useFont(custom_font)
+//                .fontSize(60).endConfig()
+//                .buildRoundRect(imageView.getTag().toString(), Color.CYAN,10);
+//
+//        imageView.setImageDrawable(textDrawable);
 
     }
 
