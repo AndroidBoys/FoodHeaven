@@ -51,6 +51,7 @@
             android:text="food Description will be here . This food is one of the best food in the market Here your are getting the facility of not only eating but"
             android:layout_weight="1"
             android:maxLines="4"
+            android:textSize="15sp"
             android:layout_height="0dp"/>
 
 

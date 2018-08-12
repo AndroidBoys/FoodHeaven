@@ -58,7 +58,7 @@ dependencies {
     implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
 
     //Date Picker
-    compile 'com.wdullaer:materialdatetimepicker:3.6.3'
+    implementation 'com.wdullaer:materialdatetimepicker:3.6.3'
 
 }
 apply plugin: 'com.google.gms.google-services'

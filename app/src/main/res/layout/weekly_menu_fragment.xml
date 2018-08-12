@@ -89,6 +89,7 @@
                 android:scaleType="fitXY"
                 />
             <ImageView
+                android:onClick="showTodaysMenu"
                 android:layout_margin="8dp"
                 android:layout_gravity="fill"
                 android:tag="Sat"
@@ -98,6 +99,7 @@
                 android:scaleType="fitXY"
                 />
             <ImageView
+                android:onClick="showTodaysMenu"
                 android:layout_margin="8dp"
                 android:layout_gravity="fill"
                 android:tag="Sun"

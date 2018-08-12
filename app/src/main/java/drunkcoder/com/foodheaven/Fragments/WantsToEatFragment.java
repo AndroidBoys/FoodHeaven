@@ -20,7 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import drunkcoder.com.foodheaven.Models.SpecialFood;
-import drunkcoder.com.foodheaven.Models.TodayMenu;
+import drunkcoder.com.foodheaven.Models.FoodMenu;
 import drunkcoder.com.foodheaven.R;
 import drunkcoder.com.foodheaven.ViewHolders.FoodMenuViewHolder;
 import drunkcoder.com.foodheaven.ViewHolders.SpecialFoodViewHolder;
@@ -31,7 +31,7 @@ public class WantsToEatFragment extends Fragment {
     private RecyclerView wantsToEatRecyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private Context context;
-    private FirebaseRecyclerAdapter<TodayMenu, WantsToEatViewHolder> wantsToEatFoodAdapter;
+    private FirebaseRecyclerAdapter<FoodMenu, WantsToEatViewHolder> wantsToEatFoodAdapter;
     private DatabaseReference wantsToEatDatabaseReference;
     private Button wantsSubmitButton;
 
@@ -56,15 +56,16 @@ public class WantsToEatFragment extends Fragment {
     }
 
     private void loadWantToEatImages() {
+
         wantsToEatDatabaseReference= FirebaseDatabase.getInstance().getReference("FavouriteFood").child("FoodImages");
         
-        wantsToEatFoodAdapter=new FirebaseRecyclerAdapter<TodayMenu, WantsToEatViewHolder>(TodayMenu.class,
+        wantsToEatFoodAdapter=new FirebaseRecyclerAdapter<FoodMenu, WantsToEatViewHolder>(FoodMenu.class,
                 R.layout.wants_to_eat_raw_layout,WantsToEatViewHolder.class,wantsToEatDatabaseReference) {
             @Override
-            protected void populateViewHolder(WantsToEatViewHolder wantsToEatViewHolder, TodayMenu todayMenu, int i) {
-                wantsToEatViewHolder.wantsFoodNameTextView.setText(todayMenu.getFoodName());
-                wantsToEatViewHolder.wantsFoodDescriptionTextView.setText(todayMenu.getFoodDescription());
-                Picasso.with(context).load(todayMenu.getImageUrl()).into(wantsToEatViewHolder.wantsFoodImageView);
+            protected void populateViewHolder(WantsToEatViewHolder wantsToEatViewHolder, FoodMenu FoodMenu, int i) {
+                wantsToEatViewHolder.wantsFoodNameTextView.setText(FoodMenu.getFoodName());
+                wantsToEatViewHolder.wantsFoodDescriptionTextView.setText(FoodMenu.getFoodDescription());
+                Picasso.with(context).load(FoodMenu.getImageUrl()).into(wantsToEatViewHolder.wantsFoodImageView);
                 
                 wantsToEatViewHolder.wantsFoodCheckBox.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -79,6 +80,7 @@ public class WantsToEatFragment extends Fragment {
                 });
             }
         };
+        wantsToEatRecyclerView.setAdapter(wantsToEatFoodAdapter);
     }
 
     public static WantsToEatFragment newInstance() {
