@@ -45,6 +45,10 @@ public class Description extends AppCompatActivity {
             case R.id.whyHeavenFoodsTextView:
                 addDifferentFragment(OurPlansFragment.newInstance());
                 break;
+//            case R.id.markAbsenceTextView:
+//                addDifferentFragment(OurPlansFragment.newInstance());
+//                break;
+
         }
 
     }

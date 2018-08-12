@@ -42,7 +42,7 @@ public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSlide
         View view=inflater.inflate(R.layout.unsubscribed_user,container,false);
 
         packsImageView=view.findViewById(R.id.packsImageView);
-        bannerSlider=(SliderLayout)view.findViewById(R.id.bannerSlider);
+        bannerSlider= view.findViewById(R.id.bannerSlider);
         ourPlansButton=view.findViewById(R.id.ourPlansButton);
         weeklyMenuButton=view.findViewById(R.id.weeklyMenuButton);
         whyHeavenFoodsTextView =view.findViewById(R.id.whyHeavenFoodsTextView);

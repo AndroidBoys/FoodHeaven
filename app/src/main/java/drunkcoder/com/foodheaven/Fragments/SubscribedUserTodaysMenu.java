@@ -1,16 +1,26 @@
 package drunkcoder.com.foodheaven.Fragments;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,6 +44,9 @@ public class SubscribedUserTodaysMenu extends Fragment {
     private FirebaseDatabase todayMenuFirebaseDatabase;
     private TextView markAbsenceTextView;
     private TextView wantToEatTextView;
+    private Button startDateButton;
+    private Button endDateButton;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -73,8 +86,64 @@ public class SubscribedUserTodaysMenu extends Fragment {
     }
 
     private void showAbsenceDialog() {
+        AlertDialog.Builder alertDialog=new AlertDialog.Builder(context);
+        alertDialog.setTitle("Mark Your Absence");
+        alertDialog.setIcon(R.drawable.thali_graphic);
+        LayoutInflater layoutInflater=LayoutInflater.from(context);
+        View view=layoutInflater.inflate(R.layout.mark_absence_layout,null,false);
+        startDateButton=view.findViewById(R.id.startDateButton);
+        endDateButton=view.findViewById(R.id.endDateButton);
 
+        startDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePicker();
+            }
+        });
+
+        endDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePicker();
+            }
+        });
+        alertDialog.setView(view);
+        alertDialog.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //Save the absence data into firebase
+                dialogInterface.dismiss();
+            }
+        });
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        alertDialog.show();
     }
+
+    private void showDatePicker() {
+
+        final Calendar calendar=Calendar.getInstance();
+
+        DatePickerDialog.OnDateSetListener dateSetListener=new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
+                calendar.set(Calendar.YEAR,year);
+                calendar.set(Calendar.MONTH,monthOfYear);
+                calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+                String myFormat = "dd/MM/yy"; //In which you need put here
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(myFormat, Locale.US);
+                startDateButton.setText(simpleDateFormat.format(calendar.getTime()));
+
+            }
+        };
+
+        new DatePickerDialog(context,dateSetListener,Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH);
+    }
+
 
     private void setRecyclerView(RecyclerView recyclerView) {
 
