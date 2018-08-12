@@ -2,8 +2,96 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:weightSum="10"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="Mark Your Absence Here"
+        android:gravity="center"
+        android:layout_weight="3"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/josefin_bold"
+        android:textColor="@color/payumoney_black"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <Button
+            android:id="@+id/startDateButton"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:text="Start Date"/>
+
+
+        <Button
+            android:id="@+id/endDateButton"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="End Date"/>
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:layout_weight="3"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/josefin_bold"
+            android:text="Breakfast"/>
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/josefin_bold"
+            android:text="Lunch"/>
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/josefin_bold"
+            android:text="Dinner"/>
+
+
+
+    </RadioGroup>
+
+
+    <TextView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="You need to mark absence before 8 hour of any food"/>
+
+
+    <info.hoang8f.widget.FButton
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:text="Submit"
+        />
 
 
 

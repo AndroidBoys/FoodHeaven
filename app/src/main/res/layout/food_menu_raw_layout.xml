@@ -24,8 +24,7 @@
                 android:id="@+id/foodImageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/indian"/>
+                android:scaleType="fitXY"/>
 
             <TextView
                 android:id="@+id/foodNameTextView"

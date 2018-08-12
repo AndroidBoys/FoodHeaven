@@ -48,7 +48,7 @@ public class HomeActivity extends AppCompatActivity
 //                        .setAction("Action", null).show();
 //            }
 
-        addDifferentFragment(UnsubscribedUser.newInstance());
+        addDifferentFragment(SubscribedUserFragment.newInstance());
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

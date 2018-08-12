@@ -147,6 +147,7 @@
             android:textColor="@color/whiteColor"
             android:layout_weight="5"
             android:fontFamily="@font/josefin_bold"
+            android:layout_marginStart="8dp"
             android:text="  Mark Absence"
             android:layout_gravity="center"
             android:drawableStart="@drawable/absence_mark"/>
