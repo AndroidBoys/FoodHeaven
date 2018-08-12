@@ -14,15 +14,28 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthProvider;
+import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.labo.kaji.fragmentanimations.PushPullAnimation;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import drunkcoder.com.foodheaven.Activities.AuthenticationActivity;
+import drunkcoder.com.foodheaven.Models.User;
 import drunkcoder.com.foodheaven.R;
+import drunkcoder.com.foodheaven.Utils.AuthUtil;
 
 public class SigninFragment extends Fragment implements View.OnClickListener {
 
@@ -34,6 +47,11 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
     private TextView forgotTextview;
     private FirebaseAuth mAuth;
     private KProgressHUD kProgressHUD;
+
+    private List<User> users;
+    private boolean isPhoneNumber;
+    private boolean isEmail;
+    private String username;
 
     public static SigninFragment newInstance() {
 
@@ -63,6 +81,8 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
 
         mAuth = FirebaseAuth.getInstance();
 
+
+
         return view;
     }
 
@@ -76,7 +96,7 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
                 hostingActivity.addDifferentFragment(SignupFragment.newInstance());
                 break;
             case R.id.signinButton:
-                signIn();
+                vailidateDetails();
                 break;
             case R.id.forgotTextview:
                 recoverPassword();
@@ -107,29 +127,10 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
 
     private void signIn()
     {
-        if(!SignupFragment.isValidEmail(usernameEditText.getText()))
-        {
-            usernameEditText.setError("Enter a vailid email");
-            usernameEditText.requestFocus();
-            return;
+        if(isPhoneNumber){
+            username = getEmailForPhoneNumber();
         }
-
-        if(passwordEditText.getText().toString().trim().length()<6)
-        {
-            passwordEditText.setError("Password should have atleast 6 characters");
-            passwordEditText.requestFocus();
-            return;
-        }
-
-        kProgressHUD= KProgressHUD.create(hostingActivity)
-                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-                .setLabel("Please wait")
-                .setCancellable(false)
-                .setAnimationSpeed(2)
-                .setDimAmount(0.5f)
-                .show();
-
-        mAuth.signInWithEmailAndPassword(usernameEditText.getText().toString().trim(),passwordEditText.getText().toString().trim())
+        mAuth.signInWithEmailAndPassword(username,passwordEditText.getText().toString().trim())
                 .addOnCompleteListener(hostingActivity, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -151,5 +152,99 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
     @Override
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
         return PushPullAnimation.create(PushPullAnimation.DOWN,enter,1000);
+    }
+
+    public void fetchUsers()
+    {
+        users = new ArrayList<>();
+        kProgressHUD= KProgressHUD.create(hostingActivity)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setLabel("Please wait")
+                .setCancellable(false)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f)
+                .show();
+
+
+        FirebaseDatabase.getInstance().getReference("Users").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                User user = dataSnapshot.getValue(User.class);
+                users.add(user);
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        FirebaseDatabase.getInstance().getReference("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // All child have been added
+                signIn();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    String getEmailForPhoneNumber()
+    {
+        for(int i=0;i<users.size();i++)
+        {
+            User user = users.get(i);
+            if(user.getPhoneNumber().equals(usernameEditText.getText().toString())){
+                return user.getEmail();
+            }
+        }
+
+        return "";
+    }
+
+    public void vailidateDetails(){
+
+        isPhoneNumber= AuthUtil.isVailidPhone(usernameEditText.getText());
+        isEmail=AuthUtil.isValidEmail(usernameEditText.getText());
+
+      if(isEmail||isPhoneNumber){
+            username = usernameEditText.getText().toString();
+        }else{
+            usernameEditText.setError("Enter a valid Email/Password");
+            usernameEditText.requestFocus();
+            return;
+        }
+
+        if(passwordEditText.getText().toString().trim().length()<6)
+        {
+            passwordEditText.setError("Password should have atleast 6 characters");
+            passwordEditText.requestFocus();
+            return;
+        }
+
+        fetchUsers();
+
     }
 }

@@ -5,6 +5,7 @@ public class User {
     public String email;
     public String phoneNumber;
     public String password;
+    public boolean isSubscribed;
 
     public User() {
     }
@@ -31,5 +32,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isSubscribed() {
+        return isSubscribed;
+    }
+
+    public void setSubscribed(boolean subscribed) {
+        isSubscribed = subscribed;
     }
 }
