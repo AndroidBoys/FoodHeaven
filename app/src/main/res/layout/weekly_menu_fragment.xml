@@ -35,15 +35,16 @@
             android:layout_height="match_parent">
 
 
+
             <ImageView
+                android:background="@color/transparent"
                 android:onClick="showTodaysMenu"
                 android:layout_margin="8dp"
                 android:layout_gravity="fill"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:src="@mipmap/ic_launcher"
                 android:scaleType="fitXY"
-                android:tag="MON"
+                android:tag="Mon"
                 />
 
             <ImageView
@@ -51,58 +52,58 @@
                 android:onClick="showTodaysMenu"
                 android:layout_margin="8dp"
                 android:layout_gravity="fill"
-                android:tag="TUES"
+                android:tag="Tues"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:src="@mipmap/ic_launcher"
+                android:background="@color/transparent"
                 android:scaleType="fitXY"
                 />
             <ImageView
                 android:onClick="showTodaysMenu"
                 android:layout_margin="8dp"
                 android:layout_gravity="fill"
-                android:tag="WED"
+                android:tag="Wed"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:src="@mipmap/ic_launcher"
+                android:background="@color/transparent"
                 android:scaleType="fitXY"
                 />
             <ImageView
                 android:onClick="showTodaysMenu"
                 android:layout_margin="8dp"
                 android:layout_gravity="fill"
-                android:tag="THRUS"
+                android:tag="Thrus"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:src="@mipmap/ic_launcher"
+                android:background="@color/transparent"
                 android:scaleType="fitXY"
                 />
             <ImageView
                 android:onClick="showTodaysMenu"
                 android:layout_margin="8dp"
                 android:layout_gravity="fill"
-                android:tag="FRI"
+                android:tag="Fri"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:src="@mipmap/ic_launcher"
+                android:background="@color/transparent"
                 android:scaleType="fitXY"
                 />
             <ImageView
                 android:layout_margin="8dp"
                 android:layout_gravity="fill"
-                android:tag="SAT"
+                android:tag="Sat"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:src="@mipmap/ic_launcher"
+                android:background="@color/transparent"
                 android:scaleType="fitXY"
                 />
             <ImageView
                 android:layout_margin="8dp"
                 android:layout_gravity="fill"
-                android:tag="SUN"
+                android:tag="Sun"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:src="@mipmap/ic_launcher"
+                android:background="@color/transparent"
                 android:scaleType="fitXY"
                 />
         </GridLayout>
