@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:weightSum="10"
+    android:background="@drawable/background_xml"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -15,9 +16,10 @@
         android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
         android:fontFamily="@font/josefin_bold"
-        android:textColor="@color/payumoney_black"/>
+        android:textColor="@color/md_white_1000"/>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -25,69 +27,50 @@
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/startDateButton"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/md_white_1000"
+            android:background="@drawable/button_background"
             android:textStyle="bold"
             android:text="Start Date"/>
 
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/endDateButton"
+            android:background="@drawable/button_background"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_weight="1"
             android:textStyle="bold"
+            android:textColor="@color/md_white_1000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="End Date"/>
 
     </LinearLayout>
 
-    <RadioGroup
-        android:layout_weight="3"
-        android:gravity="center_vertical"
-        android:layout_width="match_parent"
-        android:layout_height="0dp">
-
-        <RadioButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/josefin_bold"
-            android:text="Breakfast"/>
-
-        <RadioButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/josefin_bold"
-            android:text="Lunch"/>
-
-        <RadioButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/josefin_bold"
-            android:text="Dinner"/>
 
 
-
-    </RadioGroup>
-
-
-    <TextView
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="You need to mark absence before 8 hour of any food"/>
+    <!--<TextView-->
+        <!--android:layout_weight="1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:text="You need to mark absence before 8 hour of any food"/>-->
 
 
     <info.hoang8f.widget.FButton
+        android:id="@+id/submitButton"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:textColor="@color/md_white_1000"
         android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
         android:text="Submit"
