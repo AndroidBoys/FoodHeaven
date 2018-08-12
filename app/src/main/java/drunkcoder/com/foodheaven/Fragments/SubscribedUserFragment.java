@@ -37,6 +37,14 @@ public class SubscribedUserFragment extends Fragment {
         ViewPagerAdapter viewPagerAdapter=new ViewPagerAdapter(getFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
 
+        //user want to go to these menus from drawer
+       if(getArguments()!=null){
+           int position=getArguments().getInt("POSITION");
+           if(position==1)
+           viewPager.setCurrentItem(position);
+           else if(position==2)
+               viewPager.setCurrentItem(position);
+       }
 
 
         //And then we set the viewPager on the tabLayout

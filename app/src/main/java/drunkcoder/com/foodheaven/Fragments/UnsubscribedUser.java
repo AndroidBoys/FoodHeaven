@@ -152,5 +152,9 @@ public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSlide
         startActivity(intent);
 
     }
-
+    @Override
+    public void onStop() {
+        bannerSlider.stopAutoCycle();
+        super.onStop();
+    }
 }
