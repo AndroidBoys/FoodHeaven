@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import com.baoyz.widget.PullRefreshLayout;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -75,6 +76,15 @@ public class WantsToEatFragment extends Fragment {
 
             }
         });
+
+        PullRefreshLayout wantsRefreshLayout=view.findViewById(R.id.wantsRefreshLayout);
+        wantsRefreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadWantToEatImages();
+            }
+        });
+        wantsRefreshLayout.setColor(R.color.colorPrimary);//set the color of refresh circle.
 
         wantsSubmitButton.setButtonColor(getActivity().getResources().getColor(R.color.colorPrimary));
 

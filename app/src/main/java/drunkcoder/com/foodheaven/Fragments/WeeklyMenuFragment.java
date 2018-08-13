@@ -25,7 +25,7 @@ public class WeeklyMenuFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.weekly_menu_fragment, container, false);
+        View view = inflater.inflate(R.layout.weekly_menu_fragment1, container, false);
         sunButton=view.findViewWithTag("Sun");
         monButton=view.findViewWithTag("Mon");
         tuesButton=view.findViewWithTag("Tues");

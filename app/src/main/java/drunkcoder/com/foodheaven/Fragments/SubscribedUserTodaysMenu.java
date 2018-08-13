@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baoyz.widget.PullRefreshLayout;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -99,6 +100,17 @@ public class SubscribedUserTodaysMenu extends Fragment{
 
             }
         });
+
+        PullRefreshLayout todayMenuRefreshLayout=view.findViewById(R.id.todayMenuRefreshLayout);
+        todayMenuRefreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                showBreakFastImages();
+                showlunchImages();
+                showDinnerImages();
+            }
+        });
+        todayMenuRefreshLayout.setColor(R.color.colorPrimary);
 
         return view;
     }
@@ -206,7 +218,7 @@ public class SubscribedUserTodaysMenu extends Fragment{
     private void setFoodDetails(FoodMenuViewHolder foodMenuViewHolder,FoodMenu foodMenu) {
         foodMenuViewHolder.foodNameTextView.setText(foodMenu.getFoodName());
         foodMenuViewHolder.foodDescriptionTextView.setText(foodMenu.getFoodDescription());
-        Picasso.with(context).load(foodMenu.getImageUrl()).into(foodMenuViewHolder.foodImageView);
+        Picasso.with(context).load(foodMenu.getImageUrl()).placeholder(R.drawable.progress_animation).into(foodMenuViewHolder.foodImageView);
 
     }
 

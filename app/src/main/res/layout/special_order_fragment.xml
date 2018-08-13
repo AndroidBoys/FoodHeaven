@@ -7,11 +7,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/specialFoodRecyclerView"
+    <com.baoyz.widget.PullRefreshLayout
+        android:id="@+id/pullRefreshLayout"
         android:layout_width="match_parent"
         android:layout_weight="9"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/specialFoodRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </com.baoyz.widget.PullRefreshLayout>
+
 
     <info.hoang8f.widget.FButton
         android:id="@+id/orderNowButton"

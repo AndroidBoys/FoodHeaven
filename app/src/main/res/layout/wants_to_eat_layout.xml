@@ -6,12 +6,25 @@
     android:weightSum="10"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/wantsToEatRecyclerView"
-        android:layout_width="match_parent"
+    
+    
+    
+    <com.baoyz.widget.PullRefreshLayout
+        android:id="@+id/wantsRefreshLayout"
         android:layout_weight="9"
-        android:layout_height="0dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/wantsToEatRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_weight="9"
+            android:layout_height="0dp"/>
+
+
+    </com.baoyz.widget.PullRefreshLayout>
+
 
     <info.hoang8f.widget.FButton
         android:id="@+id/wantsSubmitButton"

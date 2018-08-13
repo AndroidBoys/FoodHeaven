@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import com.baoyz.widget.PullRefreshLayout;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -50,6 +51,7 @@ public class SpecialOrders extends Fragment {
         orderNowButton=view.findViewById(R.id.orderNowButton);
         layoutManager=new LinearLayoutManager(context);
 //        elegantNumberButton=view.findViewById(R.id.elegantNumberButton);
+        PullRefreshLayout pullRefreshLayout=view.findViewById(R.id.pullRefreshLayout);
         specialOrderRecyclerView.setHasFixedSize(true);
         specialOrderRecyclerView.setLayoutManager(layoutManager);
 
@@ -65,6 +67,14 @@ public class SpecialOrders extends Fragment {
                 }
             }
         });
+        //This below method is used to refresh the page on swiping down the recyclerview
+        pullRefreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                showSpecialFoodList();
+            }
+        });
+        pullRefreshLayout.setColor(R.color.colorPrimary);
         return view;
     }
 

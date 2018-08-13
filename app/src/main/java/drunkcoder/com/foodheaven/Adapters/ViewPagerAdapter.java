@@ -4,11 +4,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import drunkcoder.com.foodheaven.Fragments.SpecialOrders;
 import drunkcoder.com.foodheaven.Fragments.SubscribedUserTodaysMenu;
 import drunkcoder.com.foodheaven.Fragments.WalletFragment;
 
-public class ViewPagerAdapter  extends FragmentPagerAdapter {
+public class ViewPagerAdapter  extends FragmentStatePagerAdapter {
 
     public ViewPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);

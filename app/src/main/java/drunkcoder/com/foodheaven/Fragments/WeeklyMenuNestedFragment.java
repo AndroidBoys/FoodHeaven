@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.baoyz.widget.PullRefreshLayout;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.payu.custombrowser.PayUCBLifecycle;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
@@ -30,6 +32,7 @@ public class WeeklyMenuNestedFragment extends Fragment {
     private FirebaseRecyclerAdapter<FoodMenu,FoodMenuViewHolder> dinnerAdapter,
             lunchAdapter,
             breakFastAdapter;
+    private String day;
 
     FirebaseDatabase todayMenuFirebaseDatabase;
     @Nullable
@@ -41,9 +44,12 @@ public class WeeklyMenuNestedFragment extends Fragment {
         dinnerRecyclerView=view.findViewById(R.id.dinnerRecyclerView);
         context=getContext();
 
+        //PullRefreshLayout is used to refresh the page
+        PullRefreshLayout weeklyRefreshLayout=view.findViewById(R.id.weeklyRefreshLayout);
+
         //it will get the day name passed when a perticular day is pressed from weeklyMenuFragment
         Bundle args=getArguments();
-        String day=args.getString("DAY",null);
+        day=args.getString("DAY",null);
 
         todayMenuFirebaseDatabase=FirebaseDatabase.getInstance();
         // linearLayoutManager=new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
@@ -53,6 +59,15 @@ public class WeeklyMenuNestedFragment extends Fragment {
         showBreakFastImages(day);
         showlunchImages(day);
         showDinnerImages(day);
+        weeklyRefreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                showBreakFastImages(day);
+                showlunchImages(day);
+                showDinnerImages(day);
+            }
+        });
+        weeklyRefreshLayout.setColor(R.color.colorPrimary);
         return view;
     }
 

@@ -1,5 +1,6 @@
 package drunkcoder.com.foodheaven.Fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -35,6 +36,7 @@ public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSlide
             faqTextView,
             callForAssistanceTextView,
             attractUserTextView;
+    private Context context;
 
 
     @Nullable
@@ -42,6 +44,7 @@ public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSlide
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.unsubscribed_user,container,false);
 
+        context=getContext();
         packsImageView=view.findViewById(R.id.packsImageView);
         bannerSlider= view.findViewById(R.id.bannerSlider);
         ourPlansButton=(FButton)view.findViewById(R.id.ourPlansButton);
@@ -128,7 +131,7 @@ public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSlide
         FirebaseDatabase.getInstance().getReference("Pack").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Picasso.with(getContext()).load(dataSnapshot.getValue().toString()).into(packsImageView);
+                Picasso.with(context).load(dataSnapshot.getValue().toString()).into(packsImageView);
             }
 
             @Override

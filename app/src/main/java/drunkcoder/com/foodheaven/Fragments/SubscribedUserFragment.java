@@ -37,20 +37,13 @@ public class SubscribedUserFragment extends Fragment {
         ViewPagerAdapter viewPagerAdapter=new ViewPagerAdapter(getFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
 
-        //user want to go to these menus from drawer
-       if(getArguments()!=null){
-           int position=getArguments().getInt("POSITION");
-           if(position==1)
-           viewPager.setCurrentItem(position);
-           else if(position==2)
-               viewPager.setCurrentItem(position);
-       }
+
 
 
         //And then we set the viewPager on the tabLayout
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.colorPrimary));
-        tabLayout.setSelectedTabIndicatorColor(getActivity().getColor(R.color.white));
+        tabLayout.setSelectedTabIndicatorColor(getActivity().getResources().getColor(R.color.white));
 
         //This below one is used to set the custom textview on tabLayout items.
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
@@ -61,6 +54,14 @@ public class SubscribedUserFragment extends Fragment {
             tabLayout.getTabAt(i).setCustomView(tv);
 
         }
+
+        //user want to go to these menus from drawer
+        if(getArguments()!=null){
+            int position=getArguments().getInt("POSITION");
+            tabLayout.setScrollPosition(position,0f,false);
+            viewPager.setCurrentItem(position,true);
+        }
+
 
         return view;
     }
