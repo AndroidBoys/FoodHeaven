@@ -1,11 +1,22 @@
 package drunkcoder.com.foodheaven.Models;
 
+import java.util.ArrayList;
+
 public class User {
 
     public String email;
     public String phoneNumber;
     public String password;
     public boolean isSubscribed;
+    public ArrayList<OurPlans> subscribePlan;
+
+    public ArrayList<OurPlans> getSubscribePlan() {
+        return subscribePlan;
+    }
+
+    public void setSubscribePlan(ArrayList<OurPlans> subscribePlan) {
+        this.subscribePlan = subscribePlan;
+    }
 
     public User() {
     }

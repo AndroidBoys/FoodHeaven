@@ -1,6 +1,7 @@
 package drunkcoder.com.foodheaven.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ public class OurPlansCustomArrayAdapter extends ArrayAdapter {
             public void onClick(View view) {
 
                 hostingActivity.addDifferentFragment(BuySubscriptionFragment.newInstance(ourPlans.get(position)));
+//                Log.d("position","hahahahh*******"+position);
             }
         });
 
@@ -50,7 +52,8 @@ public class OurPlansCustomArrayAdapter extends ArrayAdapter {
     }
 
     @Override
-    public int getCount() {
+    public int getCount()
+    {
         return ourPlans.size();
     }
 

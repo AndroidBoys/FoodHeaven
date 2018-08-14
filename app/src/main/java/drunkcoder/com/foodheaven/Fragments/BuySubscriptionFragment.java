@@ -63,6 +63,7 @@ public class BuySubscriptionFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //SUBSCRIBE THIS PLAN
+
             }
         });
 

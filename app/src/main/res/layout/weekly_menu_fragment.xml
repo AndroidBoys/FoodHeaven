@@ -9,10 +9,11 @@
 
     <androidx.cardview.widget.CardView
 
+        android:layout_weight="1"
         app:cardBackgroundColor="@color/transparent"
         app:cardElevation="8dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp">
 
 
         <TextView
@@ -29,14 +30,15 @@
     <androidx.cardview.widget.CardView
         app:cardElevation="8dp"
 
+        android:layout_weight="10"
         app:cardBackgroundColor="@color/transparent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp">
 
         <GridLayout
             android:layout_margin="32dp"
             android:layout_width="match_parent"
-            android:rowCount="4"
+            android:rowCount="3"
             android:columnCount="2"
             android:layout_height="match_parent">
 
@@ -71,7 +73,7 @@
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:text="Tues"
-              
+
                 android:elevation="8dp"
                 android:textStyle="bold"
                 android:gravity="center"
@@ -91,7 +93,7 @@
                 android:layout_columnWeight="1"
                 android:text="Wed"
                 android:textAppearance="@style/Widget.MaterialComponents.Button"
-              
+
                 android:elevation="8dp"
                 android:textStyle="bold"
                 android:gravity="center"
@@ -111,7 +113,7 @@
                 android:textAppearance="@style/Widget.MaterialComponents.Button"
                 android:layout_columnWeight="1"
                 android:text="Thrus"
-                   
+
                 android:elevation="8dp"
                 android:textStyle="bold"
                 android:gravity="center"
@@ -149,7 +151,7 @@
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:text="Sat"
-              
+
                 android:elevation="8dp"
                 android:textStyle="bold"
                 android:gravity="center"
@@ -159,27 +161,26 @@
                 android:textSize="@dimen/cb_thirtysix"
                 android:tag="Sat"
                 />
-            <com.google.android.material.button.MaterialButton
-                android:background="@color/transparent"
-                android:onClick="showTodaysMenu"
-                android:layout_margin="8dp"
-                android:layout_gravity="fill"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:text="Sun"
-              
-
-                android:elevation="8dp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:textAppearance="@style/Widget.MaterialComponents.Button"
-                app:cornerRadius="@dimen/dimen_20dp"
-                android:fontFamily="@font/josefin_bold"
-                android:textAlignment="center"
-                android:textSize="@dimen/cb_thirtysix"
-                android:tag="Sun"
-                />
         </GridLayout>
+
     </androidx.cardview.widget.CardView>
 
+
+    <com.google.android.material.button.MaterialButton
+        android:background="@color/transparent"
+        android:onClick="showTodaysMenu"
+        android:textAppearance="@style/Widget.MaterialComponents.Button"
+        android:layout_gravity="center"
+        android:text="Sat"
+        android:layout_weight="2"
+        android:elevation="8dp"
+        android:textStyle="bold"
+        app:cornerRadius="@dimen/dimen_20dp"
+        android:fontFamily="@font/josefin_bold"
+        android:textAlignment="center"
+        android:textSize="@dimen/cb_thirtysix"
+        android:layout_width="160dp"
+        android:tag="Sat"
+
+        android:layout_height="0dp" />
 </LinearLayout>
