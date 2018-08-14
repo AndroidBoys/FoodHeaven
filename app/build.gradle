@@ -60,5 +60,7 @@ dependencies {
     //Date Picker
     implementation 'com.wdullaer:materialdatetimepicker:3.6.3'
 
+    implementation 'com.baoyz.pullrefreshlayout:library:1.2.0'
+
 }
 apply plugin: 'com.google.gms.google-services'

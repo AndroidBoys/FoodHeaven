@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/md_blue_grey_200"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Select A Day"
+            android:textColor="@color/md_black_1000"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:textStyle="bold"
+            android:fontFamily="@font/josefin_bold"
+            android:gravity="center"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_margin="8dp"
+        android:layout_weight="9"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:weightSum="6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_weight="1.5"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:background="@color/transparent"
+                    android:onClick="showTodaysMenu"
+                    android:text="Mon"
+                    android:tag="Mon"
+                    android:textAppearance="@style/Widget.MaterialComponents.Button"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:elevation="8dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    app:cornerRadius="@dimen/dimen_20dp"
+                    android:fontFamily="@font/josefin_bold"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/cb_thirtysix"
+
+                    />
+
+                <com.google.android.material.button.MaterialButton
+                    android:background="@color/transparent"
+                    android:onClick="showTodaysMenu"
+                    android:text="Tues"
+                    android:tag="Tues"
+                    android:layout_margin="10dp"
+                    android:textAppearance="@style/Widget.MaterialComponents.Button"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:elevation="8dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    app:cornerRadius="@dimen/dimen_20dp"
+                    android:fontFamily="@font/josefin_bold"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/cb_thirtysix"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1.5"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:background="@color/transparent"
+                    android:onClick="showTodaysMenu"
+                    android:text="Wed"
+                    android:textAppearance="@style/Widget.MaterialComponents.Button"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:elevation="8dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    app:cornerRadius="@dimen/dimen_20dp"
+                    android:fontFamily="@font/josefin_bold"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/cb_thirtysix"
+                    android:tag="Wed"
+                    />
+
+                <com.google.android.material.button.MaterialButton
+                    android:background="@color/transparent"
+                    android:onClick="showTodaysMenu"
+                    android:text="Thrus"
+                    android:layout_margin="10dp"
+                    android:textAppearance="@style/Widget.MaterialComponents.Button"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:elevation="8dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    app:cornerRadius="@dimen/dimen_20dp"
+                    android:fontFamily="@font/josefin_bold"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/cb_thirtysix"
+                    android:tag="Thrus"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1.5"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:background="@color/transparent"
+                    android:onClick="showTodaysMenu"
+                    android:text="Fri"
+                    android:textAppearance="@style/Widget.MaterialComponents.Button"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:elevation="8dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    app:cornerRadius="@dimen/dimen_20dp"
+                    android:fontFamily="@font/josefin_bold"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/cb_thirtysix"
+                    android:tag="Fri"
+                    />
+
+                <com.google.android.material.button.MaterialButton
+                    android:background="@color/transparent"
+                    android:onClick="showTodaysMenu"
+                    android:text="Sat"
+                    android:layout_margin="10dp"
+                    android:textAppearance="@style/Widget.MaterialComponents.Button"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:elevation="8dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    app:cornerRadius="@dimen/dimen_20dp"
+                    android:fontFamily="@font/josefin_bold"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/cb_thirtysix"
+                    android:tag="Sat"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_weight="1.5"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:background="@color/transparent"
+                    android:onClick="showTodaysMenu"
+                    android:text="Sun"
+                    android:textAppearance="@style/Widget.MaterialComponents.Button"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:elevation="8dp"
+                    android:visibility="invisible"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    app:cornerRadius="@dimen/dimen_20dp"
+                    android:fontFamily="@font/josefin_bold"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/cb_thirtysix"
+                    android:tag="Sun"
+                    />
+
+                <com.google.android.material.button.MaterialButton
+                    android:background="@color/transparent"
+                    android:onClick="showTodaysMenu"
+                    android:text="Sun"
+                    android:textAppearance="@style/Widget.MaterialComponents.Button"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:elevation="8dp"
+                    android:layout_weight="2.8"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    app:cornerRadius="@dimen/dimen_20dp"
+                    android:fontFamily="@font/josefin_bold"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/cb_thirtysix"
+                    android:tag="Sun"
+                    />
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:background="@color/transparent"
+                    android:onClick="showTodaysMenu"
+                    android:text="Sun"
+                    android:textAppearance="@style/Widget.MaterialComponents.Button"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:elevation="8dp"
+                    android:textStyle="bold"
+                    android:visibility="invisible"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    app:cornerRadius="@dimen/dimen_20dp"
+                    android:fontFamily="@font/josefin_bold"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/cb_thirtysix"
+                    android:tag="Sun"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</LinearLayout>

@@ -48,7 +48,7 @@ public class HomeActivity extends AppCompatActivity
 //                        .setAction("Action", null).show();
 //            }
 
-        addDifferentFragment(SubscribedUserFragment.newInstance());
+        addDifferentFragment(UnsubscribedUser.newInstance());
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -120,6 +120,7 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
             if (id == R.id.nav_home) {
+                addDifferentFragment(UnsubscribedUser.newInstance());
                 // Handle the camera action
             }  else if (id == R.id.nav_mySubscription) {
                 addDifferentFragment(SubscribedUserFragment.newInstance());
