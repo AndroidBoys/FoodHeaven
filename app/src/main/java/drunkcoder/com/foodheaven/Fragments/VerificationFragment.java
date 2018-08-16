@@ -197,6 +197,8 @@ public class VerificationFragment extends Fragment implements View.OnClickListen
         user.setEmail(email);
         user.setPhoneNumber(mobile);
         user.setPassword(password);
+        user.setSubscribedPlan(null);
+        user.setWallet(null);
 
         // Entry into Users table
         FirebaseDatabase.getInstance()

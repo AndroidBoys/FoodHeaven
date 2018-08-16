@@ -4,21 +4,22 @@ import java.util.ArrayList;
 
 public class User {
 
+    public String name;
     public String email;
     public String phoneNumber;
     public String password;
-    public boolean isSubscribed;
-    public ArrayList<OurPlans> subscribePlan;
-
-    public ArrayList<OurPlans> getSubscribePlan() {
-        return subscribePlan;
-    }
-
-    public void setSubscribePlan(ArrayList<OurPlans> subscribePlan) {
-        this.subscribePlan = subscribePlan;
-    }
+    public Plan subscribedPlan;
+    public Wallet wallet;
 
     public User() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -45,11 +46,19 @@ public class User {
         this.password = password;
     }
 
-    public boolean isSubscribed() {
-        return isSubscribed;
+    public Plan getSubscribedPlan() {
+        return subscribedPlan;
     }
 
-    public void setSubscribed(boolean subscribed) {
-        isSubscribed = subscribed;
+    public void setSubscribedPlan(Plan subscribedPlan) {
+        this.subscribedPlan = subscribedPlan;
+    }
+
+    public Wallet getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(Wallet wallet) {
+        this.wallet = wallet;
     }
 }

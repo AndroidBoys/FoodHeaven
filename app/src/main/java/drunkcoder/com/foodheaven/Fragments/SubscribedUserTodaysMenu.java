@@ -37,6 +37,8 @@ import drunkcoder.com.foodheaven.Activities.HomeActivity;
 import drunkcoder.com.foodheaven.Models.FoodMenu;
 import drunkcoder.com.foodheaven.Activities.HomeActivity;
 import drunkcoder.com.foodheaven.Models.FoodMenu;
+import drunkcoder.com.foodheaven.Models.Plan;
+import drunkcoder.com.foodheaven.MyApplication;
 import drunkcoder.com.foodheaven.R;
 import drunkcoder.com.foodheaven.ViewHolders.FoodMenuViewHolder;
 
@@ -78,9 +80,7 @@ public class SubscribedUserTodaysMenu extends Fragment{
         setRecyclerView(breakFastRecyclerView);
         setRecyclerView(lunchRecyclerView);
         setRecyclerView(dinnerRecyclerView);
-        showBreakFastImages();
-        showlunchImages();
-        showDinnerImages();
+
 
         markAbsenceTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,13 +101,14 @@ public class SubscribedUserTodaysMenu extends Fragment{
             }
         });
 
+        loadTodaysMenu();
+
         PullRefreshLayout todayMenuRefreshLayout=view.findViewById(R.id.todayMenuRefreshLayout);
         todayMenuRefreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                showBreakFastImages();
-                showlunchImages();
-                showDinnerImages();
+
+                loadTodaysMenu();
             }
         });
         todayMenuRefreshLayout.setColor(R.color.colorPrimary);
@@ -262,5 +263,28 @@ public class SubscribedUserTodaysMenu extends Fragment{
         return fragment;
     }
 
+    public void loadTodaysMenu(){
+
+        Plan currentUserPlan= MyApplication.getCurrentUser().subscribedPlan;
+
+        showBreakFastImages();
+        showlunchImages();
+        showDinnerImages();
+
+        if(!currentUserPlan.includesBreakFast) {
+
+              breakFastRecyclerView.setAlpha(0.5f);
+        }
+
+        if(!currentUserPlan.includesLunch) {
+
+             lunchRecyclerView.setAlpha(0.5f);
+        }
+
+        if(!currentUserPlan.includesDinner){
+
+           dinnerRecyclerView.setAlpha(0.5f);
+        }
+    }
 
 }
