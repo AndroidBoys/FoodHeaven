@@ -1,13 +1,21 @@
 package drunkcoder.com.foodheaven.Payments;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import drunkcoder.com.foodheaven.Activities.HomeActivity;
+import drunkcoder.com.foodheaven.Models.Plan;
+import drunkcoder.com.foodheaven.Models.User;
+import drunkcoder.com.foodheaven.Models.Wallet;
+import drunkcoder.com.foodheaven.MyApplication;
 import drunkcoder.com.foodheaven.R;
 import drunkcoder.com.foodheaven.Utils.ProgressUtils;
+import info.hoang8f.widget.FButton;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +26,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.payumoney.core.PayUmoneyConfig;
 import com.payumoney.core.PayUmoneySdkInitializer;
 import com.payumoney.core.entity.TransactionResponse;
@@ -27,16 +41,21 @@ import com.payumoney.sdkui.ui.utils.ResultModel;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
 
 public class PaymentsActivity extends AppCompatActivity {
 
-    private TextView mTxvProductPrice, mTxvBuy;
+    private FButton paymentButton;
+    private Plan choosenPlan;
 
     private void initViews() {
         setContentView(R.layout.activity_payments);
-        mTxvProductPrice = findViewById(R.id.txv_product_price);
-        mTxvBuy = findViewById(R.id.txt_buy_product);
+        paymentButton = findViewById(R.id.payment_button);
     }
 
     @Override
@@ -44,31 +63,34 @@ public class PaymentsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         initViews();
 
-        String priceNo = getString(R.string.txt_product_price);
+        choosenPlan = (Plan) getIntent().getSerializableExtra("choosenPlan");
+        final String priceNo = String.valueOf(Integer.parseInt(choosenPlan.getSingleTimePrice())*Integer.parseInt(choosenPlan.getFrequencyPerDay()));
         String price = getResources().getString(R.string.Rupees) + priceNo;
-        mTxvProductPrice.setText(price);
-
-        mTxvBuy.setOnClickListener(new View.OnClickListener() {
+        Log.i("price", "onCreate: "+price);
+        paymentButton.setButtonColor(getResources().getColor(R.color.colorPrimary));
+        paymentButton.setText("Proceed to pay "+price);
+        paymentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mTxvBuy.setEnabled(false);
-                launchPaymentFlow();
+                launchPaymentFlow(priceNo);
             }
         });
     }
 
-    private void launchPaymentFlow() {
+    private void launchPaymentFlow(String price) {
         PayUmoneyConfig payUmoneyConfig = PayUmoneyConfig.getInstance();
-        payUmoneyConfig.setPayUmoneyActivityTitle("Buy" + getResources().getString(R.string.nike_power_run));
-        payUmoneyConfig.setDoneButtonText("Pay " + getResources().getString(R.string.Rupees) + getResources().getString(R.string.txt_product_price));
+        payUmoneyConfig.setPayUmoneyActivityTitle("Payment for "+choosenPlan.getPlanName());
+        payUmoneyConfig.setDoneButtonText("Let's Go");
+
+        User currentUser = MyApplication.currentUser;
 
         PayUmoneySdkInitializer.PaymentParam.Builder builder = new PayUmoneySdkInitializer.PaymentParam.Builder();
-        builder.setAmount(convertStringToDouble(getResources().getString(R.string.txt_product_price)))
+        builder.setAmount(convertStringToDouble(price))
                 .setTxnId(System.currentTimeMillis() + "")
-                .setPhone(Constants.MOBILE)
-                .setProductName(getResources().getString(R.string.nike_power_run))
-                .setFirstName(Constants.FIRST_NAME)
-                .setEmail(Constants.EMAIL)
+                .setPhone(currentUser.getPhoneNumber())
+                .setProductName(choosenPlan.getPlanName())
+                .setFirstName("Amit")
+                .setEmail(currentUser.getEmail())
                 .setsUrl(Constants.SURL)
                 .setfUrl(Constants.FURL)
                 .setUdf1("")
@@ -90,7 +112,7 @@ public class PaymentsActivity extends AppCompatActivity {
             calculateHashInServer(mPaymentParams);
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-            mTxvBuy.setEnabled(true);
+            paymentButton.setEnabled(true);
         }
     }
 
@@ -102,7 +124,7 @@ public class PaymentsActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        mTxvBuy.setEnabled(true);
+                        paymentButton.setEnabled(true);
                         String merchantHash = "";
 
                         try {
@@ -118,7 +140,7 @@ public class PaymentsActivity extends AppCompatActivity {
                             Toast.makeText(PaymentsActivity.this, "Could not generate hash", Toast.LENGTH_SHORT).show();
                         } else {
                             mPaymentParams.setMerchantHash(merchantHash);
-                            PayUmoneyFlowManager.startPayUMoneyFlow(mPaymentParams, PaymentsActivity.this, R.style.PayUMoney, true);
+                            PayUmoneyFlowManager.startPayUMoneyFlow(mPaymentParams, PaymentsActivity.this,R.style.PayUMoney, false);
                         }
                     }
                 },
@@ -126,7 +148,7 @@ public class PaymentsActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        mTxvBuy.setEnabled(true);
+                        paymentButton.setEnabled(true);
                         if (error instanceof NoConnectionError) {
                             Toast.makeText(PaymentsActivity.this, "Connect to internet Volley", Toast.LENGTH_SHORT).show();
                         } else {
@@ -144,7 +166,6 @@ public class PaymentsActivity extends AppCompatActivity {
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        mTxvBuy.setEnabled(true);
 
         if (requestCode == PayUmoneyFlowManager.REQUEST_CODE_PAYMENT && resultCode == RESULT_OK && data != null) {
 
@@ -155,6 +176,7 @@ public class PaymentsActivity extends AppCompatActivity {
 
                 if (transactionResponse.getTransactionStatus().equals(TransactionResponse.TransactionStatus.SUCCESSFUL)) {
                     showAlert("Payment Successful");
+                    onSuccesfulPayment();
                 } else if (transactionResponse.getTransactionStatus().equals(TransactionResponse.TransactionStatus.CANCELLED)) {
                     showAlert("Payment Cancelled:"+transactionResponse.getMessage());
                 } else if (transactionResponse.getTransactionStatus().equals(TransactionResponse.TransactionStatus.FAILED)) {
@@ -167,7 +189,7 @@ public class PaymentsActivity extends AppCompatActivity {
                 Toast.makeText(this, "Both objects are null", Toast.LENGTH_SHORT).show();
             }
         } else if (requestCode == PayUmoneyFlowManager.REQUEST_CODE_PAYMENT && resultCode == RESULT_CANCELED) {
-            showAlert("Payment Cancelled:"+"another reason");
+            showAlert("Payment Cancelled");
         }
     }
 
@@ -187,4 +209,87 @@ public class PaymentsActivity extends AppCompatActivity {
         });
         alertDialog.show();
     }
+
+    private void onSuccesfulPayment()
+    {
+        updateUserSubscription();
+    }
+
+    private void updateCurrentUser() {
+
+        FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        MyApplication.currentUser = dataSnapshot.getValue(User.class);
+
+                        paymentButton.setEnabled(true);
+                        paymentButton.setText("Payment succesful , Let's Go");
+                        paymentButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                startActivity(new Intent(PaymentsActivity.this, HomeActivity.class));
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
+    private void updateUserSubscription(){
+        FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("subscribedPlan").setValue(choosenPlan).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                updateUserWallet();
+            }
+        });
+
+    }
+
+    private void updateUserWallet(){
+
+        String amount = String.valueOf(Integer.parseInt(choosenPlan.getSingleTimePrice())*Integer.parseInt(choosenPlan.getFrequencyPerDay()));
+
+        String dueDate = calculateDueDate();
+
+        Wallet wallet = new Wallet();
+        wallet.setAvailableBalance(amount);
+        wallet.setCreditedAmount(amount);
+        wallet.setDueDate(dueDate);
+
+        FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("wallet").setValue(wallet).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                updateCurrentUser();
+            }
+        });
+
+    }
+
+    public String calculateDueDate(){
+        String dateInString = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());  // Start date
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        Calendar c = Calendar.getInstance(); // Get Calendar Instance
+        try {
+            c.setTime(sdf.parse(dateInString));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        c.add(Calendar.DATE, Integer.parseInt(choosenPlan.getNoOfDays()));
+        sdf = new SimpleDateFormat("MM/dd/yyyy");
+
+        Date resultdate = new Date(c.getTimeInMillis());   // Get new time
+        dateInString = sdf.format(resultdate);
+        return  dateInString;
+    }
+
 }

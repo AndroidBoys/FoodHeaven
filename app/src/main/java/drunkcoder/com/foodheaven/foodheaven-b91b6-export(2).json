@@ -8,23 +8,49 @@
   "OurPlans" : {
     "01" : {
       "description" : "'heloldsfasdlkfjjlksdfjoaksd",
-      "packImageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg",
-      "packName" : "pack 1- 15 days"
+      "planImageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg",
+      "planName" : "Mini Bonanza Plan",
+      "noOfDays": "15",
+      "singleTimePrice": "1000",
+      "frequencyPerDay": "3",
+      "includesBreakFast": "true",
+      "includesLunch": "true",
+      "includesDinner": "true"
     },
     "02" : {
+
       "description" : "'heloldsfasdlkfjjlksdfjoaksd",
-      "packImageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg",
-      "packName" : "pack 1- 15 days"
+      "planImageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg",
+      "planName" : "Mini Bonanza Plan",
+      "noOfDays": "15",
+      "singleTimePrice": "1000",
+      "frequencyPerDay": "3",
+      "includesBreakFast": "true",
+      "includesLunch": "true",
+      "includesDinner": "true"
+
     },
     "3" : {
       "description" : "'heloldsfasdlkfjjlksdfjoaksd",
-      "packImageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg",
-      "packName" : "pack 1- 15 days"
+      "planImageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg",
+      "planName" : "Mini Bonanza Plan",
+      "noOfDays": "15",
+      "singleTimePrice": "1000",
+      "frequencyPerDay": "3",
+      "includesBreakFast": "true",
+      "includesLunch": "true",
+      "includesDinner": "true"
     },
     "04" : {
       "description" : "'heloldsfasdlkfjjlksdfjoaksd",
-      "packImageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg",
-      "packName" : "pack 1- 15 days"
+      "planImageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg",
+      "planName" : "Mini Bonanza Plan",
+      "noOfDays": "15",
+      "singleTimePrice": "1000",
+      "frequencyPerDay": "3",
+      "includesBreakFast": "true",
+      "includesLunch": "true",
+      "includesDinner": "true"
     }
   },
   "Pack" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg",

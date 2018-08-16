@@ -29,7 +29,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@android:color/holo_orange_dark</item>
-        <item name="colorButtonNormal">@android:color/holo_orange_dark</item>
+        <item name="colorButtonNormal">@color/colorPrimary</item>
         <item name="alertDialogTheme">@style/AlertDialogStylePayUMoney</item>
         <item name="actionMenuTextColor">@color/white</item>
     </style>

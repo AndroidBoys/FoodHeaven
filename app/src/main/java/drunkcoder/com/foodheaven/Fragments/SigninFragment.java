@@ -31,6 +31,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import drunkcoder.com.foodheaven.Activities.AuthenticationActivity;
 import drunkcoder.com.foodheaven.Models.User;
+import drunkcoder.com.foodheaven.MyApplication;
 import drunkcoder.com.foodheaven.R;
 import drunkcoder.com.foodheaven.Utils.AuthUtil;
 
@@ -132,10 +133,10 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
-                        {
+                        {   hostingActivity.initCurrentUser();
                             Toast.makeText(hostingActivity, "Signed in sucessfully!", Toast.LENGTH_SHORT).show();
-                            hostingActivity.moveToHomeActivity();
                             kProgressHUD.dismiss();
+
                         }
                         else
                         {
@@ -246,4 +247,6 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
         //
 
     }
+
+
 }

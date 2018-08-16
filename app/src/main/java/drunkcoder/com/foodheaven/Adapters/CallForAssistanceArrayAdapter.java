@@ -5,15 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import drunkcoder.com.foodheaven.Models.Assistance;
-import drunkcoder.com.foodheaven.Models.OurPlans;
 import drunkcoder.com.foodheaven.R;
 
 public class CallForAssistanceArrayAdapter extends ArrayAdapter {

@@ -1,6 +1,5 @@
 package drunkcoder.com.foodheaven.Fragments;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,13 +18,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import drunkcoder.com.foodheaven.Activities.DescriptionActivity;
 import drunkcoder.com.foodheaven.Adapters.OurPlansCustomArrayAdapter;
-import drunkcoder.com.foodheaven.Models.OurPlans;
+import drunkcoder.com.foodheaven.Models.Plan;
 import drunkcoder.com.foodheaven.R;
 
 public class OurPlansFragment extends Fragment {
     private ListView ourPlanslistView;
     private DescriptionActivity hostingActivity;
-    private ArrayList<OurPlans> ourPlansList=new ArrayList<>();
+    private ArrayList<Plan> planList =new ArrayList<>();
     private OurPlansCustomArrayAdapter ourPlansCustomArrayAdapter;
     @Nullable
     @Override
@@ -38,7 +37,7 @@ public class OurPlansFragment extends Fragment {
         hostingActivity = (DescriptionActivity)getActivity();
         hostingActivity.getSupportActionBar().hide();
 
-        ourPlansCustomArrayAdapter=new OurPlansCustomArrayAdapter(hostingActivity,ourPlansList);
+        ourPlansCustomArrayAdapter=new OurPlansCustomArrayAdapter(hostingActivity, planList);
         ourPlanslistView.setAdapter(ourPlansCustomArrayAdapter);
 
         return view;
@@ -48,8 +47,8 @@ public class OurPlansFragment extends Fragment {
         FirebaseDatabase.getInstance().getReference("OurPlans").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                OurPlans ourPlans=dataSnapshot.getValue(OurPlans.class);
-                ourPlansList.add(ourPlans);
+                Plan plan =dataSnapshot.getValue(Plan.class);
+                planList.add(plan);
                 if(ourPlansCustomArrayAdapter!=null)
                 ourPlansCustomArrayAdapter.notifyDataSetChanged();
 

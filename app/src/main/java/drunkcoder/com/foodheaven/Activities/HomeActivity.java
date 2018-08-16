@@ -24,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import drunkcoder.com.foodheaven.Fragments.SubscribedUserFragment;
 import drunkcoder.com.foodheaven.Fragments.UnsubscribedUser;
+import drunkcoder.com.foodheaven.MyApplication;
 import drunkcoder.com.foodheaven.Payments.PaymentsActivity;
 import drunkcoder.com.foodheaven.R;
 
@@ -47,8 +48,19 @@ public class HomeActivity extends AppCompatActivity
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
 //            }
+        if(MyApplication.thisApp==null){
 
-        addDifferentFragment(UnsubscribedUser.newInstance());
+        }
+        if(MyApplication.thisApp.getCurrentUser()==null){
+            Log.i("user", "onCreate: user is null");
+        }
+
+        if(MyApplication.thisApp.getCurrentUser().getSubscribedPlan()==null) {
+            addDifferentFragment(UnsubscribedUser.newInstance());
+        }
+        else{
+            addDifferentFragment(SubscribedUserFragment.newInstance());
+        }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
