@@ -30,6 +30,7 @@ import drunkcoder.com.foodheaven.R;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -48,12 +49,6 @@ public class HomeActivity extends AppCompatActivity
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
 //            }
-        if(MyApplication.thisApp==null){
-
-        }
-        if(MyApplication.thisApp.getCurrentUser()==null){
-            Log.i("user", "onCreate: user is null");
-        }
 
         if(MyApplication.thisApp.getCurrentUser().getSubscribedPlan()==null) {
             addDifferentFragment(UnsubscribedUser.newInstance());
@@ -132,21 +127,27 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
             if (id == R.id.nav_home) {
-                addDifferentFragment(UnsubscribedUser.newInstance());
+                if(MyApplication.getCurrentUser().getSubscribedPlan()==null) {
+                    addDifferentFragment(UnsubscribedUser.newInstance());
+                }else{
+                    addDifferentFragment(SubscribedUserFragment.newInstance());
+                }
                 // Handle the camera action
-            }  else if (id == R.id.nav_mySubscription) {
-                addDifferentFragment(SubscribedUserFragment.newInstance());
             } else if (id == R.id.nav_weeklyMenu) {
                 Intent intent = new Intent(HomeActivity.this, DescriptionActivity.class);
                 intent.putExtra("ID", R.id.weeklyMenuButton);//since we have to show the weeklyMenu on the screen which will be host by the description activity
                 startActivity(intent);
             }
-            else if (id == R.id.nav_specialOrder) {
-                SubscribedUserFragment subscribedUserFragment=SubscribedUserFragment.newInstance();
-                Bundle bundle=new Bundle();
-                bundle.putInt("POSITION",1);//SINCE position of the special order position is 1 in view pager
-                subscribedUserFragment.setArguments(bundle);
-                addDifferentFragment(subscribedUserFragment);
+              else if (id == R.id.nav_specialOrder) {
+                if(MyApplication.getCurrentUser().getSubscribedPlan()!=null) {
+                    SubscribedUserFragment subscribedUserFragment = SubscribedUserFragment.newInstance();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("POSITION", 1);//SINCE position of the special order position is 1 in view pager
+                    subscribedUserFragment.setArguments(bundle);
+                    addDifferentFragment(subscribedUserFragment);
+                }else{
+                    Toast.makeText(this, "Please subscribe for our plans first!", Toast.LENGTH_SHORT).show();
+                }
             }
             else if (id == R.id.nav_contectUs) {
             }
@@ -154,11 +155,15 @@ public class HomeActivity extends AppCompatActivity
                 logOutDialog();
             }
             else if (id == R.id.nav_wallet) {
-                SubscribedUserFragment subscribedUserFragment=SubscribedUserFragment.newInstance();
-                Bundle bundle=new Bundle();
-                bundle.putInt("POSITION",2);//SINCE position of the wallet position is 1 in view pager
-                subscribedUserFragment.setArguments(bundle);
-                addDifferentFragment(subscribedUserFragment);
+                if(MyApplication.getCurrentUser().getSubscribedPlan()!=null) {
+                    SubscribedUserFragment subscribedUserFragment = SubscribedUserFragment.newInstance();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("POSITION", 2);//SINCE position of the wallet position is 1 in view pager
+                    subscribedUserFragment.setArguments(bundle);
+                    addDifferentFragment(subscribedUserFragment);
+                }else{
+                    Toast.makeText(this, "Please subscribe for our plans first!", Toast.LENGTH_SHORT).show();
+                }
             }else if (id == R.id.nav_rate) {
             }else if (id == R.id.nav_profile) {
             }
