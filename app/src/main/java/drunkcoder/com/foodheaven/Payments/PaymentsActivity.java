@@ -290,7 +290,6 @@ public class PaymentsActivity extends AppCompatActivity {
         Date resultdate = new Date(c.getTimeInMillis());   // Get new time
         dateInString = sdf.format(resultdate);
         return  dateInString;
-
     }
 
 }
