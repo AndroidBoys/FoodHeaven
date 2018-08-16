@@ -178,7 +178,7 @@ public class PaymentsActivity extends AppCompatActivity {
                     showAlert("Payment Successful");
                     onSuccesfulPayment();
                 } else if (transactionResponse.getTransactionStatus().equals(TransactionResponse.TransactionStatus.CANCELLED)) {
-                    showAlert("Payment Cancelled:"+transactionResponse.getMessage());
+                    showAlert("Payment Cancelled:"+transactionResponse.getMessage()+" "+transactionResponse.getPayuResponse());
                 } else if (transactionResponse.getTransactionStatus().equals(TransactionResponse.TransactionStatus.FAILED)) {
                     showAlert("Payment Failed");
                 }
