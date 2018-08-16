@@ -172,8 +172,11 @@ public class PaymentsActivity extends AppCompatActivity {
             TransactionResponse transactionResponse = data.getParcelableExtra(PayUmoneyFlowManager.INTENT_EXTRA_TRANSACTION_RESPONSE);
             ResultModel resultModel = data.getParcelableExtra(PayUmoneyFlowManager.ARG_RESULT);
 
+            Log.i("payu", "payuresponse:"+transactionResponse.payuResponse+"payumessage"+transactionResponse.getMessage()+"payutransactiondetails:"+transactionResponse.getTransactionDetails()+"transactionStatus"+transactionResponse.getTransactionStatus().name());
+
             if (transactionResponse != null && transactionResponse.getPayuResponse() != null) {
 
+                Log.i("payu", "payuresponse:"+transactionResponse.payuResponse+"payumessage"+transactionResponse.getMessage()+"payutransactiondetails:"+transactionResponse.getTransactionDetails()+"transactionStatus"+transactionResponse.getTransactionStatus().name());
                 if (transactionResponse.getTransactionStatus().equals(TransactionResponse.TransactionStatus.SUCCESSFUL)) {
                     showAlert("Payment Successful");
                     onSuccesfulPayment();
