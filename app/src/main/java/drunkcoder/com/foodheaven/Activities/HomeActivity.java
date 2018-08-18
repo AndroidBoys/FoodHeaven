@@ -24,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import drunkcoder.com.foodheaven.Fragments.SubscribedUserFragment;
 import drunkcoder.com.foodheaven.Fragments.UnsubscribedUser;
+import drunkcoder.com.foodheaven.Fragments.UserProfileFragment;
 import drunkcoder.com.foodheaven.MyApplication;
 import drunkcoder.com.foodheaven.Payments.PaymentsActivity;
 import drunkcoder.com.foodheaven.R;
@@ -33,6 +34,7 @@ import android.view.MenuItem;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private static final int R_id_profileId=1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class HomeActivity extends AppCompatActivity
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
 //            }
+
         if(MyApplication.thisApp==null){
 
         }
@@ -137,6 +140,7 @@ public class HomeActivity extends AppCompatActivity
             }  else if (id == R.id.nav_mySubscription) {
                 addDifferentFragment(SubscribedUserFragment.newInstance());
             } else if (id == R.id.nav_weeklyMenu) {
+
                 Intent intent = new Intent(HomeActivity.this, DescriptionActivity.class);
                 intent.putExtra("ID", R.id.weeklyMenuButton);//since we have to show the weeklyMenu on the screen which will be host by the description activity
                 startActivity(intent);
@@ -161,6 +165,10 @@ public class HomeActivity extends AppCompatActivity
                 addDifferentFragment(subscribedUserFragment);
             }else if (id == R.id.nav_rate) {
             }else if (id == R.id.nav_profile) {
+
+                Intent intent = new Intent(HomeActivity.this, DescriptionActivity.class);
+                intent.putExtra("ID", R_id_profileId);//since we have to show the profile on the screen which will be host by the description activity
+                startActivity(intent);
             }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

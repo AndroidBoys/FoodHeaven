@@ -47,6 +47,9 @@ dependencies {
     implementation 'info.hoang8f:fbutton:1.0.5'
     //slider
 
+    //circular imageView
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
     implementation 'com.nineoldandroids:library:2.4.0'
     implementation 'com.daimajia.slider:library:1.1.5@aar'
 
