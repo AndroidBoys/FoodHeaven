@@ -257,7 +257,6 @@ public class SubscribedUserTodaysMenu extends Fragment{
     public static SubscribedUserTodaysMenu newInstance() {
 
         Bundle args = new Bundle();
-
         SubscribedUserTodaysMenu fragment = new SubscribedUserTodaysMenu();
         fragment.setArguments(args);
         return fragment;

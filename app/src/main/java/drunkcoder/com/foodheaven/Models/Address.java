@@ -1,8 +1,5 @@
 package drunkcoder.com.foodheaven.Models;
 
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.maps.model.LatLng;
-
 import java.io.Serializable;
 
 public class Address implements Serializable {
