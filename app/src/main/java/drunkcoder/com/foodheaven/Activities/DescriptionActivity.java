@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 import drunkcoder.com.foodheaven.Fragments.CallForAssistanceFragment;
 import drunkcoder.com.foodheaven.Fragments.FaqFragment;
 import drunkcoder.com.foodheaven.Fragments.OurPlansFragment;
+import drunkcoder.com.foodheaven.Fragments.UserProfileFragment;
 import drunkcoder.com.foodheaven.Fragments.WantsToEatFragment;
 import drunkcoder.com.foodheaven.Fragments.WeeklyMenuFragment;
 import drunkcoder.com.foodheaven.Fragments.WeeklyMenuNestedFragment;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 
 public class DescriptionActivity extends AppCompatActivity {
 
+    private static final int R_id_profileId=1000;
     private FrameLayout frameLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,8 @@ public class DescriptionActivity extends AppCompatActivity {
             case R.id.wantToEatTextView:
                 addDifferentFragment(WantsToEatFragment.newInstance());
                 break;
-
+            case R_id_profileId:
+                addDifferentFragment(UserProfileFragment.newInstance());
         }
 
     }
@@ -73,6 +76,6 @@ public class DescriptionActivity extends AppCompatActivity {
         Toast.makeText(this, view.getTag().toString()+" selected", Toast.LENGTH_SHORT).show();
         addDifferentFragment(WeeklyMenuNestedFragment.newInstance(view.getTag().toString()));
 
-    }
 
+    }
 }

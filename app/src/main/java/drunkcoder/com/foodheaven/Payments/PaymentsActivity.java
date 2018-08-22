@@ -297,5 +297,5 @@ public class PaymentsActivity extends AppCompatActivity {
         dateInString = sdf.format(resultdate);
         return  dateInString;
     }
-
+//
 }

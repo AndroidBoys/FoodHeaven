@@ -64,6 +64,8 @@ public class SpecialOrders extends Fragment {
                     //Place the order in the firebase
                     Toast.makeText(context,specialFoodArrayList.size()+" item selected",Toast.LENGTH_SHORT).show();
                     saveDataIntoFirebase();
+                }else{
+                    Toast.makeText(context,"Please first select the item",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -79,13 +81,24 @@ public class SpecialOrders extends Fragment {
     }
 
     private void saveDataIntoFirebase() {
-        FirebaseDatabase.getInstance().getReference("SpecialOrder").child("NewOrders")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).push().setValue(specialFoodArrayList).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(context,"Save Data into fb",Toast.LENGTH_SHORT).show();
-            }
-        });
+        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("SpecialOrder").child("NewOrders");
+        for(int i=0;i<specialFoodArrayList.size();i++) {
+            Log.i("foodname","------------------"+specialFoodArrayList.get(i).getFoodName()+"  "+specialFoodArrayList.get(i).getFoodQuantity());
+            databaseReference.child(specialFoodArrayList.get(i).getFoodName()).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(specialFoodArrayList.get(i)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(context, "Save Data into fb", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+//        .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                @Override
+//                public void onSuccess(Void aVoid) {
+//                    Toast.makeText(context, "Save Data into fb", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//        }
     }
 
     private void showSpecialFoodList() {
@@ -98,6 +111,18 @@ public class SpecialOrders extends Fragment {
                 specialFoodViewHolder.specialFoodNameTextView.setText(specialFood.getFoodName());
 //                specialFoodViewHolder.specialFoodQuantityTextView.setText(specialFood.getFoodQuantity());
                 Picasso.with(context).load(specialFood.getImageUrl()).into(specialFoodViewHolder.specialFoodImageView);
+                String quantity=specialFoodViewHolder.elegantNumberButton.getNumber();
+
+                //if user first tick the checkBox and then he is incrementing the elegant number then also we have
+                //to save that incremented value there.
+
+                if(specialFoodViewHolder.specialFoodCheckBox.isChecked()){
+                    //first i will remove that object from arraylist then i will add it in arraylist
+                    deleteFoodFromArrayList(specialFood);
+                    specialFood.setFoodQuantity(specialFoodViewHolder.elegantNumberButton.getNumber());
+                    specialFoodArrayList.add(specialFood);
+                }
+
                 specialFoodViewHolder.specialFoodCheckBox.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -108,49 +133,24 @@ public class SpecialOrders extends Fragment {
                             specialFoodArrayList.add(specialFood);
                         }else{
                             Log.i("removed","------"+specialFood.getFoodName());
-                            for(int j=0;j<specialFoodArrayList.size();j++){
-                                if(specialFoodArrayList.get(j).equals(specialFood)){
-                                    Log.i("inside if",specialFoodArrayList.get(j).getFoodQuantity());
-                                    specialFoodArrayList.remove(j);
-                                    break;
-                                }
-                            }
+                            deleteFoodFromArrayList(specialFood);
                         }
                     }
                 });
             }
         };
-//        final FirebaseRecyclerAdapter<FoodMenu,SpecialFoodViewHolder> foodAdapter=new FirebaseRecyclerAdapter<FoodMenu, SpecialFoodViewHolder>(FoodMenu.class
-//        , R.layout.special_food_raw_layout,SpecialFoodViewHolder.class,specialFoodDatabaseReference) {
-//            @Override
-//            protected void populateViewHolder(final SpecialFoodViewHolder specialFoodViewHolder, final FoodMenu todayMenu, final int i) {
-//                specialFoodViewHolder.specialFoodDescriptionTextView.setText(todayMenu.getFoodDescription());
-//                specialFoodViewHolder.specialFoodNameTextView.setText(todayMenu.getFoodName());
-//                specialFoodViewHolder.specialFoodQuantityTextView.setText(todayMenu.getFoodQuantity());
-//                Picasso.with(context).load(todayMenu.getImageUrl()).into(specialFoodViewHolder.specialFoodImageView);
-//                Log.i("value i","---------"+i);
-//                specialFoodViewHolder.specialFoodCheckBox.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        CheckBox checkBox=(CheckBox)view;
-//                        if(checkBox.isChecked()){
-//                            Log.i("food","-------"+todayMenu.getFoodName());
-//                            specialFoodArrayList.add(todayMenu);
-//                        }else{
-//                            Log.i("removed","------"+todayMenu.getFoodName());
-//                            for(int j=0;j<specialFoodArrayList.size();j++){
-//                                if(specialFoodArrayList.get(j).equals(todayMenu)){
-//                                    Log.i("inside if",specialFoodArrayList.get(j).getFoodName());
-//                                    specialFoodArrayList.remove(j);
-//                                    break;
-//                                }
-//                            }
-//                        }
-//                    }
-//                });
-//            }
-//        };
         specialOrderRecyclerView.setAdapter(specialFoodAdapter);
+    }
+
+    private void deleteFoodFromArrayList(SpecialFood specialFood){
+        for(int j=0;j<specialFoodArrayList.size();j++){
+            if(specialFoodArrayList.get(j).getFoodName().equals(specialFood.getFoodName())){
+                Log.i("inside if",specialFoodArrayList.get(j).getFoodQuantity());
+//                                    specialFoodArrayList.remove(specialFoodArrayList.get(j));
+                specialFoodArrayList.remove(j);
+                return;
+            }
+        }
     }
 
 
