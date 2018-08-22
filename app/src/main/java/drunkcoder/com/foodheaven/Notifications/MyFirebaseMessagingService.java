@@ -19,10 +19,6 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Random;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;

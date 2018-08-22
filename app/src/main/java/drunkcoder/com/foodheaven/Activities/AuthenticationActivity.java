@@ -34,13 +34,11 @@ public class AuthenticationActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        SigninFragment signinFragment = SigninFragment.newInstance();
-
         if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
            initCurrentUser();
         }
         else{
-
+            SigninFragment signinFragment = SigninFragment.newInstance();
             addDifferentFragment(signinFragment);
         }
     }

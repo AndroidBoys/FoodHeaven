@@ -32,7 +32,14 @@
         <activity android:name=".Activities.DescriptionActivity" />
         <activity android:name=".Payments.PaymentsActivity"></activity>
 
-        <service android:name=".Notifications.MyFirebaseMessagingService"/>
+        <service
+            android:name=".Notifications.MyFirebaseMessagingService"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
 
 
 
