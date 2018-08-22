@@ -90,7 +90,7 @@ public class PaymentsActivity extends AppCompatActivity {
                 .setTxnId(System.currentTimeMillis() + "")
                 .setPhone(currentUser.getPhoneNumber())
                 .setProductName(choosenPlan.getPlanName())
-                .setFirstName("Amit")
+                .setFirstName(currentUser.getName())
                 .setEmail(currentUser.getEmail())
                 .setsUrl(Constants.SURL)
                 .setfUrl(Constants.FURL)
@@ -218,6 +218,7 @@ public class PaymentsActivity extends AppCompatActivity {
     {
         //subscribe to what do you want to eat today notification
         FirebaseMessaging.getInstance().subscribeToTopic("subscribed");
+
         updateUserSubscription();
     }
 
