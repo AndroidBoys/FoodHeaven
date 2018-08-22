@@ -65,5 +65,8 @@ dependencies {
 
     implementation 'com.baoyz.pullrefreshlayout:library:1.2.0'
 
+    implementation 'com.google.android.gms:play-services-location:11.8.0'
+    implementation 'com.google.android.gms:play-services-places:15.0.1'
+
 }
 apply plugin: 'com.google.gms.google-services'

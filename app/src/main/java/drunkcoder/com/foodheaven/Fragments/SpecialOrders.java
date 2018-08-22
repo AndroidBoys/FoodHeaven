@@ -79,13 +79,15 @@ public class SpecialOrders extends Fragment {
     }
 
     private void saveDataIntoFirebase() {
-        FirebaseDatabase.getInstance().getReference("SpecialOrder").child("NewOrders")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).push().setValue(specialFoodArrayList).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(context,"Save Data into fb",Toast.LENGTH_SHORT).show();
-            }
-        });
+        for (int i = 0; i < specialFoodArrayList.size(); i++) {
+            FirebaseDatabase.getInstance().getReference("SpecialOrder").child("NewOrders")
+                    .child(specialFoodArrayList.get(i).getFoodName()).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(specialFoodArrayList.get(i)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(context, "Save Data into fb", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     private void showSpecialFoodList() {

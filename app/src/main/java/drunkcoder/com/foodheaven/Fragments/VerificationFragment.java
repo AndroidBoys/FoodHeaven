@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.places.Place;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskExecutors;
@@ -22,12 +23,14 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.FirebaseDatabase;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
+import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import drunkcoder.com.foodheaven.Activities.AuthenticationActivity;
+import drunkcoder.com.foodheaven.Models.Address;
 import drunkcoder.com.foodheaven.Models.User;
 import drunkcoder.com.foodheaven.R;
 
@@ -46,17 +49,19 @@ public class VerificationFragment extends Fragment implements View.OnClickListen
     private ProgressBar progressBar;
     private KProgressHUD kProgressHUD;
 
-    private String mobile;
+    private String mobile,name;
     private String email;
     private String password;
+    private Address address;
 
-    public static VerificationFragment newInstance(String email,String mobile,String password) {
+    public static VerificationFragment newInstance(String email,String mobile,String password,Address userAddress,String name) {
 
         Bundle args = new Bundle();
         args.putString("mobile",mobile);
         args.putString("email",email);
         args.putString("password",password);
-
+        args.putSerializable("userAddress", userAddress);
+        args.putString("name",name);
         VerificationFragment fragment = new VerificationFragment();
         fragment.setArguments(args);
         return fragment;
@@ -83,6 +88,9 @@ public class VerificationFragment extends Fragment implements View.OnClickListen
         mobile= getArguments().getString("mobile");
         email = getArguments().getString("email");
         password = getArguments().getString("password");
+        address= (Address) getArguments().getSerializable("userAddress");
+        name=getArguments().getString("name");
+
 
         sendVerificationCode();
 
@@ -195,8 +203,10 @@ public class VerificationFragment extends Fragment implements View.OnClickListen
     {
         User user = new User();
         user.setEmail(email);
+        user.setName(name);
         user.setPhoneNumber(mobile);
         user.setPassword(password);
+        user.setUserAddress(address);
         user.setSubscribedPlan(null);
         user.setWallet(null);
 

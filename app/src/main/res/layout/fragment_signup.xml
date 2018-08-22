@@ -19,7 +19,35 @@
             android:textSize="64sp"
             android:layout_gravity="center"/>
 
-        <EditText
+    <fragment
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_weight=".5"
+        android:textColorHint="@android:color/white"
+        android:textColor="@android:color/white"
+        android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+        android:id="@+id/addressAutoCompleteFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <EditText
+        android:layout_weight=".5"
+        android:id="@+id/nameEdittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:backgroundTint="#33ffffff"
+        android:fontFamily="@font/josefin_regular"
+        android:hint="Enter Your Name"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"/>
+
+
+    <EditText
             android:layout_weight=".5"
             android:id="@+id/emailEdittext"
             android:layout_width="match_parent"
@@ -53,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
+                android:layout_marginStart="16dp"
             android:backgroundTint="#33ffffff"
             android:fontFamily="@font/josefin_regular"
             android:hint="@string/hint_password"
