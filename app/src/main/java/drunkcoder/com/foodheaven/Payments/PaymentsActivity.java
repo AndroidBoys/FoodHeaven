@@ -32,6 +32,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.payumoney.core.PayUmoneyConfig;
 import com.payumoney.core.PayUmoneySdkInitializer;
 import com.payumoney.core.entity.TransactionResponse;
@@ -129,7 +130,7 @@ public class PaymentsActivity extends AppCompatActivity {
 
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            merchantHash = jsonObject.getString("result");
+                            merchantHash = jsonObject.getString("payment_hash");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -172,13 +173,16 @@ public class PaymentsActivity extends AppCompatActivity {
             TransactionResponse transactionResponse = data.getParcelableExtra(PayUmoneyFlowManager.INTENT_EXTRA_TRANSACTION_RESPONSE);
             ResultModel resultModel = data.getParcelableExtra(PayUmoneyFlowManager.ARG_RESULT);
 
+            Log.i("payu", "payuresponse:"+transactionResponse.payuResponse+"payumessage"+transactionResponse.getMessage()+"payutransactiondetails:"+transactionResponse.getTransactionDetails()+"transactionStatus"+transactionResponse.getTransactionStatus().name());
+
             if (transactionResponse != null && transactionResponse.getPayuResponse() != null) {
 
+                Log.i("payu", "payuresponse:"+transactionResponse.payuResponse+"payumessage"+transactionResponse.getMessage()+"payutransactiondetails:"+transactionResponse.getTransactionDetails()+"transactionStatus"+transactionResponse.getTransactionStatus().name());
                 if (transactionResponse.getTransactionStatus().equals(TransactionResponse.TransactionStatus.SUCCESSFUL)) {
                     showAlert("Payment Successful");
                     onSuccesfulPayment();
                 } else if (transactionResponse.getTransactionStatus().equals(TransactionResponse.TransactionStatus.CANCELLED)) {
-                    showAlert("Payment Cancelled:"+transactionResponse.getMessage());
+                    showAlert("Payment Cancelled:"+transactionResponse.getMessage()+" "+transactionResponse.getPayuResponse());
                 } else if (transactionResponse.getTransactionStatus().equals(TransactionResponse.TransactionStatus.FAILED)) {
                     showAlert("Payment Failed");
                 }
@@ -212,6 +216,8 @@ public class PaymentsActivity extends AppCompatActivity {
 
     private void onSuccesfulPayment()
     {
+        //subscribe to what do you want to eat today notification
+        FirebaseMessaging.getInstance().subscribeToTopic("subscribed");
         updateUserSubscription();
     }
 
