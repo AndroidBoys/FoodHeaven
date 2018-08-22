@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import drunkcoder.com.foodheaven.Models.SpecialFood;
 import drunkcoder.com.foodheaven.Models.FoodMenu;
+import drunkcoder.com.foodheaven.MyApplication;
 import drunkcoder.com.foodheaven.R;
 import drunkcoder.com.foodheaven.ViewHolders.FoodMenuViewHolder;
 import drunkcoder.com.foodheaven.ViewHolders.SpecialFoodViewHolder;
@@ -45,7 +46,7 @@ public class WantsToEatFragment extends Fragment {
     private DatabaseReference wantsToEatDatabaseReference;
     private FButton wantsSubmitButton;
     private int maxLimit;
-    private ArrayList<String> foodChooseList;
+    private ArrayList<FoodMenu> foodChooseList;
 
     @Nullable
     @Override
@@ -69,7 +70,7 @@ public class WantsToEatFragment extends Fragment {
                     //make the entry in firebase
 
                     for(int i=0;i<foodChooseList.size();i++){
-
+                        addChoosenFoodToFB(foodChooseList.get(i).getFoodName(),foodChooseList.get(i));
                         //wantsToEatDatabaseReference.child("ChoosedBy").child(foodChooseList.get(i)).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue()
                     }
                 }
@@ -89,6 +90,13 @@ public class WantsToEatFragment extends Fragment {
         wantsSubmitButton.setButtonColor(getActivity().getResources().getColor(R.color.colorPrimary));
 
         return view;
+    }
+
+    private void addChoosenFoodToFB(String foodName,FoodMenu foodMenu) {
+
+            FirebaseDatabase.getInstance().getReference("FavouriteFood").child("LikedFood").child(foodName).child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .setValue(foodMenu);
+
     }
 
     private void loadWantToEatImages() {
@@ -122,7 +130,7 @@ public class WantsToEatFragment extends Fragment {
                         CheckBox checkBox=(CheckBox)view;
                         if(checkBox.isChecked()){
                             if(foodChooseList.size()<maxLimit){
-                                foodChooseList.add(foodMenu.getFoodName());
+                                foodChooseList.add(foodMenu);
                             }else{
                                 checkBox.setChecked(false);
                                 Toast.makeText(context,"You can only select "+maxLimit+" items",Toast.LENGTH_LONG).show();
@@ -130,8 +138,8 @@ public class WantsToEatFragment extends Fragment {
                         }else{
                             Log.i("removed","------"+foodMenu.getFoodName());
                             for(int j=0;j<foodChooseList.size();j++){
-                                if(foodChooseList.get(j).equals(foodMenu.getFoodName())){
-                                    Log.i("inside if",foodChooseList.get(j));
+                                if(foodChooseList.get(j).getFoodName().equals(foodMenu.getFoodName())){
+                                    Log.i("inside if",foodChooseList.get(j).getFoodName());
                                     foodChooseList.remove(j);
                                     break;
                                 }
