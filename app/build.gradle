@@ -62,5 +62,7 @@ dependencies {
 
     implementation 'com.baoyz.pullrefreshlayout:library:1.2.0'
 
+    implementation 'com.google.firebase:firebase-messaging:17.3.0'
+
 }
 apply plugin: 'com.google.gms.google-services'

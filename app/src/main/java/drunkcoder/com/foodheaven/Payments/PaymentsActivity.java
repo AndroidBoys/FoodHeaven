@@ -129,7 +129,7 @@ public class PaymentsActivity extends AppCompatActivity {
 
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            merchantHash = jsonObject.getString("result");
+                            merchantHash = jsonObject.getString("payment_hash");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

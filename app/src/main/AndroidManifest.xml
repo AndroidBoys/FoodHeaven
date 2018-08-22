@@ -4,6 +4,10 @@
     package="drunkcoder.com.foodheaven">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -13,6 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
+
         <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,11 +27,17 @@
         </activity>
         <activity
             android:name=".Activities.HomeActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activities.AuthenticationActivity" />
-        <activity android:name=".Activities.DescriptionActivity"></activity>
-        <activity android:name=".Payments.PaymentsActivity">
-        </activity>
+        <activity android:name=".Activities.DescriptionActivity" />
+        <activity android:name=".Payments.PaymentsActivity"></activity>
+
+        <service android:name=".Notifications.MyFirebaseMessagingService"/>
+
+
+
+
+
     </application>
 
 </manifest>

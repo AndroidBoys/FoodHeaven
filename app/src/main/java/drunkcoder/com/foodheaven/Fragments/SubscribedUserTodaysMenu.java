@@ -273,17 +273,17 @@ public class SubscribedUserTodaysMenu extends Fragment{
 
         if(!currentUserPlan.includesBreakFast) {
 
-              breakFastRecyclerView.setAlpha(0.5f);
+              breakFastRecyclerView.setAlpha(0.3f);
         }
 
         if(!currentUserPlan.includesLunch) {
 
-             lunchRecyclerView.setAlpha(0.5f);
+             lunchRecyclerView.setAlpha(0.3f);
         }
 
         if(!currentUserPlan.includesDinner){
 
-           dinnerRecyclerView.setAlpha(0.5f);
+            dinnerRecyclerView.setAlpha(0.3f);
         }
     }
 
