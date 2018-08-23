@@ -9,6 +9,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.amulyakhare.textdrawable.TextDrawable;
+import com.amulyakhare.textdrawable.util.ColorGenerator;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -132,7 +135,15 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         userEmailTextViewHeader.setText(user.getEmail());
         phone.setText(user.getPhoneNumber());
         email.setText(user.getEmail());
+        userNameTextViewHeader.setText(user.getName());
+        name.setText(user.getName());
+        address.setText(user.getUserAddress().address);
 
+        ColorGenerator generator=ColorGenerator.MATERIAL;
+
+        TextDrawable textDrawable = TextDrawable.builder()
+                .buildRound(""+"" + user.getName().charAt(0), generator.getRandomColor());//setting first letter of the user name
+        userImage.setImageDrawable(textDrawable);
 
 
         if(plan!=null) {
