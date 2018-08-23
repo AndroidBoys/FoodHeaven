@@ -41,7 +41,4 @@ public class Address implements Serializable {
         this.longitude = longitude;
         this.latitude = latitude;
     }
-
-
-
 }

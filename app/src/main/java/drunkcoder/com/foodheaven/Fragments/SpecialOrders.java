@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.baoyz.widget.PullRefreshLayout;
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -111,17 +112,22 @@ public class SpecialOrders extends Fragment {
                 specialFoodViewHolder.specialFoodNameTextView.setText(specialFood.getFoodName());
 //                specialFoodViewHolder.specialFoodQuantityTextView.setText(specialFood.getFoodQuantity());
                 Picasso.with(context).load(specialFood.getImageUrl()).into(specialFoodViewHolder.specialFoodImageView);
-                String quantity=specialFoodViewHolder.elegantNumberButton.getNumber();
 
                 //if user first tick the checkBox and then he is incrementing the elegant number then also we have
                 //to save that incremented value there.
-
-                if(specialFoodViewHolder.specialFoodCheckBox.isChecked()){
-                    //first i will remove that object from arraylist then i will add it in arraylist
-                    deleteFoodFromArrayList(specialFood);
-                    specialFood.setFoodQuantity(specialFoodViewHolder.elegantNumberButton.getNumber());
-                    specialFoodArrayList.add(specialFood);
-                }
+                specialFoodViewHolder.elegantNumberButton.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
+                    @Override
+                    public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
+                        if(specialFoodViewHolder.specialFoodCheckBox.isChecked()){
+                            //first i will remove that object from arraylist then i will add it in arraylist
+                            deleteFoodFromArrayList(specialFood);
+                            specialFood.setFoodQuantity(specialFoodViewHolder.elegantNumberButton.getNumber());
+                            Log.i("ElegantNumber",specialFoodViewHolder.elegantNumberButton.getNumber());
+                            Log.i("special food quantity",specialFood.getFoodQuantity());
+                            specialFoodArrayList.add(specialFood);
+                        }
+                    }
+                });
 
                 specialFoodViewHolder.specialFoodCheckBox.setOnClickListener(new View.OnClickListener() {
                     @Override

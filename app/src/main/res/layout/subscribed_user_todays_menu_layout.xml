@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/scrollView"
             android:layout_weight="9"
             android:layout_height="0dp"
@@ -142,7 +142,7 @@
 
             </LinearLayout>
 
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
 
     </com.baoyz.widget.PullRefreshLayout>
