@@ -1,8 +1,5 @@
 package drunkcoder.com.foodheaven.Models;
 
-import com.google.android.gms.location.places.Place;
-
-import java.util.ArrayList;
 
 public class User {
 
