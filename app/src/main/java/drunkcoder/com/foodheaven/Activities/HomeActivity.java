@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import drunkcoder.com.foodheaven.AsyncTasks.OnlineTimeAsyncTask;
 import drunkcoder.com.foodheaven.Fragments.SubscribedUserFragment;
 import drunkcoder.com.foodheaven.Fragments.UnsubscribedUser;
 import drunkcoder.com.foodheaven.Fragments.UserProfileFragment;
@@ -29,9 +30,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private static final int R_id_profileId=1000;
+
 
     public static boolean isAppRunning;
 
@@ -39,6 +42,11 @@ public class HomeActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        //Before this we have to check internet connection
+        OnlineTimeAsyncTask onlineTimeAsyncTask=new OnlineTimeAsyncTask();
+        onlineTimeAsyncTask.execute();
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -218,6 +226,9 @@ public class HomeActivity extends AppCompatActivity
                     }
                 }).show();
     }
+
+
+
 
 //    public void notification(){
 //        NotificationManager notificationManager =

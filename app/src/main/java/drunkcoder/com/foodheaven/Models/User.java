@@ -10,6 +10,15 @@ public class User {
     public String password;
     public Plan subscribedPlan;
     public Wallet wallet;
+    public Absence absence;
+
+    public Absence getAbsence() {
+        return absence;
+    }
+
+    public void setAbsence(Absence absence) {
+        this.absence = absence;
+    }
 
     public Address getUserAddress() {
         return userAddress;

@@ -1,0 +1,814 @@
+{
+  "Absence" : {
+    "WLkAf11qVaevXoVybgw7Jkf982Y2" : {
+      "endDate" : "24/8/2018",
+      "startDate" : "7/8/2018"
+    },
+    "sCOYPWTujxVOSJDuPx8aJGmnT3R2" : {
+      "endDate" : "16/8/2018",
+      "startDate" : "13/8/2018"
+    }
+  },
+  "Admin" : {
+    "2jqgcrTFJdfYn8Pq6xdVNNwMP0o2" : {
+      "email" : "mhraturu@gmail.com",
+      "name" : "amit",
+      "password" : "jaimatade",
+      "phoneNumber" : "9557491531"
+    },
+    "8SjyFfGfKqfaPAjowi6nNaAcvxZ2" : {
+      "email" : "sohan.cse16@gmail.com",
+      "name" : "sohan",
+      "password" : "1234567",
+      "phoneNumber" : "8126583671",
+      "userAddress" : {
+        "address" : "Pauri Garhwal, Uttarakhand, India",
+        "latitude" : "29.86876819999999",
+        "longitude" : "78.8382644"
+      }
+    },
+    "CkcH5W20KqQzCnFw4jeGoCYTJRx1" : {
+      "email" : "arvind7799.cse16@nituk.ac.in",
+      "name" : "arvind",
+      "password" : "123456",
+      "phoneNumber" : "7895922259",
+      "userAddress" : {
+        "address" : "Takoli Challannsyun, Uttarakhand 246147, India",
+        "latitude" : "30.209169199999995",
+        "longitude" : "78.86577729999999"
+      }
+    }
+  },
+  "Assistances" : {
+    "-LK38gKrbIJVfCAwIDhy" : {
+      "center" : "if7f",
+      "phoneNo" : "58505"
+    },
+    "-LKPbr-itSiR7ILn9J3y" : {
+      "center" : "pauri",
+      "phoneNo" : "8126583671"
+    }
+  },
+  "AttractiveQuotes" : "attrctive text herelsdkfjalsdf",
+  "Banners" : {
+    "01" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg",
+    "02" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg",
+    "03" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg",
+    "04" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-easternsoup.jpg"
+  },
+  "Faq" : {
+    "-LJy-HZpUVasEnF_llVw" : {
+      "answer" : "9184373810434",
+      "question" : "what is your name?\n"
+    },
+    "-LK2204ZXw1J9Pt2ZnXu" : {
+      "answer" : "ejtntk",
+      "question" : "eheheh"
+    },
+    "-LKavQoXsZiy_Rm1ByjN" : {
+      "answer" : "msdovmwneosnna qjsjcbqnwkossjhjj",
+      "question" : "qmneieoxhsnenrkkdjdnsksiej "
+    },
+    "-LKavrEbE-bt8xVdJ6p5" : {
+      "answer" : "because we provide you the best facility. we not only deliver you good food but also make whatever you liked... ",
+      "question" : "why we will choose only this food delivery?"
+    }
+  },
+  "FavouriteFood" : {
+    "FoodImages" : {
+      "01" : {
+        "foodDescription" : "good food",
+        "foodName" : "FINGER FOOD1",
+        "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+      },
+      "03" : {
+        "foodDescription" : "\nanbsbsbsb\njsbsvvs Ho oskjwbbs\nbsbehsjsbebskie OK wbsjsjbehehs\ngggghhgguuh\nghhhhhftui\nghuuoiikohhgg\nghjooohhttyuuuh",
+        "foodName" : "Soup123",
+        "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg"
+      },
+      "-LK26YYNIc6Vmugycqaq" : {
+        "foodDescription" : "acha he",
+        "foodName" : "kamal ka khana he",
+        "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg"
+      }
+    },
+    "LikedFood" : {
+      "FINGER FOOD1" : {
+        "piSW2DLrxBM8ZI3ZZh3dtnhIm572" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg",
+          "isDefault" : "yes"
+        },
+        "wIVSmK6hXzR9sGHuoyiUjnQGEqu2" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        }
+      },
+      "Soup123" : {
+        "wIVSmK6hXzR9sGHuoyiUjnQGEqu2" : {
+          "foodDescription" : "\nanbsbsbsb\njsbsvvs Ho oskjwbbs\nbsbehsjsbebskie OK wbsjsjbehehs\ngggghhgguuh\nghhhhhftui\nghuuoiikohhgg\nghjooohhttyuuuh",
+          "foodName" : "Soup123",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg"
+        }
+      },
+      "Western Soup" : {
+        "piSW2DLrxBM8ZI3ZZh3dtnhIm572" : {
+          "foodDescription" : "good food",
+          "foodName" : "Western Soup",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg"
+        }
+      },
+      "kamal ka khana he" : {
+        "piSW2DLrxBM8ZI3ZZh3dtnhIm572" : {
+          "foodDescription" : "acha he",
+          "foodName" : "kamal ka khana he",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg"
+        },
+        "wIVSmK6hXzR9sGHuoyiUjnQGEqu2" : {
+          "foodDescription" : "acha he",
+          "foodName" : "kamal ka khana he",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg"
+        }
+      }
+    },
+    "maxLimit" : 2
+  },
+  "Fooditems" : {
+    "083dbbe7-0031-475a-83ed-a40058c854e4" : {
+      "foodDescription" : "txugvuc",
+      "foodName" : "tzycu",
+      "imageUrl" : "https://firebasestorage.googleapis.com/v0/b/foodheaven-b91b6.appspot.com/o/images%2F720f017c-3c3f-407a-ab82-e8c4146349b3?alt=media&token=0f5fc6ce-514b-443c-a63c-59b2648f5aea"
+    },
+    "c75f3465-f516-4400-ae39-4063fb2322c3" : {
+      "foodDescription" : "This is delecious",
+      "foodName" : "Food",
+      "imageUrl" : "https://firebasestorage.googleapis.com/v0/b/foodheaven-b91b6.appspot.com/o/images%2Fbc154d58-547f-4c8a-b3bd-e4a1217f2332?alt=media&token=45683d9a-0b28-4022-9527-308d2ea14886"
+    }
+  },
+  "OurPlans" : {
+    "01" : {
+      "description" : "257-=ojcjfkvkcudkckciciv\n;novufucici\novi8foblbif8fivigi\nkcud7difov'lvifid\n\nudud\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+      "frequencyPerDay" : "3",
+      "includesBreakFast" : true,
+      "includesDinner" : true,
+      "includesLunch" : true,
+      "noOfDays" : "15",
+      "planImageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg",
+      "planName" : "Mini Bonanza Plan",
+      "singleTimePrice" : "100111122"
+    },
+    "02" : {
+      "description" : "'heloldsfasdlkfjjlksdfjoaks",
+      "frequencyPerDay" : "3",
+      "includesBreakFast" : true,
+      "includesDinner" : true,
+      "includesLunch" : true,
+      "noOfDays" : "15",
+      "planImageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg",
+      "planName" : "Mini Bonanza Plang",
+      "singleTimePrice" : "10"
+    },
+    "3" : {
+      "description" : "'heloldsfasdlkfjjlksdfjoaksd",
+      "frequencyPerDay" : "3",
+      "includesBreakFast" : true,
+      "includesDinner" : true,
+      "includesLunch" : true,
+      "noOfDays" : "15",
+      "planImageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg",
+      "planName" : "Mini Bonanza Plan",
+      "singleTimePrice" : "1000"
+    },
+    "-LK4vfT-9VTNYtCnWt2E" : {
+      "description" : "acha milega",
+      "includesBreakFast" : false,
+      "includesDinner" : false,
+      "includesLunch" : false,
+      "planImageUrl" : "https://firebasestorage.googleapis.com/v0/b/foodheaven-b91b6.appspot.com/o/images%2F64363412-1bf0-40dc-a298-0c5b47749b04?alt=media&token=d93b15c4-347d-415c-93cc-6cdc730516ec",
+      "planName" : "1-15 days",
+      "singleTimePrice" : "1"
+    }
+  },
+  "Pack" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg",
+  "SpecialOrder" : {
+    "FoodImages" : {
+      "01" : {
+        "foodDescription" : "good food",
+        "foodName" : "FINGER FOOD",
+        "foodQuantity" : "2",
+        "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg"
+      },
+      "02" : {
+        "foodDescription" : "good food",
+        "foodName" : "Western Soup",
+        "foodQuantity" : "2",
+        "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg"
+      },
+      "03" : {
+        "foodDescription" : "good food",
+        "foodName" : "Soup",
+        "foodQuantity" : "2",
+        "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-easternsoup.jpg"
+      },
+      "04" : {
+        "foodDescription" : "looking good and coo",
+        "foodName" : "Apna Food1",
+        "foodQuantity" : "4",
+        "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+      },
+      "-LKmUpKqeG2lpwqId0oQ" : {
+        "foodDescription" : "bavsvsv",
+        "foodName" : "hsgdhdbbb",
+        "imageUrl" : "https://firebasestorage.googleapis.com/v0/b/foodheaven-b91b6.appspot.com/o/images%2F21e21979-698a-44d3-b5b4-81975227c4ba?alt=media&token=3fb76ae1-bf9c-4ca6-b707-26feef24de5b"
+      },
+      "-LKmVO5bhaNiYAFcp5f4" : {
+        "foodDescription" : "vvv",
+        "foodName" : "bvc",
+        "imageUrl" : "https://firebasestorage.googleapis.com/v0/b/foodheaven-b91b6.appspot.com/o/images%2F1d9f3e6f-926d-42f9-8f01-615bee84e8c0?alt=media&token=7890ddc3-f22d-4513-88e3-0f0ea8c9ac6f"
+      }
+    },
+    "NewOrders" : {
+      "Apna Food1" : {
+        "piSW2DLrxBM8ZI3ZZh3dtnhIm572" : {
+          "foodDescription" : "looking good and coo",
+          "foodName" : "Apna Food1",
+          "foodQuantity" : "4",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        }
+      },
+      "FINGER FOOD" : {
+        "GNKlSk07bdcB7T1ZauE34yVetaR2" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD",
+          "foodQuantity" : "4",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg"
+        },
+        "piSW2DLrxBM8ZI3ZZh3dtnhIm572" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD",
+          "foodQuantity" : "7",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg"
+        }
+      },
+      "Soup" : {
+        "piSW2DLrxBM8ZI3ZZh3dtnhIm572" : {
+          "foodDescription" : "good food",
+          "foodName" : "Soup",
+          "foodQuantity" : "1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-easternsoup.jpg"
+        }
+      },
+      "Western Soup" : {
+        "piSW2DLrxBM8ZI3ZZh3dtnhIm572" : {
+          "foodDescription" : "good food",
+          "foodName" : "Western Soup",
+          "foodQuantity" : "1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg"
+        }
+      },
+      "hdymydmdy" : {
+        "piSW2DLrxBM8ZI3ZZh3dtnhIm572" : {
+          "foodDescription" : "yjeyjd",
+          "foodName" : "hdymydmdy",
+          "foodQuantity" : "6",
+          "imageUrl" : "https://firebasestorage.googleapis.com/v0/b/foodheaven-b91b6.appspot.com/o/images%2F11b97512-dfcf-4f89-a337-ae58993ba3f2?alt=media&token=3b0cd4af-db95-4135-b836-7fff171d762a"
+        }
+      }
+    }
+  },
+  "TodayMenu" : {
+    "BreakFast" : {
+      "01" : {
+        "foodDescription" : "good food",
+        "foodName" : "FINGER FOOD1",
+        "foodQuantity" : "2",
+        "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+      },
+      "02" : {
+        "foodDescription" : "good food",
+        "foodName" : "Western Soup new",
+        "foodQuantity" : "2",
+        "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg"
+      },
+      "03" : {
+        "foodDescription" : "good food",
+        "foodName" : "Soup",
+        "foodQuantity" : "2",
+        "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-easternsoup.jpg"
+      }
+    },
+    "Dinner" : {
+      "01" : {
+        "foodDescription" : "Snacks",
+        "foodName" : "FINGER FOOD1",
+        "foodQuantity" : "2",
+        "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-snacks.jpg"
+      },
+      "02" : {
+        "foodDescription" : "good food",
+        "foodName" : "Western Soup",
+        "foodQuantity" : "2",
+        "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg"
+      },
+      "03" : {
+        "foodDescription" : "good food",
+        "foodName" : "Soup",
+        "foodQuantity" : "2",
+        "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-easternsoup.jpg"
+      }
+    },
+    "FoodImages" : {
+      "01" : {
+        "foodDescription" : "good food",
+        "foodName" : "FINGER FOOD",
+        "foodQuantity" : "2",
+        "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+      }
+    },
+    "Lunch" : {
+      "01" : {
+        "foodDescription" : "good food",
+        "foodName" : "Sandwich desi",
+        "foodQuantity" : "2",
+        "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-sandwich.jpg"
+      },
+      "03" : {
+        "foodDescription" : "good food",
+        "foodName" : "Soup",
+        "foodQuantity" : "2",
+        "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-easternsoup.jpg"
+      },
+      "04" : {
+        "foodDescription" : "looking good",
+        "foodName" : "Apna Food",
+        "foodQuantity" : "4",
+        "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+      }
+    }
+  },
+  "Users" : {
+    "5lQoJKenBmQESVZMXCawai3loDB3" : {
+      "email" : "negiarvind229@gmail.com",
+      "name" : "arvind",
+      "password" : "123456",
+      "phoneNumber" : "7895922259",
+      "userAddress" : {
+        "address" : "Gopeshwar Chamoli Rd, Gopeshwar, Uttarakhand 246401, India",
+        "latitude" : "30.4036347",
+        "longitude" : "79.3194235"
+      },
+      "subscribedPlan" : {
+        "description" : "'heloldsfasdlkfjjlksdfjoaks",
+        "frequencyPerDay" : "2",
+        "includesBreakFast" : true,
+        "includesDinner" : true,
+        "includesLunch" : true,
+        "noOfDays" : "15",
+        "planImageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg",
+        "planName" : "Mini Bonanza Plang",
+        "singleTimePrice" : "10"
+      },
+      "wallet" : {
+        "availableBalance" : "20",
+        "creditedAmount" : "2000",
+        "dueDate" : "09/06/2018"
+      }
+    },
+    "wIVSmK6hXzR9sGHuoyiUjnQGEqu2" : {
+      "email" : "mhraturi@gmail.com",
+      "name" : "Amit Kishor Raturi",
+      "password" : "jaimatade",
+      "phoneNumber" : "9557491531",
+      "subscribedPlan" : {
+        "description" : "'heloldsfasdlkfjjlksdfjoaks",
+        "frequencyPerDay" : "2",
+        "includesBreakFast" : true,
+        "includesDinner" : true,
+        "includesLunch" : true,
+        "noOfDays" : "15",
+        "planImageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-westernsoup1.jpg",
+        "planName" : "Mini Bonanza Plang",
+        "singleTimePrice" : "10"
+      },
+      "userAddress" : {
+        "address" : "Takoli Challannsyun, Uttarakhand 246147, India",
+        "latitude" : "30.209169199999995",
+        "longitude" : "78.86577729999999"
+      },
+      "wallet" : {
+        "availableBalance" : "20",
+        "creditedAmount" : "2000",
+        "dueDate" : "09/06/2018"
+      }
+    }
+  },
+  "WeeklyMenu" : {
+    "Fri" : {
+      "-LK7qd_Tf35xOYgCqmae" : {
+        "foodDescription" : "gfdgbjj",
+        "foodName" : "koila",
+        "imageUrl" : "https://firebasestorage.googleapis.com/v0/b/foodheaven-b91b6.appspot.com/o/images%2Fbb09f3b9-c852-4f94-971f-49e1c70a4311?alt=media&token=777a8eac-bc9e-400b-86e2-37b8461b688d"
+      },
+      "-LK7qpR1bsgiRV-kCrsI" : {
+        "foodDescription" : "somrthoh 2nd ff\ngghhv",
+        "foodName" : "nsk",
+        "imageUrl" : "https://firebasestorage.googleapis.com/v0/b/foodheaven-b91b6.appspot.com/o/images%2F42a81b62-49e4-4a2e-90d9-094411db21e6?alt=media&token=acb478a8-307a-41a9-9fcb-1d65dc76ce66"
+      },
+      "BreakFast" : {
+        "01" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "02" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "03" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "-LK7qd_g796QWx7A3sJo" : {
+          "foodDescription" : "gfdgb",
+          "foodName" : "koila",
+          "imageUrl" : "https://firebasestorage.googleapis.com/v0/b/foodheaven-b91b6.appspot.com/o/images%2Fbb09f3b9-c852-4f94-971f-49e1c70a4311?alt=media&token=777a8eac-bc9e-400b-86e2-37b8461b688d"
+        }
+      },
+      "Dinner" : {
+        "01" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "02" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "03" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "-LK7qpRCSoOBt-Rlj_Is" : {
+          "foodDescription" : "somrthoh 2nd ff\ngghhv",
+          "foodName" : "nsk",
+          "imageUrl" : "https://firebasestorage.googleapis.com/v0/b/foodheaven-b91b6.appspot.com/o/images%2F42a81b62-49e4-4a2e-90d9-094411db21e6?alt=media&token=acb478a8-307a-41a9-9fcb-1d65dc76ce66"
+        }
+      },
+      "Lunch" : {
+        "01" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "02" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "03" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        }
+      }
+    },
+    "Mon" : {
+      "BreakFast" : {
+        "01" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "02" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "03" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        }
+      },
+      "Dinner" : {
+        "01" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "02" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "03" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        }
+      },
+      "Lunch" : {
+        "01" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "02" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "03" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        }
+      }
+    },
+    "Sat" : {
+      "BreakFast" : {
+        "01" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "02" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "03" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        }
+      },
+      "Dinner" : {
+        "01" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "02" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "03" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        }
+      },
+      "Lunch" : {
+        "01" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "02" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "03" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        }
+      }
+    },
+    "Sun" : {
+      "BreakFast" : {
+        "01" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "02" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "03" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        }
+      },
+      "Dinner" : {
+        "01" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "02" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "03" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        }
+      },
+      "Lunch" : {
+        "01" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "02" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "03" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        }
+      }
+    },
+    "Thrus" : {
+      "BreakFast" : {
+        "01" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "02" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "03" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        }
+      },
+      "Dinner" : {
+        "01" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "02" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "03" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        }
+      },
+      "Lunch" : {
+        "01" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "02" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "03" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        }
+      }
+    },
+    "Tues" : {
+      "BreakFast" : {
+        "01" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "02" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "03" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        }
+      },
+      "Dinner" : {
+        "01" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "02" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "03" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        }
+      },
+      "Lunch" : {
+        "01" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "02" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "03" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        }
+      }
+    },
+    "Wed" : {
+      "BreakFast" : {
+        "01" : {
+          "foodDescription" : "good food7",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "02" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "03" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        }
+      },
+      "Dinner" : {
+        "01" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "02" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "03" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        }
+      },
+      "Lunch" : {
+        "01" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "02" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        },
+        "03" : {
+          "foodDescription" : "good food",
+          "foodName" : "FINGER FOOD1",
+          "imageUrl" : "http://medifoods.my/wp-content/uploads/2015/03/cover-menu-fingerfoods2.jpg"
+        }
+      }
+    }
+  },
+  "WhyHeavensFood" : {
+    "-LKLG7_IBz9pBqEdRgLN" : {
+      "about" : "7990",
+      "imageUrl" : "https://firebasestorage.googleapis.com/v0/b/foodheaven-b91b6.appspot.com/o/6ac71268-9ede-431c-8367-510b4c7864b6?alt=media&token=3ecc0c8d-4e9b-4a10-8654-c33370a76958"
+    },
+    "-LKPdMYKjPtODaA4sDf8" : {
+      "about" : "raturi",
+      "imageUrl" : "https://firebasestorage.googleapis.com/v0/b/foodheaven-b91b6.appspot.com/o/f1d48e06-826d-4e98-a741-c51c24248b5c?alt=media&token=a77da34c-0138-4b36-b7db-dda3bd76951c"
+    }
+  },
+  "notification" : {
+    "id" : "cc85e8d4-3821-4c30-b215-6f0d6977dc20",
+    "message" : "hi"
+  }
+}

@@ -109,7 +109,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
         EditText place;
         place= ((EditText)placeAutocompleteFragment.getView().findViewById(R.id.place_autocomplete_search_input));
         place.setHint("Enter Your Address");
-       place.setTextColor(Color.WHITE);
+        place.setTextColor(Color.WHITE);
         placeAutocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
