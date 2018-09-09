@@ -5,8 +5,17 @@ public class Wallet {
     public String creditedAmount;
     public String availableBalance;
     public String dueDate;
+    public String remainingDays;
 
     public Wallet() {
+    }
+
+    public String getRemainingDays() {
+        return remainingDays;
+    }
+
+    public void setRemainingDays(String remainingDays) {
+        this.remainingDays = remainingDays;
     }
 
     public String getCreditedAmount() {

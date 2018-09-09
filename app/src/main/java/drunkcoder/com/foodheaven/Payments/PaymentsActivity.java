@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import drunkcoder.com.foodheaven.Activities.HomeActivity;
+import drunkcoder.com.foodheaven.Common.Common;
 import drunkcoder.com.foodheaven.Models.Plan;
 import drunkcoder.com.foodheaven.Models.User;
 import drunkcoder.com.foodheaven.Models.Wallet;
@@ -218,7 +219,6 @@ public class PaymentsActivity extends AppCompatActivity {
     {
         //subscribe to what do you want to eat today notification
         FirebaseMessaging.getInstance().subscribeToTopic("subscribed");
-
         updateUserSubscription();
     }
 
@@ -261,26 +261,33 @@ public class PaymentsActivity extends AppCompatActivity {
 
     private void updateUserWallet(){
 
-        String amount = String.valueOf(Integer.parseInt(choosenPlan.getSingleTimePrice())*Integer.parseInt(choosenPlan.getFrequencyPerDay()));
+        String amount = String.valueOf(Integer.parseInt(choosenPlan.getNoOfDays())*
+                (Integer.parseInt(choosenPlan.getSingleTimePrice())*Integer.parseInt(choosenPlan.getFrequencyPerDay())));
 
-        String dueDate = calculateDueDate();
+        String dueDate = calculateDueDate1();
 
-        Wallet wallet = new Wallet();
-        wallet.setAvailableBalance(amount);
-        wallet.setCreditedAmount(amount);
-        wallet.setDueDate(dueDate);
 
-        FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("wallet").setValue(wallet).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                updateCurrentUser();
-            }
-        });
+        if(dueDate!=null) {
+            Wallet wallet = new Wallet();
+//        wallet.setAvailableBalance(amount);
+            wallet.setCreditedAmount(amount);
+            wallet.setDueDate(dueDate);
+            wallet.setRemainingDays(choosenPlan.getNoOfDays());
+
+            FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .child("wallet").setValue(wallet).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    updateCurrentUser();
+                }
+            });
+        }
+        // 9690300349
 
     }
 
     public String calculateDueDate(){
+
         String dateInString = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());  // Start date
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -292,11 +299,30 @@ public class PaymentsActivity extends AppCompatActivity {
         }
 
         c.add(Calendar.DATE, Integer.parseInt(choosenPlan.getNoOfDays()));
-        sdf = new SimpleDateFormat("MM/dd/yyyy");
+        sdf = new SimpleDateFormat("dd/MM/yyyy");
 
         Date resultdate = new Date(c.getTimeInMillis());   // Get new time
         dateInString = sdf.format(resultdate);
         return  dateInString;
+    }
+
+    public String calculateDueDate1(){
+
+        if(Common.todayOnlineDate!=null) {
+            String todayDate = Common.todayOnlineDate;
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Calendar calendar = Calendar.getInstance();
+            try {
+                calendar.setTime(simpleDateFormat.parse(todayDate));//Setting todayDate into calendar variable.
+                // So that we can add them later one
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            calendar.add(Calendar.DATE, Integer.parseInt(choosenPlan.getNoOfDays()));
+            Date resultDate = new Date(calendar.getTimeInMillis()); //we are getting the timeInMillis after adding dates
+            return simpleDateFormat.format(resultDate);
+        }
+        return null;
     }
 //
 }
