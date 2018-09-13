@@ -17,6 +17,9 @@ import drunkcoder.com.foodheaven.R;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -25,6 +28,7 @@ public class DescriptionActivity extends AppCompatActivity {
 
     private static final int R_id_profileId=1000;
     private FrameLayout frameLayout;
+    private Fragment fragmentInForeground;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,25 +44,39 @@ public class DescriptionActivity extends AppCompatActivity {
     private void selectFragmentByViewId(int id) {
         switch(id){
             case R.id.ourPlansButton:
-                addDifferentFragment(OurPlansFragment.newInstance());
+                OurPlansFragment fragment =OurPlansFragment.newInstance();
+                fragmentInForeground=fragment;
+                addDifferentFragment(fragment);
                 break;
             case R.id.weeklyMenuButton:
-                addDifferentFragment(WeeklyMenuFragment.newInstance());
+                WeeklyMenuFragment fragment1=WeeklyMenuFragment.newInstance();
+                fragmentInForeground=fragment1;
+                addDifferentFragment(fragment1);
                 break;
             case R.id.callForAssistenceTextView:
-                addDifferentFragment(CallForAssistanceFragment.newInstance());
+                CallForAssistanceFragment fragment2 = CallForAssistanceFragment.newInstance();
+                fragmentInForeground = fragment2;
+                addDifferentFragment(fragment2);
                 break;
             case R.id.faqTextView:
-                addDifferentFragment(FaqFragment.newInstance());
+                FaqFragment fragment3 = FaqFragment.newInstance();
+                fragmentInForeground = fragment3;
+                addDifferentFragment(fragment3);
                 break;
             case R.id.whyHeavenFoodsTextView:
-                addDifferentFragment(WhyHeavensFoodFragment.newInstance());
+                WhyHeavensFoodFragment fragment4 = WhyHeavensFoodFragment.newInstance();
+                fragmentInForeground = fragment4;
+                addDifferentFragment(fragment4);
                 break;
             case R.id.wantToEatTextView:
-                addDifferentFragment(WantsToEatFragment.newInstance());
+                WantsToEatFragment fragment5 = WantsToEatFragment.newInstance();
+                fragmentInForeground = fragment5;
+                addDifferentFragment(fragment5);
                 break;
             case R_id_profileId:
-                addDifferentFragment(UserProfileFragment.newInstance());
+                UserProfileFragment fragment6 = UserProfileFragment.newInstance();
+                fragmentInForeground = fragment6;
+                addDifferentFragment(fragment6);
         }
 
     }
@@ -78,4 +96,5 @@ public class DescriptionActivity extends AppCompatActivity {
 
 
     }
+
 }
