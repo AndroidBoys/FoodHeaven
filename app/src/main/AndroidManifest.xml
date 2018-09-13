@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="drunkcoder.com.foodheaven">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="drunkcoder.com.foodheaven">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -19,35 +21,35 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-
-        <activity android:name=".Activities.MainActivity">
+        <activity android:name=".Activities.SplashActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".Activities.HomeActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.AuthenticationActivity" />
-        <activity android:name=".Activities.DescriptionActivity" />
-        <activity android:name=".Payments.PaymentsActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Activities.AuthenticationActivity"/>
+        <activity android:name=".Activities.DescriptionActivity"/>
+        <activity android:name=".Payments.PaymentsActivity"/>
 
         <service
             android:name=".Notifications.MyFirebaseMessagingService"
             android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
             </intent-filter>
         </service>
-    <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyDJXfecI2zkSHV8HdqRqBrkkeRE2MDyoIA"/>
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDJXfecI2zkSHV8HdqRqBrkkeRE2MDyoIA"/>
 
-
+        <activity android:name=".Activities.AppIntroActivity">
+        </activity>
     </application>
 
 </manifest>

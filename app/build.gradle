@@ -67,13 +67,16 @@ dependencies {
 
 
     implementation 'com.google.firebase:firebase-messaging:17.3.0'
-    
+
     implementation 'com.google.android.gms:play-services-location:11.8.0'
-    
+
     implementation 'com.google.android.gms:play-services-places:15.0.1'
 
     //online time library
     implementation 'commons-net:commons-net:3.3'
+
+    //App Intro library
+    implementation 'com.github.apl-devs:appintro:v4.2.3'
 
 }
 apply plugin: 'com.google.gms.google-services'
