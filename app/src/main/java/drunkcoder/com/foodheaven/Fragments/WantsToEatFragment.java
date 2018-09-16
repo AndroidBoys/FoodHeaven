@@ -199,7 +199,7 @@ public class WantsToEatFragment extends Fragment implements View.OnCreateContext
             }
         }
         Order order=new Order(MyApplication.getCurrentUser(),0,finalFoodList);
-        FirebaseDatabase.getInstance().getReference("Orders").push().setValue(order);
+        FirebaseDatabase.getInstance().getReference("Orders").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(order);
 
         //Now placing current userUID inside all foods reference so that no. of user for a perticular food can be determined easily
         for(int i=0;i<finalFoodList.size();i++){
@@ -316,14 +316,18 @@ public class WantsToEatFragment extends Fragment implements View.OnCreateContext
 
             }
         });
-        wantsToEatDatabaseReference.child(mealTime).addListenerForSingleValueEvent(new ValueEventListener() {
+        //this is required to fetch the current orderedFoodList
+        wantsToEatDatabaseReference.child(mealTime).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 orderedFoodList=new ArrayList[(int) dataSnapshot.getChildrenCount()];
                 Log.d("childerencount",""+dataSnapshot.getChildrenCount());
                 Log.d("orderfoodlistsize",""+orderedFoodList.length);
                 for(int i=0;i<orderedFoodList.length;i++)
                     orderedFoodList[i]=new ArrayList<>();
+                Log.d("listor",""+categoryNameList.size());
+                expandableFoodListAdapter.notifyDataSetChanged();
 
             }
 

@@ -295,12 +295,13 @@ public class SubscribedUserTodaysMenu extends Fragment{
             @Override
             protected void populateViewHolder(FoodMenuViewHolder foodMenuViewHolder, FoodMenu foodMenu, int i) {
                 setFoodDetails(foodMenuViewHolder, foodMenu);
-
             }
         };
+
         dinnerAdapter.notifyDataSetChanged();
         dinnerRecyclerView.setAdapter(dinnerAdapter);
         //Download the images from the firebase
+
     }
 
     private void setFoodDetails(FoodMenuViewHolder foodMenuViewHolder,FoodMenu foodMenu) {
