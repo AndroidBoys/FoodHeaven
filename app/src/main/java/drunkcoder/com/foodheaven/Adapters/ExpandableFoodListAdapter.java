@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.CheckBox;
 import android.widget.CheckedTextView;
+import android.widget.CompoundButton;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
@@ -47,16 +49,29 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
 
         final Food childText = (Food) getChild(groupPosition, childPosition);
 
-        if (convertView == null) {
-            LayoutInflater infalInflater = (LayoutInflater) this._context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(    R.layout.list_item, null);
-        }
-
-        CheckedTextView txtListChild = (CheckedTextView) convertView
-                .findViewById(R.id.lblListItem);
-
+//        if (convertView == null) {
+        LayoutInflater infalInflater = (LayoutInflater) this._context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        convertView = infalInflater.inflate(R.layout.list_item, null);
+//        }
+        final TextView txtListChild = (TextView) convertView.findViewById(R.id.lblListItem);
+        CheckBox checkBox=(CheckBox) convertView.findViewById(R.id.checkbox3);
         txtListChild.setText(childText.getFoodName());
+        checkBox.setChecked(childText.marked);
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                childText.setMarked(b);
+            }
+        });
+
+
+        //        txtListChild.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if()
+//            }
+//        });
         return convertView;
     }
 

@@ -2,21 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="55dip"
-    android:orientation="vertical" >
+    android:orientation="horizontal" >
 
-    <CheckedTextView
+    <!--we are not considering the click of textview-->
+    <TextView
+        android:focusableInTouchMode="false"
+        android:focusable="false"
+        android:layout_weight="10"
         android:padding="8dp"
-        android:layout_marginRight="8dp"
-        android:gravity="center_vertical"
         android:id="@+id/lblListItem"
-        android:layout_width="fill_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="17dip"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         android:checked="true"
         android:text="sdfsdfsdfsdfsdf"
-        android:checkMark="@drawable/ic_check_box_outline_blank_black_24dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft" />
-
+        />
+<!--checkbox is unclickable since we are only considering the click for linerar layout-->
+    <CheckBox
+        android:clickable="false"
+        android:focusableInTouchMode="false"
+        android:focusable="false"
+        android:id="@+id/checkbox3"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>
