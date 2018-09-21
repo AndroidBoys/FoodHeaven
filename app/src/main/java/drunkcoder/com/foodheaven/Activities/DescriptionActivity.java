@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import drunkcoder.com.foodheaven.Fragments.CallForAssistanceFragment;
+import drunkcoder.com.foodheaven.Fragments.CurrentOrder;
 import drunkcoder.com.foodheaven.Fragments.FaqFragment;
 import drunkcoder.com.foodheaven.Fragments.OurPlansFragment;
 import drunkcoder.com.foodheaven.Fragments.UserProfileFragment;
@@ -77,6 +78,12 @@ public class DescriptionActivity extends AppCompatActivity {
                 UserProfileFragment fragment6 = UserProfileFragment.newInstance();
                 fragmentInForeground = fragment6;
                 addDifferentFragment(fragment6);
+                break;
+            case 100:
+                CurrentOrder fragment7=CurrentOrder.newInstance();
+                fragmentInForeground=fragment7;
+                addDifferentFragment(fragment7);
+
         }
 
     }

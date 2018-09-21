@@ -107,6 +107,7 @@ public class WantsToEatFragment extends Fragment implements View.OnCreateContext
         loadWantToEatImages(mealTime);
 
         wantsToEatSubmitButton=view.findViewById(R.id.wantsSubmitButton);
+
         wantsToEatSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -222,9 +223,43 @@ public class WantsToEatFragment extends Fragment implements View.OnCreateContext
             Order order = new Order(MyApplication.getCurrentUser(), 0, finalFoodList);
             FirebaseDatabase.getInstance().getReference("Orders").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(order);
 
+
+            //now removing this user's UID from all the default foods
+                FirebaseDatabase.getInstance().getReference("FavouriteFood").addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                        for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
+                            Log.d("datasnap",dataSnapshot1.getKey());
+                            if(dataSnapshot1.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
+                                dataSnapshot1.getRef().removeValue();
+
+                        }
+                    }
+
+                    @Override
+                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
             //Now placing current userUID inside all foods reference so that no. of user for a perticular food can be determined easily
             for (int i = 0; i < finalFoodList.size(); i++) {
-                FirebaseDatabase.getInstance().getReference("FavouriteFood").child(finalFoodList.get(i).getFoodName()).push().setValue(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                FirebaseDatabase.getInstance().getReference("FavouriteFood").child(finalFoodList.get(i).getFoodName()).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(FirebaseAuth.getInstance().getCurrentUser().getUid());
             }
 
             Toast.makeText(context, "Your choices has been locked", Toast.LENGTH_SHORT).show();
@@ -310,9 +345,11 @@ public class WantsToEatFragment extends Fragment implements View.OnCreateContext
         categoryNameList.clear();
         maxLimitOfCategory.clear();
         listFoodChild.clear();
+
         wantsToEatDatabaseReference.child(mealTime).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
                 Category category = dataSnapshot.getValue(Category.class);
                 categoryNameList.add(category.getCategoryName()+" max Limit ("+category.getMaxSelect()+")");
                 maxLimitOfCategory.add(category.getMaxSelect());
@@ -341,6 +378,7 @@ public class WantsToEatFragment extends Fragment implements View.OnCreateContext
 
             }
         });
+
         //this is required to fetch the current orderedFoodList
         wantsToEatDatabaseReference.child(mealTime).addValueEventListener(new ValueEventListener() {
             @Override
