@@ -111,7 +111,8 @@ public class WantsToEatFragment extends Fragment implements View.OnCreateContext
             @Override
             public void onClick(View view) {
                 //CREATING ORDER
-                createAndSubmitOrder();
+                showAlertDialogForCreatingOrder();
+
             }
         });
 
@@ -189,6 +190,25 @@ public class WantsToEatFragment extends Fragment implements View.OnCreateContext
         return view;
     }
 
+    private void showAlertDialogForCreatingOrder() {
+    AlertDialog.Builder dialog= new AlertDialog.Builder(context);
+    dialog.setTitle("HeavensFood")
+            .setMessage("Are you sure you want to place this order?")
+            .setIcon(R.drawable.thali_graphic)
+            .setCancelable(false)
+            .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                    createAndSubmitOrder();
+                }
+            })
+            .setNegativeButton("No",null)
+            .show();
+
+
+    }
+
     private void createAndSubmitOrder() {
 
         ArrayList<Food> finalFoodList=new ArrayList<>();
@@ -198,15 +218,20 @@ public class WantsToEatFragment extends Fragment implements View.OnCreateContext
                 finalFoodList.add(orderedFoodList[i].get(j));
             }
         }
-        Order order=new Order(MyApplication.getCurrentUser(),0,finalFoodList);
-        FirebaseDatabase.getInstance().getReference("Orders").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(order);
+        if(finalFoodList.size()>0) {
+            Order order = new Order(MyApplication.getCurrentUser(), 0, finalFoodList);
+            FirebaseDatabase.getInstance().getReference("Orders").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(order);
 
-        //Now placing current userUID inside all foods reference so that no. of user for a perticular food can be determined easily
-        for(int i=0;i<finalFoodList.size();i++){
-            FirebaseDatabase.getInstance().getReference("FavouriteFood").child(finalFoodList.get(i).getFoodName()).push().setValue(FirebaseAuth.getInstance().getCurrentUser().getUid());
+            //Now placing current userUID inside all foods reference so that no. of user for a perticular food can be determined easily
+            for (int i = 0; i < finalFoodList.size(); i++) {
+                FirebaseDatabase.getInstance().getReference("FavouriteFood").child(finalFoodList.get(i).getFoodName()).push().setValue(FirebaseAuth.getInstance().getCurrentUser().getUid());
+            }
+
+            Toast.makeText(context, "Your choices has been locked", Toast.LENGTH_SHORT).show();
         }
-
-
+        else{
+            Toast.makeText(context, "Place select your choices first", Toast.LENGTH_SHORT).show();
+        }
     }
 
 //    private void fetchCategory(String mealTime) {
