@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="55dip"
+    android:orientation="horizontal" >
+
+    <!--we are not considering the click of textview-->
+    <TextView
+        android:focusableInTouchMode="false"
+        android:focusable="false"
+        android:layout_weight="10"
+        android:padding="8dp"
+        android:id="@+id/lblListItem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:checked="true"
+        android:text="sdfsdfsdfsdfsdf"
+        />
+<!--checkbox is unclickable since we are only considering the click for linerar layout-->
+    <CheckBox
+        android:clickable="false"
+        android:focusableInTouchMode="false"
+        android:focusable="false"
+        android:id="@+id/checkbox3"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
