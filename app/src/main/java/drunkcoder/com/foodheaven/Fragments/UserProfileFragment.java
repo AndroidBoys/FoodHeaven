@@ -55,6 +55,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
 
     //for phone no. verification
 
+    AlertDialog builder;
     EditText otpEditText;
     TextView verificationTextView;
     Button submitButton;
@@ -243,6 +244,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
             public void onClick(View view) {
 
                 submitOtp();
+                builder.dismiss();
 
             }
         });
@@ -250,7 +252,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         mAuth = FirebaseAuth.getInstance();
 
 
-        AlertDialog builder = new AlertDialog.Builder(context, android.R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen)
+        builder = new AlertDialog.Builder(context, android.R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen)
                 .setView(view)
                 .setIcon(R.drawable.thali_graphic)
                 .show();
