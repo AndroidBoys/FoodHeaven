@@ -12,15 +12,11 @@ import drunkcoder.com.foodheaven.Fragments.WantsToEatFragment;
 import drunkcoder.com.foodheaven.Fragments.WeeklyMenuFragment;
 import drunkcoder.com.foodheaven.Fragments.WeeklyMenuNestedFragment;
 import drunkcoder.com.foodheaven.Fragments.WhyHeavensFoodFragment;
-import drunkcoder.com.foodheaven.Models.WhyHeavenFood;
 import drunkcoder.com.foodheaven.R;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -30,6 +26,7 @@ public class DescriptionActivity extends AppCompatActivity {
     private static final int R_id_profileId=1000;
     private FrameLayout frameLayout;
     private Fragment fragmentInForeground;
+    private static final int R_id_currentOrder=100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,11 +76,11 @@ public class DescriptionActivity extends AppCompatActivity {
                 fragmentInForeground = fragment6;
                 addDifferentFragment(fragment6);
                 break;
-            case 100:
+            case R_id_currentOrder:
                 CurrentOrder fragment7=CurrentOrder.newInstance();
                 fragmentInForeground=fragment7;
                 addDifferentFragment(fragment7);
-
+                break;
         }
 
     }
