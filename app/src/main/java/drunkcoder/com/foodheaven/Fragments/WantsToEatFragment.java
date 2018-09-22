@@ -86,7 +86,7 @@ public class WantsToEatFragment extends Fragment implements View.OnCreateContext
     private EditText wantAlertFoodNameEditText;
     private CoordinatorLayout wantsToEatCoordinatorLayout;
     private FloatingActionButton wantsFloatingActionButton;
-    private String mealTime="BreakFast";
+    private String mealTime;
 //    private ArrayAdapter adapter;
 //    ArrayList<ArrayList<String>> selectedFoodItems = new ArrayList<ArrayList<String>>();
     private ArrayList<Food> orderedFoodList[];
@@ -104,7 +104,7 @@ public class WantsToEatFragment extends Fragment implements View.OnCreateContext
 //        wantsToEatCoordinatorLayout=view.findViewById(R.id.wantsToEatCoordinatorLayout);
 //        wantsFloatingActionButton=view.findViewById(R.id.wantsFloatingActionButton);
 //        storageReference=FirebaseStorage.getInstance().getReference("images/");
-        loadWantToEatImages(mealTime);
+        loadWantToEatImages(MyApplication.notificationTime);//fetching foods from the todays menu for which the notificaton is created
 
         wantsToEatSubmitButton=view.findViewById(R.id.wantsSubmitButton);
 
@@ -212,7 +212,7 @@ public class WantsToEatFragment extends Fragment implements View.OnCreateContext
 
     private void createAndSubmitOrder() {
 
-        ArrayList<Food> finalFoodList=new ArrayList<>();
+        final ArrayList<Food> finalFoodList=new ArrayList<>();
         //creating a single foodList from orderedFoodList[]
         for(int i=0;i<orderedFoodList.length;i++){
             for(int j=0;j<orderedFoodList[i].size();j++){
@@ -224,29 +224,17 @@ public class WantsToEatFragment extends Fragment implements View.OnCreateContext
             FirebaseDatabase.getInstance().getReference("Orders").child("NewFoodOrders").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(order);
 
             //now removing this user's UID from all the default foods
-                FirebaseDatabase.getInstance().getReference("FavouriteFood").addChildEventListener(new ChildEventListener() {
+                FirebaseDatabase.getInstance().getReference("FavouriteFood").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
-                            Log.d("datasnap",dataSnapshot1.getKey());
-                            if(dataSnapshot1.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
-                                dataSnapshot1.getRef().removeValue();
-
+                            for(DataSnapshot dataSnapshot2:dataSnapshot1.getChildren()) {
+                                Log.d("datasnap", dataSnapshot1.getKey());
+                                if (dataSnapshot2.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
+                                    dataSnapshot2.getRef().removeValue();
+                                Log.d("values", dataSnapshot1.getKey());
+                            }
                         }
-                    }
-
-                    @Override
-                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-                    }
-
-                    @Override
-                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                     }
 
@@ -255,13 +243,22 @@ public class WantsToEatFragment extends Fragment implements View.OnCreateContext
 
                     }
                 });
+            FirebaseDatabase.getInstance().getReference("FavouriteFood").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (int i = 0; i < finalFoodList.size(); i++) {
+                        FirebaseDatabase.getInstance().getReference("FavouriteFood").child(finalFoodList.get(i).getFoodName()).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                    }
 
-            //Now placing current userUID inside all foods reference so that no. of user for a perticular food can be determined easily
-            for (int i = 0; i < finalFoodList.size(); i++) {
-                FirebaseDatabase.getInstance().getReference("FavouriteFood").child(finalFoodList.get(i).getFoodName()).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                    Toast.makeText(context, "Your choices has been locked", Toast.LENGTH_SHORT).show();
+
             }
 
-            Toast.makeText(context, "Your choices has been locked", Toast.LENGTH_SHORT).show();
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         }
         else{
             Toast.makeText(context, "Place select your choices first", Toast.LENGTH_SHORT).show();

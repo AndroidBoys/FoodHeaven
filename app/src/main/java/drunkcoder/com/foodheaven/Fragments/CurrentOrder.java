@@ -55,11 +55,13 @@ public class CurrentOrder extends Fragment {
         currentOrderListView=view.findViewById(R.id.currentOrdersListView);
         currentOrderArrayAdapter=new CurrentOrderArrayAdapter(context,foodArrayList);
         currentOrderListView.setAdapter(currentOrderArrayAdapter);
+        currentOrderListView.setDivider(null);
+
     return view;
     }
 
     private void fetchCurrentOrderList() {
-    FirebaseDatabase.getInstance().getReference("Orders").addChildEventListener(new ChildEventListener() {
+    FirebaseDatabase.getInstance().getReference("Orders").child("NewFoodOrders").addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                     if(dataSnapshot.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){

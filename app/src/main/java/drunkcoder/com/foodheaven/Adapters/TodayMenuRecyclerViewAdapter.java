@@ -1,6 +1,7 @@
 package drunkcoder.com.foodheaven.Adapters;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +44,9 @@ public class TodayMenuRecyclerViewAdapter extends RecyclerView.Adapter<TodayMenu
 
     @Override
     public void onBindViewHolder(@NonNull FoodMenuViewHolder holder, int position) {
+        //for movement of description text
+        holder.foodDescriptionTextView.setSelected(true);
+        holder.foodDescriptionTextView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
         holder.foodDescriptionTextView.setText(foodArrayList.get(position).getFoodDescription());
         Picasso.with(context).load(foodArrayList.get(position).getImageUrl()).into(holder.foodImageView);
         holder.foodNameTextView.setText(foodArrayList.get(position).getFoodName());
