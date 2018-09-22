@@ -1,13 +1,17 @@
 package drunkcoder.com.foodheaven.Fragments;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.baoyz.widget.PullRefreshLayout;
@@ -27,7 +31,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import drunkcoder.com.foodheaven.Models.SpecialFood;
+import drunkcoder.com.foodheaven.Models.SpecialFoodOrder;
 import drunkcoder.com.foodheaven.R;
+import drunkcoder.com.foodheaven.Utils.ProgressUtils;
 import drunkcoder.com.foodheaven.ViewHolders.SpecialFoodViewHolder;
 import info.hoang8f.widget.FButton;
 
@@ -40,14 +46,20 @@ public class SpecialOrders extends Fragment {
     private FirebaseRecyclerAdapter<SpecialFood, SpecialFoodViewHolder> specialFoodAdapter;
     private ArrayList<SpecialFood> specialFoodArrayList;
     private FButton orderNowButton;
+    private SpecialFoodOrder specialFoodOrder;
 //    private ElegantNumberButton elegantNumberButton;
-
+    private Spinner specialOrderChooseMealTimeSpinner;
+    private FButton specialOrderPaymentButton;
+    private int selectedMeal=0;
+    private String mealTimeArray[];
+    private AlertDialog.Builder alertDialog;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.special_order_fragment,container,false);
         context=getContext();
         specialFoodArrayList=new ArrayList<>();
+        mealTimeArray=getResources().getStringArray(R.array.mealTime);
         specialOrderRecyclerView=view.findViewById(R.id.specialFoodRecyclerView);
         orderNowButton=view.findViewById(R.id.orderNowButton);
         layoutManager=new LinearLayoutManager(context);
@@ -64,7 +76,7 @@ public class SpecialOrders extends Fragment {
                 if(specialFoodArrayList.size()!=0){
                     //Place the order in the firebase
                     Toast.makeText(context,specialFoodArrayList.size()+" item selected",Toast.LENGTH_SHORT).show();
-                    saveDataIntoFirebase();
+                    showPlaceOrderAlertDialog();
                 }else{
                     Toast.makeText(context,"Please first select the item",Toast.LENGTH_SHORT).show();
                 }
@@ -81,10 +93,51 @@ public class SpecialOrders extends Fragment {
         return view;
     }
 
+    private void showPlaceOrderAlertDialog(){
+        alertDialog=new AlertDialog.Builder(context);
+        alertDialog.setTitle("Order the food");
+        alertDialog.setIcon(R.drawable.thali_graphic);
+        LayoutInflater layoutInflater=getLayoutInflater();
+        View view=layoutInflater.inflate(R.layout.special_order_payment_alert_dialog,null,false);
+        specialOrderChooseMealTimeSpinner=view.findViewById(R.id.specialOrderChooseMealTimeSpinner);
+        specialOrderPaymentButton=view.findViewById(R.id.specialOrderPaymentButton);
+
+
+        ArrayAdapter<String> arrayAdapter=new ArrayAdapter<>(context,android.R.layout.simple_spinner_dropdown_item,mealTimeArray);
+        specialOrderChooseMealTimeSpinner.setAdapter(arrayAdapter);
+
+        specialOrderChooseMealTimeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedMeal=position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        specialOrderPaymentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(selectedMeal!=0){
+                    saveDataIntoFirebase();
+                    ProgressUtils.showLoadingDialog(context);
+                    //go for payment
+                }else{
+                    Toast.makeText(context,"Please first select the meal time",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        alertDialog.setView(view);
+        alertDialog.show();
+    }
+
     private void saveDataIntoFirebase() {
-        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("SpecialOrder").child("NewOrders");
-        for(int i=0;i<specialFoodArrayList.size();i++) {
-            Log.i("foodname","------------------"+specialFoodArrayList.get(i).getFoodName()+"  "+specialFoodArrayList.get(i).getFoodQuantity());
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("SpecialOrder").child("NewOrders");
+        for (int i = 0; i < specialFoodArrayList.size(); i++) {
+            Log.i("foodname", "------------------" + specialFoodArrayList.get(i).getFoodName() + "  " + specialFoodArrayList.get(i).getFoodQuantity());
             databaseReference.child(specialFoodArrayList.get(i).getFoodName()).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(specialFoodArrayList.get(i)).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
@@ -93,13 +146,20 @@ public class SpecialOrders extends Fragment {
             });
         }
 
-//        .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                @Override
-//                public void onSuccess(Void aVoid) {
-//                    Toast.makeText(context, "Save Data into fb", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//        }
+        specialFoodOrder = new SpecialFoodOrder();
+        specialFoodOrder.setSpecialFoodsArrayList(specialFoodArrayList);
+        specialFoodOrder.setMealTime(mealTimeArray[selectedMeal]);
+        //Saving special order in another node also
+        FirebaseDatabase.getInstance().getReference("Orders").child("NewSpecialOrders").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .setValue(specialFoodOrder).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(context, "Order Successful", Toast.LENGTH_SHORT).show();
+                ProgressUtils.cancelLoading();
+                alertDialog.setView(null);
+
+            }
+        });
     }
 
     private void showSpecialFoodList() {

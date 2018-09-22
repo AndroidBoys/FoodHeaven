@@ -221,8 +221,7 @@ public class WantsToEatFragment extends Fragment implements View.OnCreateContext
         }
         if(finalFoodList.size()>0) {
             Order order = new Order(MyApplication.getCurrentUser(), 0, finalFoodList);
-            FirebaseDatabase.getInstance().getReference("Orders").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(order);
-
+            FirebaseDatabase.getInstance().getReference("Orders").child("NewFoodOrders").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(order);
 
             //now removing this user's UID from all the default foods
                 FirebaseDatabase.getInstance().getReference("FavouriteFood").addChildEventListener(new ChildEventListener() {
