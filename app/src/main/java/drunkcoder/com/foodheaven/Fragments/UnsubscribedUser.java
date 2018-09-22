@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
@@ -19,6 +21,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.takusemba.spotlight.OnSpotlightStateChangedListener;
+import com.takusemba.spotlight.Spotlight;
+import com.takusemba.spotlight.shape.Circle;
+import com.takusemba.spotlight.target.SimpleTarget;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,6 +44,12 @@ public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSlide
             attractUserTextView;
     private Context context;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+    }
 
     @Nullable
     @Override
@@ -165,4 +177,8 @@ public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSlide
         bannerSlider.stopAutoCycle();
         super.onStop();
     }
+
+
+
+
 }
