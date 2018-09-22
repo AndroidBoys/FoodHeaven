@@ -1,73 +1,97 @@
 package drunkcoder.com.foodheaven.Fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.firebase.database.ChildEventListener;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.android.gms.auth.api.signin.internal.Storage;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.UUID;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import drunkcoder.com.foodheaven.Models.WhyHeavenFood;
 import drunkcoder.com.foodheaven.R;
+import drunkcoder.com.foodheaven.ViewHolders.WhyHeavensFoodViewHolder;
 
 public class WhyHeavensFoodFragment extends Fragment {
-    private TextView about1TextView,about2TextView;
-    private ImageView about1ImageView,about2ImageView;
+    private RecyclerView whyHeavensFoodRecyclerView;
+    private DatabaseReference databaseReference;
+    private FloatingActionButton addDescriptionFloatingActionButton;
+    private final int PICK_IMAGE=100;
+    private Uri imageUri=null;//this variable changes according to image selecte from galary.
+    private EditText aboutEditText;
+    private Button chooseImageButton;
+    private  FirebaseRecyclerAdapter<WhyHeavenFood,WhyHeavensFoodViewHolder> adapter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.why_heaven_foods_fragment,container,false);
-        about1ImageView=view.findViewById(R.id.aboutImage1);
-        about2ImageView=view.findViewById(R.id.aboutImage2);
-        about1TextView=view.findViewById(R.id.aboutTextView1);
-        about2TextView=view.findViewById(R.id.aboutTextView2);
-
+//        addDescriptionFloatingActionButton=view.findViewById(R.id.addWhyHeavensFood);
+        whyHeavensFoodRecyclerView=view.findViewById(R.id.whyHeavenFoodsRecyclerView);
+        whyHeavensFoodRecyclerView.setHasFixedSize(true);
+        whyHeavensFoodRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         fetchAboutDataFromFirebase();
 
         return view;
     }
 
     private void fetchAboutDataFromFirebase() {
-        FirebaseDatabase.getInstance().getReference("WhyHeavenFood").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                WhyHeavenFood whyHeavenFood=dataSnapshot.getValue(WhyHeavenFood.class);
-                setData(whyHeavenFood);
-            }
+        databaseReference=FirebaseDatabase.getInstance().getReference("WhyHeavensFood");
 
+        adapter= new FirebaseRecyclerAdapter<WhyHeavenFood, WhyHeavensFoodViewHolder>(WhyHeavenFood.class,R.layout.why_heaven_foods_fragment_row,WhyHeavensFoodViewHolder.class,databaseReference) {
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            protected void populateViewHolder(WhyHeavensFoodViewHolder whyHeavensFoodViewHolder, WhyHeavenFood whyHeavenFood, int i) {
+                setData(whyHeavensFoodViewHolder,whyHeavenFood);
 
             }
-        });
+        };
+        adapter.notifyDataSetChanged();
+
+        whyHeavensFoodRecyclerView.setAdapter(adapter);
     }
 
-    private void setData(WhyHeavenFood whyHeavenFood) {
-        Picasso.with(getContext()).load(whyHeavenFood.getImage1()).into(about1ImageView);
-        Picasso.with(getContext()).load(whyHeavenFood.getImage2()).into(about2ImageView);
-        about1TextView.setText(whyHeavenFood.getAbout1());
-        about2TextView.setText(whyHeavenFood.getAbout2());
+    private void setData(WhyHeavensFoodViewHolder whyHeavensFoodViewHolder,WhyHeavenFood whyHeavenFood) {
+        Picasso.with(getContext()).load(whyHeavenFood.getImageUrl()).into(whyHeavensFoodViewHolder.aboutImageView);
+        whyHeavensFoodViewHolder.aboutTextView.setText(whyHeavenFood.getAbout());
     }
 
     public WhyHeavensFoodFragment() {
     }
 
-      public static WhyHeavensFoodFragment newInstance() {
-        
+    public static WhyHeavensFoodFragment newInstance() {
+
         Bundle args = new Bundle();
-        
+
         WhyHeavensFoodFragment fragment = new WhyHeavensFoodFragment();
         fragment.setArguments(args);
         return fragment;
     }
+
 }

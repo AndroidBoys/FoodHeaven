@@ -40,6 +40,7 @@ public class OurPlansFragment extends Fragment {
         ourPlansCustomArrayAdapter=new OurPlansCustomArrayAdapter(hostingActivity, planList);
         ourPlanslistView.setAdapter(ourPlansCustomArrayAdapter);
 
+        ourPlanslistView.setDivider(null);
         return view;
     }
 
