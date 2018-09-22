@@ -5,9 +5,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +26,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.takusemba.spotlight.OnSpotlightStateChangedListener;
+import com.takusemba.spotlight.Spotlight;
+import com.takusemba.spotlight.shape.Circle;
+import com.takusemba.spotlight.target.SimpleTarget;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.text.ParseException;
@@ -77,6 +84,7 @@ public class SubscribedUserTodaysMenu extends Fragment{
     private String startDate;
     private String endDate;
     private long noOfDaysExtended;
+    private int currentOrder=100;
     private ArrayList<Food> dinnerArrayList=new ArrayList<>();
     private ArrayList<Food> lunchArrayList=new ArrayList<>();
     private ArrayList<Food> breakFastArrayList=new ArrayList<>();
@@ -108,14 +116,24 @@ public class SubscribedUserTodaysMenu extends Fragment{
             }
         });
 
+
         wantToEatTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                //Moving into description activity and passed text id.
-                Intent intent=new Intent(context, DescriptionActivity.class);
-                intent.putExtra("ID",wantToEatTextView.getId());
+                Intent intent = new Intent(context, DescriptionActivity.class);
+
+                //if notification is present than allow user to modify their order
+                if(MyApplication.notificationStatus) {
+                    //Moving into description activity and passed text id.
+                    intent.putExtra("ID", wantToEatTextView.getId());
+                }
+                //else show them their orders
+                else{
+                    intent.putExtra("ID",currentOrder);
+                }
                 startActivity(intent);
+
 
             }
         });
@@ -131,14 +149,19 @@ public class SubscribedUserTodaysMenu extends Fragment{
             }
         });
         todayMenuRefreshLayout.setColor(R.color.colorPrimary);
-
+        view.getViewTreeObserver().addOnWindowFocusChangeListener(new ViewTreeObserver.OnWindowFocusChangeListener() {
+            @Override
+            public void onWindowFocusChanged(boolean b) {
+                //takeToPublicTour();
+            }
+        });
         return view;
     }
 
     private void showAbsenceDialog() {
         final AlertDialog.Builder alertDialog=new AlertDialog.Builder(context);
         //alertDialog.setTitle("Mark Your Absence");
-        //alertDialog.setIcon(R.drawable.thali_graphic);
+        //alertDialog.setIcon(R.drawabl.thali_graphic);
         LayoutInflater layoutInflater=LayoutInflater.from(context);
         View view=layoutInflater.inflate(R.layout.mark_absence_layout,null,false);
         startDateButton=view.findViewById(R.id.startDateButton);
@@ -315,35 +338,186 @@ public class SubscribedUserTodaysMenu extends Fragment{
 
     }
 
-    private void fetchFoods(final String mealTime) {
-       FoodMenuFirebaseDatabase.getReference("TodayMenu")
+    private void fetchFoods( String mealTime) {
+        if (mealTime.equals("Dinner")) {
+            if (MyApplication.dinnerStatus) {
+                FoodMenuFirebaseDatabase.getReference("TodayMenu")
+                        .child(mealTime).addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                        Category category = dataSnapshot.getValue(Category.class);
+                        ArrayList<Food> list = category.getFoodArrayList();
+                        for (int i = 0; i < list.size(); i++) {
+                            dinnerArrayList.add(list.get(i));
+                            dinnerAdapter.notifyDataSetChanged();
+                        }
+                    }
+//                else if(mealTime.equals("Lunch")){
+//                    if(MyApplication.lunchStatus){
+//                        ArrayList<Food> list = category.getFoodArrayList();
+//                        for (int i = 0; i < list.size(); i++) {
+//                        lunchArrayList.add(list.get(i));
+//                        lunchAdpater.notifyDataSetChanged();
+//                        }
+//                    }
+//                    else{
+//                        fetchMealFromWeeklyMenu("Lunch");
+//                    }
+//                }
+//                else{
+//                    if(MyApplication.breakFastStatus) {
+//                        ArrayList<Food> list = category.getFoodArrayList();
+//                        for (int i = 0; i < list.size(); i++) {
+//                            breakFastArrayList.add(list.get(i));
+//                            breakFastAdapter.notifyDataSetChanged();
+//                        }
+//                    }
+//                    else{
+//                        fetchMealFromWeeklyMenu("BreakFast");
+//                    }
+//                }
+
+                    @Override
+                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            } else {
+                fetchMealFromWeeklyMenu("Dinner");
+            }
+        }
+        else if (mealTime.equals("Lunch")){
+            if (MyApplication.lunchStatus) {
+                FoodMenuFirebaseDatabase.getReference("TodayMenu")
+                        .child(mealTime).addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                        Category category = dataSnapshot.getValue(Category.class);
+                        ArrayList<Food> list = category.getFoodArrayList();
+                        for (int i = 0; i < list.size(); i++) {
+                            lunchArrayList.add(list.get(i));
+                            lunchAdpater.notifyDataSetChanged();
+                        }
+                    }
+//                else{
+//                    if(MyApplication.breakFastStatus) {
+//                        ArrayList<Food> list = category.getFoodArrayList();
+//                        for (int i = 0; i < list.size(); i++) {
+//                            breakFastArrayList.add(list.get(i));
+//                            breakFastAdapter.notifyDataSetChanged();
+//                        }
+//                    }
+//                    else{
+//                        fetchMealFromWeeklyMenu("BreakFast");
+//                    }
+//                }
+
+                    @Override
+                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+            else {
+                fetchMealFromWeeklyMenu("Lunch");
+            }
+        }
+        else {
+            if (MyApplication.breakFastStatus) {
+                FoodMenuFirebaseDatabase.getReference("TodayMenu")
+                        .child(mealTime).addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                        Category category = dataSnapshot.getValue(Category.class);
+                        ArrayList<Food> list = category.getFoodArrayList();
+                        for (int i = 0; i < list.size(); i++) {
+                            breakFastArrayList.add(list.get(i));
+                            breakFastAdapter.notifyDataSetChanged();
+                        }
+                    }
+
+                    @Override
+                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            } else {
+                fetchMealFromWeeklyMenu("BreakFast");
+            }
+        }
+    }
+
+    private void fetchMealFromWeeklyMenu(final String mealTime) {
+
+        String[] weekDays = new String[]{"Sun", "Mon", "Tues", "Wed", "Thrus", "Fri", "Sat"};
+        int day=findTodayDay();//it returns day number from 1 to 7
+
+        FirebaseDatabase.getInstance().getReference("WeeklyMenu").child(weekDays[day-1])
                 .child(mealTime).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Category category = dataSnapshot.getValue(Category.class);
-
-                if(mealTime.equals("Dinner")) {
-                    ArrayList<Food> list = category.getFoodArrayList();
-                    for (int i = 0; i < list.size(); i++) {
-                        dinnerArrayList.add(list.get(i));
-                        dinnerAdapter.notifyDataSetChanged();
-                    }
+                if(mealTime.equals("Dinner")){
+                 dinnerArrayList.add(dataSnapshot.getValue(Food.class));
+                 if(dinnerAdapter!=null)
+                     dinnerAdapter.notifyDataSetChanged();
                 }
                 else if(mealTime.equals("Lunch")){
-                    ArrayList<Food> list = category.getFoodArrayList();
-                    for (int i = 0; i < list.size(); i++) {
-                        lunchArrayList.add(list.get(i));
+                    lunchArrayList.add(dataSnapshot.getValue(Food.class));
+                    if(lunchAdpater!=null)
                         lunchAdpater.notifyDataSetChanged();
-                    }
                 }
-                else{
-                    ArrayList<Food> list = category.getFoodArrayList();
-                    for (int i = 0; i < list.size(); i++) {
-                        breakFastArrayList.add(list.get(i));
+                else if(mealTime.equals("BreakFast")){
+                    breakFastArrayList.add(dataSnapshot.getValue(Food.class));
+                    if(breakFastAdapter!=null)
                         breakFastAdapter.notifyDataSetChanged();
-                    }
                 }
             }
+
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
@@ -364,7 +538,12 @@ public class SubscribedUserTodaysMenu extends Fragment{
 
             }
         });
+    }
 
+    private int findTodayDay() {
+        Calendar calendar=Calendar.getInstance(Locale.getDefault());
+        int day=calendar.get(Calendar.DAY_OF_WEEK);
+        return day;
     }
 
     private void setFoodDetails(FoodMenuViewHolder foodMenuViewHolder,FoodMenu foodMenu) {
@@ -443,4 +622,40 @@ public class SubscribedUserTodaysMenu extends Fragment{
         }
     }
 
+    public void takeToPublicTour(){
+
+        View one = wantToEatTextView;
+        int[] oneLocation = new int[2];
+        one.getLocationInWindow(oneLocation);
+        float oneX = oneLocation[0] + one.getWidth() / 2f;
+        float oneY = oneLocation[1] + one.getHeight() / 2f;
+        Log.i("mesure", "takeToPublicTour: "+oneX+" "+oneY);
+        // make an target
+        SimpleTarget firstTarget = new SimpleTarget.Builder(getActivity()).setPoint(oneX, oneY)
+                .setShape(new Circle(400f))
+                .setTitle("Your Choice")
+                .setDescription("Click here to choose your meal from variety of options")
+                .build();
+
+        Spotlight.with(getActivity())
+                .setOverlayColor(R.color.background)
+                .setDuration(400L)
+                .setAnimation(new DecelerateInterpolator(2f))
+                .setTargets(firstTarget)
+                .setClosedOnTouchedOutside(true)
+                .setOnSpotlightStateListener(new OnSpotlightStateChangedListener() {
+                    @Override
+                    public void onStarted() {
+                        Toast.makeText(getContext(), "spotlight is started", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onEnded() {
+                        Toast.makeText(getActivity(), "spotlight is ended", Toast.LENGTH_SHORT).show();
+                    }
+                }).start();
+
+
+
+    }
 }

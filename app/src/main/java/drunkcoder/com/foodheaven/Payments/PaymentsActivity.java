@@ -5,12 +5,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import drunkcoder.com.foodheaven.Activities.HomeActivity;
 import drunkcoder.com.foodheaven.Common.Common;
+import drunkcoder.com.foodheaven.Models.NotificationSubscription;
 import drunkcoder.com.foodheaven.Models.Plan;
 import drunkcoder.com.foodheaven.Models.User;
 import drunkcoder.com.foodheaven.Models.Wallet;
 import drunkcoder.com.foodheaven.MyApplication;
 import drunkcoder.com.foodheaven.R;
 import drunkcoder.com.foodheaven.Utils.ProgressUtils;
+import drunkcoder.com.foodheaven.Utils.SharedPreferenceUtil;
 import info.hoang8f.widget.FButton;
 
 import android.content.DialogInterface;
@@ -31,9 +33,13 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.payumoney.core.PayUmoneyConfig;
 import com.payumoney.core.PayUmoneySdkInitializer;
@@ -143,7 +149,7 @@ public class PaymentsActivity extends AppCompatActivity {
                             Toast.makeText(PaymentsActivity.this, "Could not generate hash", Toast.LENGTH_SHORT).show();
                         } else {
                             mPaymentParams.setMerchantHash(merchantHash);
-                            PayUmoneyFlowManager.startPayUMoneyFlow(mPaymentParams, PaymentsActivity.this,R.style.PayUMoney, false);
+                            PayUmoneyFlowManager.startPayUMoneyFlow(mPaymentParams, PaymentsActivity.this,R.style.PayUMoney, true);
                         }
                     }
                 },
@@ -218,9 +224,35 @@ public class PaymentsActivity extends AppCompatActivity {
 
     private void onSuccesfulPayment()
     {
-        //subscribe to what do you want to eat today notification
-        FirebaseMessaging.getInstance().subscribeToTopic("subscribed");
         updateUserSubscription();
+    }
+
+    private void subscribeToNotifications() {
+
+        User user = MyApplication.currentUser;
+        FirebaseMessaging messaging =FirebaseMessaging.getInstance();
+        DatabaseReference subRef = FirebaseDatabase.getInstance().getReference("NotificationSubscriptions");
+        NotificationSubscription subscription = new NotificationSubscription();
+        subscription.setToken(SharedPreferenceUtil.getSavedNotificationToken(this));
+        if(user.getSubscribedPlan().includesDinner){
+
+            messaging.subscribeToTopic("Dinner");
+            subscription.setSubscribedToDinner(true);
+
+        }
+        if(user.getSubscribedPlan().includesLunch){
+
+            messaging.subscribeToTopic("Lunch");
+            subscription.setSubscribedToLunch(true);
+        }
+        if(user.getSubscribedPlan().includesBreakFast){
+
+            messaging.subscribeToTopic("BreakFast");
+            subscription.setSubscribedToBreakFast(true);
+        }
+
+        subRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(subscription);
+
     }
 
     private void updateCurrentUser() {
@@ -231,6 +263,9 @@ public class PaymentsActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         MyApplication.currentUser = dataSnapshot.getValue(User.class);
+
+                        //subscribe to what do you want to eat today notification
+                        subscribeToNotifications();
 
                         paymentButton.setEnabled(true);
                         paymentButton.setText("Payment succesful , Let's Go");
