@@ -78,5 +78,7 @@ dependencies {
     //App Intro library
     implementation 'com.github.apl-devs:appintro:v4.2.3'
 
+    implementation 'com.github.takusemba:spotlight:1.5.0'
+
 }
 apply plugin: 'com.google.gms.google-services'

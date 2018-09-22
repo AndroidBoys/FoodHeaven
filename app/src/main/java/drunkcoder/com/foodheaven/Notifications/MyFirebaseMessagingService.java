@@ -17,6 +17,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import drunkcoder.com.foodheaven.Activities.HomeActivity;
 import drunkcoder.com.foodheaven.R;
+import drunkcoder.com.foodheaven.Utils.SharedPreferenceUtil;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
@@ -70,4 +71,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
     }
 
+    @Override
+    public void onNewToken(String s) {
+        super.onNewToken(s);
+        SharedPreferenceUtil.saveNotificationToken(s,this);
+    }
 }

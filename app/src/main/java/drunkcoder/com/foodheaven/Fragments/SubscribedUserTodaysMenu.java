@@ -5,9 +5,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +26,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.takusemba.spotlight.OnSpotlightStateChangedListener;
+import com.takusemba.spotlight.Spotlight;
+import com.takusemba.spotlight.shape.Circle;
+import com.takusemba.spotlight.target.SimpleTarget;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.text.ParseException;
@@ -142,14 +149,19 @@ public class SubscribedUserTodaysMenu extends Fragment{
             }
         });
         todayMenuRefreshLayout.setColor(R.color.colorPrimary);
-
+        view.getViewTreeObserver().addOnWindowFocusChangeListener(new ViewTreeObserver.OnWindowFocusChangeListener() {
+            @Override
+            public void onWindowFocusChanged(boolean b) {
+                //takeToPublicTour();
+            }
+        });
         return view;
     }
 
     private void showAbsenceDialog() {
         final AlertDialog.Builder alertDialog=new AlertDialog.Builder(context);
         //alertDialog.setTitle("Mark Your Absence");
-        //alertDialog.setIcon(R.drawable.thali_graphic);
+        //alertDialog.setIcon(R.drawabl.thali_graphic);
         LayoutInflater layoutInflater=LayoutInflater.from(context);
         View view=layoutInflater.inflate(R.layout.mark_absence_layout,null,false);
         startDateButton=view.findViewById(R.id.startDateButton);
@@ -610,4 +622,40 @@ public class SubscribedUserTodaysMenu extends Fragment{
         }
     }
 
+    public void takeToPublicTour(){
+
+        View one = wantToEatTextView;
+        int[] oneLocation = new int[2];
+        one.getLocationInWindow(oneLocation);
+        float oneX = oneLocation[0] + one.getWidth() / 2f;
+        float oneY = oneLocation[1] + one.getHeight() / 2f;
+        Log.i("mesure", "takeToPublicTour: "+oneX+" "+oneY);
+        // make an target
+        SimpleTarget firstTarget = new SimpleTarget.Builder(getActivity()).setPoint(oneX, oneY)
+                .setShape(new Circle(400f))
+                .setTitle("Your Choice")
+                .setDescription("Click here to choose your meal from variety of options")
+                .build();
+
+        Spotlight.with(getActivity())
+                .setOverlayColor(R.color.background)
+                .setDuration(400L)
+                .setAnimation(new DecelerateInterpolator(2f))
+                .setTargets(firstTarget)
+                .setClosedOnTouchedOutside(true)
+                .setOnSpotlightStateListener(new OnSpotlightStateChangedListener() {
+                    @Override
+                    public void onStarted() {
+                        Toast.makeText(getContext(), "spotlight is started", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onEnded() {
+                        Toast.makeText(getActivity(), "spotlight is ended", Toast.LENGTH_SHORT).show();
+                    }
+                }).start();
+
+
+
+    }
 }
