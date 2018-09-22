@@ -32,5 +32,12 @@
     <string name="notifications_admin_channel_name">Global channel</string>
     <string name="notifications_admin_channel_description">Notifications sent from the app admin</string>
 
+    <string-array name="mealTime">
+        <item>Select Meal</item>
+        <item>BreakFast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+    </string-array>
+
 
 </resources>

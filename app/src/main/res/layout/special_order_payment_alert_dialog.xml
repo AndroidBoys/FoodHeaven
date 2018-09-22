@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:minHeight="200dp"
+    android:minWidth="300dp"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_marginStart="8sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="At what time you want to get this meal"
+        android:textStyle="bold"
+        android:textColor="@color/md_black_1000"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Large"/>
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/specialOrderChooseMealTimeSpinner"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <info.hoang8f.widget.FButton
+        android:id="@+id/specialOrderPaymentButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Proceed for payment"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="3dp"
+        android:fontFamily="@font/josefin_bold"
+        />
+</LinearLayout>
