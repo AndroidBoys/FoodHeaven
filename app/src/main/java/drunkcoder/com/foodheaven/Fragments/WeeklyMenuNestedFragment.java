@@ -1,5 +1,6 @@
 package drunkcoder.com.foodheaven.Fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import drunkcoder.com.foodheaven.Activities.DescriptionActivity;
 import drunkcoder.com.foodheaven.Models.FoodMenu;
 import drunkcoder.com.foodheaven.R;
 import drunkcoder.com.foodheaven.ViewHolders.FoodMenuViewHolder;
@@ -32,7 +34,8 @@ public class WeeklyMenuNestedFragment extends Fragment {
     private FirebaseRecyclerAdapter<FoodMenu,FoodMenuViewHolder> dinnerAdapter,
             lunchAdapter,
             breakFastAdapter;
-    private String day;
+    private String day,fullNameOfDay;
+    private Activity activity;
 
     FirebaseDatabase todayMenuFirebaseDatabase;
     @Nullable
@@ -43,13 +46,14 @@ public class WeeklyMenuNestedFragment extends Fragment {
         lunchRecyclerView=view.findViewById(R.id.lunchRecyclerView);
         dinnerRecyclerView=view.findViewById(R.id.dinnerRecyclerView);
         context=getContext();
-
+        activity=getActivity();
         //PullRefreshLayout is used to refresh the page
         PullRefreshLayout weeklyRefreshLayout=view.findViewById(R.id.weeklyRefreshLayout);
 
         //it will get the day name passed when a perticular day is pressed from weeklyMenuFragment
         Bundle args=getArguments();
         day=args.getString("DAY",null);
+        fullNameOfDay=getFullNameOfDay(day);
 
         todayMenuFirebaseDatabase=FirebaseDatabase.getInstance();
         // linearLayoutManager=new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
@@ -69,6 +73,26 @@ public class WeeklyMenuNestedFragment extends Fragment {
         });
         weeklyRefreshLayout.setColor(R.color.colorPrimary);
         return view;
+    }
+
+    private String getFullNameOfDay(String day) {
+        switch (day){
+            case "Mon":
+                return "Monday";
+            case "Tues":
+                return "Tuesday";
+            case "Wed":
+                return "Wednesday";
+            case "Thrus":
+                return "Thrusday";
+            case "Fri":
+                return "Friday";
+            case "Sat":
+                return "Saturday";
+            case "Sun":
+                return "Sunday";
+        }
+        return null;
     }
 
     private void setRecyclerView(RecyclerView recyclerView) {
@@ -135,8 +159,14 @@ public class WeeklyMenuNestedFragment extends Fragment {
         Bundle args = new Bundle();
         args.putString("DAY",day);
 
-       WeeklyMenuNestedFragment fragment = new WeeklyMenuNestedFragment();
+        WeeklyMenuNestedFragment fragment = new WeeklyMenuNestedFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((DescriptionActivity)activity).setActionBarTitle(fullNameOfDay+" Food Menu");
     }
 }

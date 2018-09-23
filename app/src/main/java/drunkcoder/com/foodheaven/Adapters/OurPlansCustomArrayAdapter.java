@@ -37,7 +37,7 @@ public class OurPlansCustomArrayAdapter extends ArrayAdapter {
             @Override
             public void onClick(View view) {
 
-                hostingActivity.addDifferentFragment(BuySubscriptionFragment.newInstance(ourPlans.get(position)));
+                hostingActivity.addDifferentFragment(BuySubscriptionFragment.newInstance(ourPlans.get(position)),"ourPlanButton");
 //                Log.d("position","hahahahh*******"+position);
             }
         });

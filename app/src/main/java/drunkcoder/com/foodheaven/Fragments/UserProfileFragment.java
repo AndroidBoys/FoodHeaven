@@ -1,5 +1,6 @@
 package drunkcoder.com.foodheaven.Fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,12 +30,13 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     planName,lunch,dinner,breakfast,days,price;
     private EditText name,email,phone,address;
     private Button walletButton;
-
+    private Activity activity;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.user_profile,container,false);
 
+        activity=getActivity();
         walletButton=view.findViewById(R.id.walletButton);
        userImage=view.findViewById(R.id.profile_image);
         userNameTextViewHeader=view.findViewById(R.id.userNameTextView);
@@ -164,5 +166,11 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         UserProfileFragment fragment = new UserProfileFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((DescriptionActivity)activity).setActionBarTitle("My Profile");
     }
 }

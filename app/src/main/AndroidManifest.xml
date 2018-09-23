@@ -32,7 +32,8 @@
             android:name=".Activities.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Activities.AuthenticationActivity"/>
-        <activity android:name=".Activities.DescriptionActivity"/>
+        <activity android:name=".Activities.DescriptionActivity"
+            android:parentActivityName=".Activities.HomeActivity"/>
         <activity android:name=".Payments.PaymentsActivity"/>
 
         <service

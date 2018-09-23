@@ -41,4 +41,9 @@ public class SplashActivity extends AppCompatActivity {
 
         handler.postDelayed(runnable,4000);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }
