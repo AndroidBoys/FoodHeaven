@@ -60,7 +60,7 @@ public class HomeActivity extends AppCompatActivity
 //                        .setAction("Action", null).show();
 //            }
 
-        if(MyApplication.thisApp.getCurrentUser().getSubscribedPlan()==null) {
+        if(MyApplication.getCurrentUser().getSubscribedPlan()==null) {
             addDifferentFragment(UnsubscribedUser.newInstance());
         }
         else{
