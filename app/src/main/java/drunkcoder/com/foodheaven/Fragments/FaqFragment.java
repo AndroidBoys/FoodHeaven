@@ -38,6 +38,7 @@ public class FaqFragment extends Fragment {
         faqlistView.setAdapter(faqArrayAdapter);
         fetchFaqFromFirebase();
 
+        faqlistView.setDivider(null);
         return view;
     }
 

@@ -89,7 +89,7 @@ public class PaymentsActivity extends AppCompatActivity {
     private void launchPaymentFlow(String price) {
         PayUmoneyConfig payUmoneyConfig = PayUmoneyConfig.getInstance();
         payUmoneyConfig.setPayUmoneyActivityTitle("Payment for "+choosenPlan.getPlanName());
-        payUmoneyConfig.setDoneButtonText("Let's Go");
+        payUmoneyConfig.setDoneButtonText("Let's explore the best food");
 
         User currentUser = MyApplication.currentUser;
 
@@ -149,7 +149,7 @@ public class PaymentsActivity extends AppCompatActivity {
                             Toast.makeText(PaymentsActivity.this, "Could not generate hash", Toast.LENGTH_SHORT).show();
                         } else {
                             mPaymentParams.setMerchantHash(merchantHash);
-                            PayUmoneyFlowManager.startPayUMoneyFlow(mPaymentParams, PaymentsActivity.this,R.style.PayUMoney, true);
+                            PayUmoneyFlowManager.startPayUMoneyFlow(mPaymentParams, PaymentsActivity.this,R.style.PayUMoney, false);
                         }
                     }
                 },

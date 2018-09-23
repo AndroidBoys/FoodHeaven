@@ -55,6 +55,8 @@ public class CurrentOrder extends Fragment {
         currentOrderListView=view.findViewById(R.id.currentOrdersListView);
         currentOrderArrayAdapter=new CurrentOrderArrayAdapter(context,foodArrayList);
         currentOrderListView.setAdapter(currentOrderArrayAdapter);
+        currentOrderListView.setDivider(null);
+
     return view;
     }
 

@@ -47,6 +47,7 @@ public class CallForAssistanceFragment extends Fragment {
             }
 
         });
+        listView.setDivider(null);
         return view;
     }
 

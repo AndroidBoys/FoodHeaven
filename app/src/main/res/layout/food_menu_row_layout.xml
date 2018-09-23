@@ -9,7 +9,7 @@
     app:cardElevation="4dp"
     android:layout_marginEnd="13dp"
     app:cardCornerRadius="8dp"
-    android:layout_height="300dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:orientation="vertical"
@@ -33,7 +33,7 @@
                 android:gravity="center"
                 android:layout_alignBottom="@id/foodImageView"
                 android:text="food Name"
-                android:textSize="20dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:fontFamily="@font/josefin_bold"
                 android:background="#8888"
                 android:textColor="@color/blackColor"
@@ -50,22 +50,16 @@
     android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
     android:textStyle="bold"
     android:layout_height="wrap_content" />
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:layout_marginTop="8dp"
-            >
             <TextView
                 android:layout_margin="4dp"
-                android:textSize="16dp"
-                android:maxLines="3"
+                android:textSize="18dp"
+                android:scrollbarAlwaysDrawHorizontalTrack="true"
                 android:id="@+id/foodDescriptionTextView"
+                android:singleLine="true"
                 android:layout_width="wrap_content"
                 android:fontFamily="@font/josefin_bold"
                 android:text="food Description will be here . This food is one of the best food in the market Here your are getting the facility of not only eating but"
                 android:layout_height="wrap_content"/>
-        </ScrollView>
 
     </LinearLayout>
 

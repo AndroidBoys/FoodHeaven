@@ -62,7 +62,7 @@ import drunkcoder.com.foodheaven.MyApplication;
 import drunkcoder.com.foodheaven.R;
 import drunkcoder.com.foodheaven.ViewHolders.FoodMenuViewHolder;
 
-public class SubscribedUserTodaysMenu extends Fragment{
+    public class SubscribedUserTodaysMenu extends Fragment{
 
     private RecyclerView breakFastRecyclerView;
     private RecyclerView lunchRecyclerView;
@@ -124,7 +124,7 @@ public class SubscribedUserTodaysMenu extends Fragment{
                 Intent intent = new Intent(context, DescriptionActivity.class);
 
                 //if notification is present than allow user to modify their order
-                if(MyApplication.notificationStatus) {
+                if(MyApplication.notificationStatus && verifyMealTimeWithPlan()) {
                     //Moving into description activity and passed text id.
                     intent.putExtra("ID", wantToEatTextView.getId());
                 }
@@ -156,6 +156,23 @@ public class SubscribedUserTodaysMenu extends Fragment{
             }
         });
         return view;
+    }
+
+    private boolean verifyMealTimeWithPlan() {
+
+        String mealTime=MyApplication.notificationTime;
+        if(mealTime==null)
+            return false;
+        Plan plan=MyApplication.getCurrentUser().getSubscribedPlan();
+        if(
+                (mealTime.equals("BreakFast"))&&(plan!=null) &&(plan.includesBreakFast)
+                || ((mealTime.equals("Lunch")) &&(plan!=null)&& (plan.includesLunch))
+                || ((mealTime.equals("Dinner")) && (plan!=null)&&(plan.includesDinner))
+                )
+            return  true;
+        else
+            return false;
+
     }
 
     private void showAbsenceDialog() {
