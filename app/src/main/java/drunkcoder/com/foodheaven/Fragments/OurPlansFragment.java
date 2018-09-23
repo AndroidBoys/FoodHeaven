@@ -1,5 +1,6 @@
 package drunkcoder.com.foodheaven.Fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +24,7 @@ import drunkcoder.com.foodheaven.R;
 
 public class OurPlansFragment extends Fragment {
     private ListView ourPlanslistView;
-    private DescriptionActivity hostingActivity;
+    private Activity activity;
     private ArrayList<Plan> planList =new ArrayList<>();
     private OurPlansCustomArrayAdapter ourPlansCustomArrayAdapter;
     @Nullable
@@ -34,10 +35,10 @@ public class OurPlansFragment extends Fragment {
 
         fetchOurPlansListFromFirebase();
 
-        hostingActivity = (DescriptionActivity)getActivity();
-        hostingActivity.getSupportActionBar().hide();
+        activity = getActivity();
+//        hostingActivity.getSupportActionBar().hide();
 
-        ourPlansCustomArrayAdapter=new OurPlansCustomArrayAdapter(hostingActivity, planList);
+        ourPlansCustomArrayAdapter=new OurPlansCustomArrayAdapter((DescriptionActivity)activity, planList);
         ourPlanslistView.setAdapter(ourPlansCustomArrayAdapter);
 
         ourPlanslistView.setDivider(null);
@@ -52,7 +53,6 @@ public class OurPlansFragment extends Fragment {
                 planList.add(plan);
                 if(ourPlansCustomArrayAdapter!=null)
                 ourPlansCustomArrayAdapter.notifyDataSetChanged();
-
             }
 
             @Override
@@ -80,9 +80,14 @@ public class OurPlansFragment extends Fragment {
     public static OurPlansFragment newInstance() {
 
         Bundle args = new Bundle();
-
         OurPlansFragment fragment = new OurPlansFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((DescriptionActivity)activity).setActionBarTitle("Our Plans");
     }
 }

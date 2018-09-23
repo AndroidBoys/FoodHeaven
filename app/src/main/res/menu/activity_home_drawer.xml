@@ -8,14 +8,20 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home_black_24dp"
+            android:checkable="true"
+            android:checked="false"
             android:title="Home"/>
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/profile"
+            android:checkable="true"
+            android:checked="false"
             android:title="Profile"/>
         <item
             android:id="@+id/nav_specialOrder"
             android:icon="@drawable/ic_restaurant_menu_black_24dp"
+            android:checkable="true"
+            android:checked="false"
             android:title="Special Order"/>
         <!--<item-->
             <!--android:id="@+id/nav_mySubscription"-->
@@ -28,23 +34,31 @@
         <item
             android:id="@+id/nav_wallet"
             android:icon="@drawable/wallet"
+            android:checkable="true"
+            android:checked="false"
             android:title="Wallet"/>
     </group>
 
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_contectUs"
+                android:id="@+id/nav_contactUs"
                 android:icon="@drawable/contactus"
+                android:checkable="true"
+                android:checked="false"
                 android:title="Contact Us"/>
 
             <item
                 android:id="@+id/nav_rate"
                 android:icon="@drawable/rate"
+                android:checkable="true"
+                android:checked="false"
                 android:title="Rate Us"/>
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_exit_to_app_black_24dp"
+                android:checkable="false"
+                android:checked="false"
                 android:title="Log Out"/>
         </menu>
     </item>

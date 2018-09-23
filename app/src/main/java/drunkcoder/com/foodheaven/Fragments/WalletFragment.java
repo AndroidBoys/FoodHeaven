@@ -3,10 +3,13 @@ package drunkcoder.com.foodheaven.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,12 +32,13 @@ public class WalletFragment extends Fragment {
     private TextView creditedAmountTextView;
     private TextView remainingDaysTextView;
     private TextView choosenPlanTextView;
-
+    private NavigationView navigationView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_wallet,container,false);
+
         addMoneyButton = view.findViewById(R.id.addToWalletButton);
 //        addMoneyButton.setOnClickListener(new View.OnClickListener() {
 //            @Override

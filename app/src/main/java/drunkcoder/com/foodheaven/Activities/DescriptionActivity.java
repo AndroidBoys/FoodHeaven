@@ -44,61 +44,103 @@ public class DescriptionActivity extends AppCompatActivity {
             case R.id.ourPlansButton:
                 OurPlansFragment fragment =OurPlansFragment.newInstance();
                 fragmentInForeground=fragment;
-                addDifferentFragment(fragment);
+                addDifferentFragment(fragment,null);
                 break;
             case R.id.weeklyMenuButton:
                 WeeklyMenuFragment fragment1=WeeklyMenuFragment.newInstance();
                 fragmentInForeground=fragment1;
-                addDifferentFragment(fragment1);
+                addDifferentFragment(fragment1,null);
                 break;
             case R.id.callForAssistenceTextView:
                 CallForAssistanceFragment fragment2 = CallForAssistanceFragment.newInstance();
                 fragmentInForeground = fragment2;
-                addDifferentFragment(fragment2);
+                addDifferentFragment(fragment2,null);
                 break;
             case R.id.faqTextView:
                 FaqFragment fragment3 = FaqFragment.newInstance();
                 fragmentInForeground = fragment3;
-                addDifferentFragment(fragment3);
+                addDifferentFragment(fragment3,null);
                 break;
             case R.id.whyHeavenFoodsTextView:
                 WhyHeavensFoodFragment fragment4 = WhyHeavensFoodFragment.newInstance();
                 fragmentInForeground = fragment4;
-                addDifferentFragment(fragment4);
+                addDifferentFragment(fragment4,null);
                 break;
             case R.id.wantToEatTextView:
                 WantsToEatFragment fragment5 = WantsToEatFragment.newInstance();
                 fragmentInForeground = fragment5;
-                addDifferentFragment(fragment5);
+                addDifferentFragment(fragment5,null);
                 break;
             case R_id_profileId:
                 UserProfileFragment fragment6 = UserProfileFragment.newInstance();
                 fragmentInForeground = fragment6;
-                addDifferentFragment(fragment6);
+                addDifferentFragment(fragment6,null);
                 break;
             case R_id_currentOrder:
                 CurrentOrder fragment7=CurrentOrder.newInstance();
                 fragmentInForeground=fragment7;
-                addDifferentFragment(fragment7);
+// <<<<<<< arvind100
+                addDifferentFragment(fragment7,null);
+
+// =======
+//                 addDifferentFragment(fragment7);
                 break;
+// >>>>>>> master
         }
 
     }
 
 
-    public void addDifferentFragment(Fragment replacableFragment){
+    public void addDifferentFragment(Fragment replacableFragment,String tag){
         Log.i("Inside","Different fragment function");
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.descriptionFrameLayout,replacableFragment,null).commit();
+
+        fragmentTransaction.replace(R.id.descriptionFrameLayout,replacableFragment,tag);
+        if(tag!=null && (tag.equals("ourPlanButton")||tag.equals("weeklyMenuButton"))){
+            fragmentTransaction.addToBackStack(tag);
+            Log.i("Frament number",String.valueOf(getSupportFragmentManager().getBackStackEntryCount())+ "tag "+tag);
+        }
+        fragmentTransaction.commit();
     }
 
     //this method will call when user select a week day from the weeklyMenuFragment
 
     public void showTodaysMenu(View view){
         Toast.makeText(this, view.getTag().toString()+" selected", Toast.LENGTH_SHORT).show();
-        addDifferentFragment(WeeklyMenuNestedFragment.newInstance(view.getTag().toString()));
-
+        addDifferentFragment(WeeklyMenuNestedFragment.newInstance(view.getTag().toString()),"weeklyMenuButton");
 
     }
+    public void setActionBarTitle(String title){
+        getSupportActionBar().setTitle(title);
+    }
 
+    @Override
+    public void onBackPressed() {
+        //Fragment fragment=getSupportFragmentManager().findFragmentByTag("weeklyMenu");
+        Log.i("Fragment count",String.valueOf(getSupportFragmentManager().getBackStackEntryCount()));
+
+        if(getSupportFragmentManager().getBackStackEntryCount()>0 ) {
+            getSupportFragmentManager().popBackStack();
+//            getFragmentManager().popBackStack();
+            Log.i("Inside","-------------------------popBackStack "+getSupportFragmentManager().getBackStackEntryCount());
+        }else{
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        //This below condition is for back arrow present on toolbar
+        if(item.getItemId()==android.R.id.home){
+            if(getSupportFragmentManager().getBackStackEntryCount()>0 ) {
+                getSupportFragmentManager().popBackStack();
+//            getFragmentManager().popBackStack();
+                Log.i("Inside","-------------------------popBackStack "+getSupportFragmentManager().getBackStackEntryCount());
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
 }
