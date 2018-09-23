@@ -79,16 +79,27 @@
                         android:layout_height="wrap_content" />
 
 
-                    <ImageView
-
-                        android:id="@+id/packsImageView"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_margin="8dp"
-                        android:layout_marginTop="8dp"
-                        android:scaleType="fitXY" />
+                        android:layout_height="200dp">
 
+                        <ProgressBar
+                            android:id="@+id/imageProgressBar"
+                            android:padding="70dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+
+                        <ImageView
+                            android:id="@+id/packsImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_margin="8dp"
+                            android:layout_marginTop="8dp"
+                            android:scaleType="fitXY" />
+
+
+                    </RelativeLayout>
 
                     <info.hoang8f.widget.FButton
                         android:id="@+id/ourPlansButton"

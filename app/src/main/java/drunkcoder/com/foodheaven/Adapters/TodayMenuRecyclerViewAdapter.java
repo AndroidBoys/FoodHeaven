@@ -7,8 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -43,12 +45,22 @@ public class TodayMenuRecyclerViewAdapter extends RecyclerView.Adapter<TodayMenu
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FoodMenuViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final FoodMenuViewHolder holder, int position) {
         //for movement of description text
         holder.foodDescriptionTextView.setSelected(true);
         holder.foodDescriptionTextView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
         holder.foodDescriptionTextView.setText(foodArrayList.get(position).getFoodDescription());
-        Picasso.with(context).load(foodArrayList.get(position).getImageUrl()).into(holder.foodImageView);
+        Picasso.with(context).load(foodArrayList.get(position).getImageUrl()).into(holder.foodImageView, new Callback() {
+            @Override
+            public void onSuccess() {
+                holder.imageProgressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        });
         holder.foodNameTextView.setText(foodArrayList.get(position).getFoodName());
         Log.d("imageUrl",foodArrayList.get(position).getImageUrl());
 
@@ -61,12 +73,14 @@ public class TodayMenuRecyclerViewAdapter extends RecyclerView.Adapter<TodayMenu
         public ImageView foodImageView;
         public TextView foodNameTextView;
         public TextView foodDescriptionTextView;
+        public ProgressBar imageProgressBar;
 
         public FoodMenuViewHolder(@NonNull View itemView) {
             super(itemView);
             foodImageView = itemView.findViewById(R.id.foodImageView);
             foodNameTextView = itemView.findViewById(R.id.foodNameTextView);
             foodDescriptionTextView = itemView.findViewById(R.id.foodDescriptionTextView);
+            imageProgressBar=itemView.findViewById(R.id.imageProgressBar);
 
         }
 

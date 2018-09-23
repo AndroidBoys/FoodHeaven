@@ -10,7 +10,7 @@
     android:layout_marginEnd="5dp"
     app:cardCornerRadius="8dp"
     android:layout_marginBottom="25dp"
-    android:layout_height="340dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:orientation="vertical"
@@ -20,6 +20,12 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="230dp">
+
+            <ProgressBar
+                android:id="@+id/imageProgressBar"
+                android:padding="85dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
             <ImageView
                 android:id="@+id/specialFoodImageView"
@@ -48,20 +54,17 @@
             android:layout_width="wrap_content"
             android:fontFamily="@font/josefin_bold"
             android:layout_marginTop="20dp"
-            android:text="food Description will be here . This food is one of the best food in the market Here your are getting the facility of not only eating but"
-            android:layout_weight="1"
-            android:maxLines="4"
+            android:text="food Descriptionwill be here . This food is one of the best food in the market Here your are getting the facility of not only eating but"
             android:textSize="15sp"
-            android:layout_height="0dp"/>
+            android:layout_height="wrap_content"/>
 
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_weight="1"
             android:layout_marginTop="4dp"
             android:weightSum="10"
-            android:layout_height="0dp">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_weight="8"

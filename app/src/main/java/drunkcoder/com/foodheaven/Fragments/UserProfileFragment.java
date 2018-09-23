@@ -54,32 +54,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
             planName, lunch, dinner, breakfast, days, price;
     private EditText name, email, phone, address;
     private Button walletButton;
-// <<<<<<< arvind100
     private Activity activity;
-//     @Nullable
-//     @Override
-//     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//         View view=inflater.inflate(R.layout.user_profile,container,false);
-
-//         activity=getActivity();
-//         walletButton=view.findViewById(R.id.walletButton);
-//        userImage=view.findViewById(R.id.profile_image);
-//         userNameTextViewHeader=view.findViewById(R.id.userNameTextView);
-//         userEmailTextViewHeader=view.findViewById(R.id.userEmailTextView);
-//         planName=view.findViewById(R.id.planNameTextView);
-//         lunch=view.findViewById(R.id.lunchTextView);
-//         dinner =view.findViewById(R.id.dinnerTextView);
-//         breakfast=view.findViewById(R.id.breakfastTextView);
-//         days=view.findViewById(R.id.daysTextView);
-//         price=view.findViewById(R.id.priceTextView);
-//         name=view.findViewById(R.id.userNameEditText);
-//         email=view.findViewById(R.id.emailEditText);
-//         phone=view.findViewById(R.id.phoneEditText);
-//         address=view.findViewById(R.id.addressEditText);
-//         editProfileImageView=view.findViewById(R.id.editProfileImageView);
-//         doneEditingImageView=view.findViewById(R.id.doneImageView);
-        
-// =======
     private Context context;
 
 
@@ -103,6 +78,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.user_profile, container, false);
 
+        activity=getActivity();
         context = getContext();
         walletButton = view.findViewById(R.id.walletButton);
         userImage = view.findViewById(R.id.profile_image);
@@ -157,7 +133,6 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
 
         }
     }
-
 
     private void setNeddedContentsVisibility(int pressed) {
         switch (pressed) {

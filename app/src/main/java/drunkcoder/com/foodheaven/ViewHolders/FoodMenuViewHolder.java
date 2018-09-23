@@ -2,6 +2,7 @@ package drunkcoder.com.foodheaven.ViewHolders;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,11 +15,13 @@ public class FoodMenuViewHolder extends RecyclerView.ViewHolder  {
     public ImageView foodImageView;
     public TextView foodNameTextView;
     public TextView foodDescriptionTextView;
+    public ProgressBar imageProgressBar;
    public FoodMenuViewHolder(@NonNull View itemView) {
         super(itemView);
         foodImageView=itemView.findViewById(R.id.foodImageView);
         foodNameTextView=itemView.findViewById(R.id.foodNameTextView);
         foodDescriptionTextView=itemView.findViewById(R.id.foodDescriptionTextView);
+        imageProgressBar=itemView.findViewById(R.id.imageProgressBar);
 
     }
 
