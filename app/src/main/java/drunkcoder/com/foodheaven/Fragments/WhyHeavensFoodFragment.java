@@ -27,6 +27,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.UUID;
@@ -77,8 +78,20 @@ public class WhyHeavensFoodFragment extends Fragment {
         whyHeavensFoodRecyclerView.setAdapter(adapter);
     }
 
-    private void setData(WhyHeavensFoodViewHolder whyHeavensFoodViewHolder,WhyHeavenFood whyHeavenFood) {
-        Picasso.with(getContext()).load(whyHeavenFood.getImageUrl()).into(whyHeavensFoodViewHolder.aboutImageView);
+    private void setData(final WhyHeavensFoodViewHolder whyHeavensFoodViewHolder, WhyHeavenFood whyHeavenFood) {
+        Picasso.with(getContext()).load(whyHeavenFood.getImageUrl()).into(whyHeavensFoodViewHolder.aboutImageView, new Callback() {
+            @Override
+            public void onSuccess() {
+                if(whyHeavensFoodViewHolder.imageProgressBar!=null) {
+                    whyHeavensFoodViewHolder.imageProgressBar.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        });
         whyHeavensFoodViewHolder.aboutTextView.setText(whyHeavenFood.getAbout());
     }
 

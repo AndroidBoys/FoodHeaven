@@ -1,5 +1,6 @@
 package drunkcoder.com.foodheaven.Fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import drunkcoder.com.foodheaven.Activities.DescriptionActivity;
 import drunkcoder.com.foodheaven.Adapters.CallForAssistanceArrayAdapter;
 import drunkcoder.com.foodheaven.Models.Assistance;
 import drunkcoder.com.foodheaven.R;
@@ -29,10 +31,12 @@ public class CallForAssistanceFragment extends Fragment {
     private ListView listView;
     private ArrayList<Assistance> assistanceList=new ArrayList<>();
     private CallForAssistanceArrayAdapter callForAssistanceArrayAdapter;
+    private Activity activity;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.call_for_assistance_fragment,container,false);
+        activity=getActivity();
         listView=view.findViewById(R.id.callForAssistenceListView);
         callForAssistanceArrayAdapter=new CallForAssistanceArrayAdapter(getContext(),assistanceList);
         listView.setAdapter(callForAssistanceArrayAdapter);
@@ -100,5 +104,11 @@ public class CallForAssistanceFragment extends Fragment {
     private void dialNo(String s) {
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + s));
         startActivity(intent);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((DescriptionActivity)activity).setActionBarTitle("Call For Assistance");
     }
 }
