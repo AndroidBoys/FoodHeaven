@@ -25,6 +25,14 @@
             android:fontFamily="@font/josefin_bold"
             android:text="Proceed to pay ₹ "
             android:textColor="@color/white" />
+        <info.hoang8f.widget.FButton
+            android:id="@+id/payment_button_cash"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/josefin_bold"
+            android:text="I want to pay in cash"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
