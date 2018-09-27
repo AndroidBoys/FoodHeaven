@@ -53,7 +53,7 @@ dependencies {
     implementation 'com.nineoldandroids:library:2.4.0'
     implementation 'com.daimajia.slider:library:1.1.5@aar'
 
-    implementation 'com.payumoney.sdkui:plug-n-play:1.2.0'
+    implementation 'com.payumoney.sdkui:plug-n-play:1.4.1'
     //khat khat button
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
 
