@@ -22,7 +22,7 @@ import drunkcoder.com.foodheaven.R;
 
 public class TodayMenuRecyclerViewAdapter extends RecyclerView.Adapter<TodayMenuRecyclerViewAdapter.FoodMenuViewHolder>{
 
-    public ArrayList<Food> foodArrayList;
+    private ArrayList<Food> foodArrayList;
     public Context context;
 
     public TodayMenuRecyclerViewAdapter(ArrayList<Food> foodArrayList, Context context) {
@@ -68,8 +68,6 @@ public class TodayMenuRecyclerViewAdapter extends RecyclerView.Adapter<TodayMenu
 
 
     public class FoodMenuViewHolder extends RecyclerView.ViewHolder {
-
-
         public ImageView foodImageView;
         public TextView foodNameTextView;
         public TextView foodDescriptionTextView;

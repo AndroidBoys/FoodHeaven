@@ -25,11 +25,12 @@ import drunkcoder.com.foodheaven.R;
 public class OurPlansFragment extends Fragment {
     private ListView ourPlanslistView;
     private Activity activity;
-    private ArrayList<Plan> planList =new ArrayList<>();
+    private ArrayList<Plan> planList;
     private OurPlansCustomArrayAdapter ourPlansCustomArrayAdapter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        planList=new ArrayList<>();
         View view=inflater.inflate(R.layout.our_plans_fragment,container,false);
         ourPlanslistView=view.findViewById(R.id.ourPlansListview);
 

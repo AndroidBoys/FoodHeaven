@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import drunkcoder.com.foodheaven.Activities.DescriptionActivity;
 import drunkcoder.com.foodheaven.Adapters.TodayMenuRecyclerViewAdapter;
+import drunkcoder.com.foodheaven.Common.Common;
 import drunkcoder.com.foodheaven.Models.Absence;
 import drunkcoder.com.foodheaven.Models.Category;
 import drunkcoder.com.foodheaven.Models.Food;
@@ -88,6 +90,7 @@ import drunkcoder.com.foodheaven.ViewHolders.FoodMenuViewHolder;
     private ArrayList<Food> dinnerArrayList=new ArrayList<>();
     private ArrayList<Food> lunchArrayList=new ArrayList<>();
     private ArrayList<Food> breakFastArrayList=new ArrayList<>();
+    private ProgressBar breakFastProgressBar,lunchProgressBar,dinnerProgressBar;
 
     @Nullable
     @Override
@@ -98,6 +101,9 @@ import drunkcoder.com.foodheaven.ViewHolders.FoodMenuViewHolder;
         lunchRecyclerView=view.findViewById(R.id.lunchRecyclerView);
         dinnerRecyclerView=view.findViewById(R.id.dinnerRecyclerView);
         markAbsenceTextView=view.findViewById(R.id.markAbsenceTextView);
+        breakFastProgressBar=view.findViewById(R.id.breakFastProgressBar);
+        lunchProgressBar=view.findViewById(R.id.lunchProgressBar);
+        dinnerProgressBar=view.findViewById(R.id.dinnerProgressBar);
 
         wantToEatTextView=view.findViewById(R.id.wantToEatTextView);
         context=getContext();
@@ -271,18 +277,20 @@ import drunkcoder.com.foodheaven.ViewHolders.FoodMenuViewHolder;
 
     private boolean compareDate() {
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
-
         try {
             Date startingDate = simpleDateFormat.parse(startDate); //it parses starDate string into Date object
             Date endingDate = simpleDateFormat.parse(endDate);
-            long difference=endingDate.getTime()-startingDate.getTime();
-            noOfDaysExtended=difference/(24*60*60*1000);
-            return difference > 0;
+            Date todayDate=simpleDateFormat.parse(Common.todayOnlineDate);
+            if(startingDate.getTime()>todayDate.getTime() && endingDate.getTime()>todayDate.getTime()) {
+                long difference = endingDate.getTime() - startingDate.getTime();
+                noOfDaysExtended = difference / (24 * 60 * 60 * 1000);
+                return difference > 0;
+            }else
+                return false;
 
         }catch(Exception e){
             e.printStackTrace();
         }
-
         return false;
     }
 
@@ -300,7 +308,6 @@ import drunkcoder.com.foodheaven.ViewHolders.FoodMenuViewHolder;
                         }else{
                             date=dayOfMonth+"/"+"0"+(monthOfYear+1)+"/"+year;
                         }
-
                         if(isStartDate){
                             startDateButton.setText(date);
                             startDate=date;
@@ -332,7 +339,6 @@ import drunkcoder.com.foodheaven.ViewHolders.FoodMenuViewHolder;
 //    }
 
     private void setRecyclerView(RecyclerView recyclerView) {
-
         linearLayoutManager=new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -367,6 +373,9 @@ import drunkcoder.com.foodheaven.ViewHolders.FoodMenuViewHolder;
                         for (int i = 0; i < list.size(); i++) {
                             dinnerArrayList.add(list.get(i));
                             dinnerAdapter.notifyDataSetChanged();
+                            if(dinnerProgressBar!=null){
+                                dinnerProgressBar.setVisibility(View.GONE);
+                            }
                         }
                     }
 //                else if(mealTime.equals("Lunch")){
@@ -429,6 +438,9 @@ import drunkcoder.com.foodheaven.ViewHolders.FoodMenuViewHolder;
                         for (int i = 0; i < list.size(); i++) {
                             lunchArrayList.add(list.get(i));
                             lunchAdpater.notifyDataSetChanged();
+                            if(lunchProgressBar!=null){
+                                lunchProgressBar.setVisibility(View.GONE);
+                            }
                         }
                     }
 //                else{
@@ -480,6 +492,9 @@ import drunkcoder.com.foodheaven.ViewHolders.FoodMenuViewHolder;
                         for (int i = 0; i < list.size(); i++) {
                             breakFastArrayList.add(list.get(i));
                             breakFastAdapter.notifyDataSetChanged();
+                            if(breakFastProgressBar!=null){
+                                breakFastProgressBar.setVisibility(View.GONE);
+                            }
                         }
                     }
 
@@ -615,7 +630,7 @@ import drunkcoder.com.foodheaven.ViewHolders.FoodMenuViewHolder;
         return fragment;
     }
 
-    public void loadTodaysMenu(){
+    private void loadTodaysMenu(){
 
         Plan currentUserPlan= MyApplication.getCurrentUser().subscribedPlan;
 

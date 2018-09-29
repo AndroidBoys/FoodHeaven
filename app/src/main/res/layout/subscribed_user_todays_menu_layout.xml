@@ -55,13 +55,26 @@
                             android:fontFamily="@font/josefin_bold"
                             android:textStyle="bold"/>
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/breakFastRecyclerView"
+                        <RelativeLayout
                             android:layout_marginTop="10dp"
                             android:layout_width="match_parent"
                             android:layout_weight="9"
                             android:layout_marginBottom="5dp"
-                            android:layout_height="0dp"/>
+                            android:layout_height="0dp">
+
+                            <ProgressBar
+                                android:id="@+id/breakFastProgressBar"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="120dp"/>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/breakFastRecyclerView"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"/>
+
+                        </RelativeLayout>
+
 
                     </LinearLayout>
 
@@ -92,12 +105,26 @@
                             android:background="@color/colorPrimary"
                             android:textStyle="bold"/>
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/lunchRecyclerView"
+
+                        <RelativeLayout
                             android:layout_marginTop="10dp"
                             android:layout_width="match_parent"
                             android:layout_weight="9"
-                            android:layout_height="0dp"/>
+                            android:layout_marginBottom="5dp"
+                            android:layout_height="0dp">
+
+                            <ProgressBar
+                                android:id="@+id/lunchProgressBar"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="120dp"/>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/lunchRecyclerView"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"/>
+
+                        </RelativeLayout>
 
                     </LinearLayout>
 
@@ -128,12 +155,28 @@
                             android:background="@color/colorPrimary"
                             android:textStyle="bold"/>
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/dinnerRecyclerView"
+
+                        <RelativeLayout
                             android:layout_marginTop="10dp"
                             android:layout_width="match_parent"
                             android:layout_weight="9"
-                            android:layout_height="0dp"/>
+                            android:layout_marginBottom="5dp"
+                            android:layout_height="0dp">
+
+                            <ProgressBar
+                                android:id="@+id/dinnerProgressBar"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="120dp"/>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/dinnerRecyclerView"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"/>
+
+                        </RelativeLayout>
+
+
 
                     </LinearLayout>
 

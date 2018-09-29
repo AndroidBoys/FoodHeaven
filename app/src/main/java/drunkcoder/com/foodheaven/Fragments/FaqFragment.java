@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -25,6 +26,7 @@ import drunkcoder.com.foodheaven.Adapters.FaqArrayAdapter;
 import drunkcoder.com.foodheaven.Models.Assistance;
 import drunkcoder.com.foodheaven.Models.Faq;
 import drunkcoder.com.foodheaven.R;
+import drunkcoder.com.foodheaven.Utils.ProgressUtils;
 
 public class FaqFragment extends Fragment {
     private ListView faqlistView;
@@ -40,6 +42,7 @@ public class FaqFragment extends Fragment {
         faqlistView=view.findViewById(R.id.faqListView);
         faqArrayAdapter=new FaqArrayAdapter(getContext(),faqArrayList);
         faqlistView.setAdapter(faqArrayAdapter);
+        ProgressUtils.showLoadingDialog(activity);
         fetchFaqFromFirebase();
 
         faqlistView.setDivider(null);
@@ -53,6 +56,7 @@ public class FaqFragment extends Fragment {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 faqArrayList.add(dataSnapshot.getValue(Faq.class));
                 if (faqArrayAdapter != null)
+                    ProgressUtils.cancelLoading();
                     faqArrayAdapter.notifyDataSetChanged();
             }
 
