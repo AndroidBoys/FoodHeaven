@@ -11,6 +11,7 @@ public class User {
     public Plan subscribedPlan;
     public Wallet wallet;
     public Absence absence;
+    public boolean wantSubscription;
 
     public Absence getAbsence() {
         return absence;
@@ -79,5 +80,13 @@ public class User {
 
     public void setWallet(Wallet wallet) {
         this.wallet = wallet;
+    }
+
+    public boolean isWantSubscription() {
+        return wantSubscription;
+    }
+
+    public void setWantSubscription(boolean wantSubscription) {
+        this.wantSubscription = wantSubscription;
     }
 }

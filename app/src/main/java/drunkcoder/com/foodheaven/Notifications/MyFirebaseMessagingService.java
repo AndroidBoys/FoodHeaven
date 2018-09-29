@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.RingtoneManager;
 import android.os.Build;
 import android.os.Handler;
 
@@ -40,7 +41,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Notification notification = new NotificationCompat.Builder(this,"download")
                 .setTicker("Notification")
                 .setSmallIcon(android.R.drawable.ic_menu_report_image)
-                .setContentTitle("Hello from firebase")
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setContentTitle(remoteMessage.getData().get("title"))
                 .setContentText(remoteMessage.getData().get("body"))
                 .setContentIntent(pi) // pending intent to fire when notification clicked
                 .setAutoCancel(true)
