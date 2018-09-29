@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.takusemba.spotlight.OnSpotlightStateChangedListener;
 import com.takusemba.spotlight.Spotlight;
@@ -43,6 +45,7 @@ public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSlide
             callForAssistanceTextView,
             attractUserTextView;
     private Context context;
+    private ProgressBar imageProgressBar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +62,7 @@ public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSlide
         context=getContext();
         packsImageView=view.findViewById(R.id.packsImageView);
         bannerSlider= view.findViewById(R.id.bannerSlider);
+        imageProgressBar=view.findViewById(R.id.imageProgressBar);
         ourPlansButton=(FButton)view.findViewById(R.id.ourPlansButton);
         weeklyMenuButton=(FButton)view.findViewById(R.id.weeklyMenuButton);
         whyHeavenFoodsTextView =view.findViewById(R.id.whyHeavenFoodsTextView);
@@ -143,7 +147,19 @@ public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSlide
         FirebaseDatabase.getInstance().getReference("Pack").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Picasso.with(context).load(dataSnapshot.getValue().toString()).into(packsImageView);
+                Picasso.with(context).load(dataSnapshot.getValue().toString()).into(packsImageView, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        if(imageProgressBar!=null){
+                            imageProgressBar.setVisibility(View.GONE);
+                        }
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
             }
 
             @Override

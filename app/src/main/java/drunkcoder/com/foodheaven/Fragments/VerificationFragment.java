@@ -2,6 +2,7 @@ package drunkcoder.com.foodheaven.Fragments;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -185,7 +186,18 @@ public class VerificationFragment extends Fragment implements View.OnClickListen
                 if(task.isSuccessful())
                 {
                     // add phone number to the email/ password login
-                    mAuth.getCurrentUser().linkWithCredential(credential);
+                       mAuth.getCurrentUser().linkWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                           @Override
+                           public void onComplete(@NonNull Task<AuthResult> task) {
+                               if(task.isSuccessful()){
+                                   Log.d("tag","phone no. linked");
+                               }
+                               else{
+
+                                   Log.d("tag","phone no. doesn't linked");
+                               }
+                           }
+                       });
                     addUsertoDB();
                     hostingActivity.addDifferentFragment(SigninFragment.newInstance());
                 }

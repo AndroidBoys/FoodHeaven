@@ -27,6 +27,13 @@ public class AuthenticationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_authentication);
         getSupportActionBar().hide();
 
+        if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
+            initCurrentUser();
+        }
+        else{
+            SigninFragment signinFragment = SigninFragment.newInstance();
+            addDifferentFragment(signinFragment);
+        }
 
     }
 
@@ -34,13 +41,6 @@ public class AuthenticationActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
-           initCurrentUser();
-        }
-        else{
-            SigninFragment signinFragment = SigninFragment.newInstance();
-            addDifferentFragment(signinFragment);
-        }
     }
 
     public void moveToHomeActivity()

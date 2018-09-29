@@ -11,6 +11,8 @@ import com.baoyz.widget.PullRefreshLayout;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
@@ -116,10 +118,22 @@ public class WeeklyMenuNestedFragment extends Fragment {
         //Download the images from the firebase
     }
 
-    private void setFoodDetails(FoodMenuViewHolder foodMenuViewHolder,FoodMenu foodMenu) {
+    private void setFoodDetails(final FoodMenuViewHolder foodMenuViewHolder, FoodMenu foodMenu) {
         foodMenuViewHolder.foodNameTextView.setText(foodMenu.getFoodName());
         foodMenuViewHolder.foodDescriptionTextView.setText(foodMenu.getFoodDescription());
-        Picasso.with(context).load(foodMenu.getImageUrl()).into(foodMenuViewHolder.foodImageView);
+        Picasso.with(context).load(foodMenu.getImageUrl()).into(foodMenuViewHolder.foodImageView, new Callback() {
+            @Override
+            public void onSuccess() {
+                if(foodMenuViewHolder.imageProgressBar!=null) {
+                    foodMenuViewHolder.imageProgressBar.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        });
 
     }
 

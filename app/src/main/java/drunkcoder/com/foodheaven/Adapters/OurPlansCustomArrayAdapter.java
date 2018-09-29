@@ -5,8 +5,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ public class OurPlansCustomArrayAdapter extends ArrayAdapter {
     private ImageView planImageView;
     private TextView planNameTextView;
     private TextView showDetailButton;
+    private ProgressBar imageProgressBar;
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -30,6 +33,7 @@ public class OurPlansCustomArrayAdapter extends ArrayAdapter {
         View view=layoutInflater.inflate(R.layout.our_plans_fragment_listview_row,parent,false);
         planImageView=view.findViewById(R.id.packsImageView);
         planNameTextView=view.findViewById(R.id.packName);
+        imageProgressBar=view.findViewById(R.id.imageProgressBar);
         showDetailButton = (FButton)view.findViewById(R.id.showDetailsButton);
 
         ((FButton) showDetailButton).setButtonColor(hostingActivity.getResources().getColor(R.color.colorPrimary));
@@ -42,7 +46,19 @@ public class OurPlansCustomArrayAdapter extends ArrayAdapter {
             }
         });
 
-        Picasso.with(hostingActivity).load(ourPlans.get(position).getPlanImageUrl()).into(planImageView);
+        Picasso.with(hostingActivity).load(ourPlans.get(position).getPlanImageUrl()).into(planImageView, new Callback() {
+            @Override
+            public void onSuccess() {
+                if(imageProgressBar!=null){
+                    imageProgressBar.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        });
         planNameTextView.setText(ourPlans.get(position).getPlanName());
 
         return view;

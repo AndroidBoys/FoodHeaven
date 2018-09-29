@@ -3,6 +3,7 @@ package drunkcoder.com.foodheaven.ViewHolders;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
@@ -20,6 +21,7 @@ public class SpecialFoodViewHolder extends RecyclerView.ViewHolder implements Vi
     public TextView specialFoodDescriptionTextView;
     public ElegantNumberButton elegantNumberButton;
     public CheckBox specialFoodCheckBox;
+    public ProgressBar imageProgressBar;
 
     public SpecialFoodViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -28,6 +30,7 @@ public class SpecialFoodViewHolder extends RecyclerView.ViewHolder implements Vi
         specialFoodDescriptionTextView=itemView.findViewById(R.id.specialFoodDescriptionTextView);
         elegantNumberButton=itemView.findViewById(R.id.elegantNumberButton);
         specialFoodCheckBox=itemView.findViewById(R.id.specialFoodCheckBox);
+        imageProgressBar=itemView.findViewById(R.id.imageProgressBar);
 
         itemView.setOnClickListener(this);
     }

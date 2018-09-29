@@ -1,5 +1,6 @@
 package drunkcoder.com.foodheaven.Fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import drunkcoder.com.foodheaven.Activities.DescriptionActivity;
 import drunkcoder.com.foodheaven.Adapters.CallForAssistanceArrayAdapter;
 import drunkcoder.com.foodheaven.Adapters.FaqArrayAdapter;
 import drunkcoder.com.foodheaven.Models.Assistance;
@@ -28,11 +30,13 @@ public class FaqFragment extends Fragment {
     private ListView faqlistView;
     private ArrayList<Faq> faqArrayList=new ArrayList<>();
     private FaqArrayAdapter faqArrayAdapter;
+    private Activity activity;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view=inflater.inflate(R.layout.f_a_q_fragment,container,false);
+        activity=getActivity();
         faqlistView=view.findViewById(R.id.faqListView);
         faqArrayAdapter=new FaqArrayAdapter(getContext(),faqArrayList);
         faqlistView.setAdapter(faqArrayAdapter);
@@ -84,5 +88,10 @@ public class FaqFragment extends Fragment {
         FaqFragment fragment = new FaqFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((DescriptionActivity)activity).setActionBarTitle("Frequently Asked Question?");
     }
 }
