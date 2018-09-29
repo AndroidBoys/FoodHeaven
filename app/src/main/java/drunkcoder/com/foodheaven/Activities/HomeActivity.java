@@ -221,8 +221,8 @@ public class HomeActivity extends AppCompatActivity
 
     public void moveToAuthenticationActivity()
     {
-//        Intent intent = new Intent(this,AuthenticationActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this,AuthenticationActivity.class);
+        startActivity(intent);
           finish();
     }
 
