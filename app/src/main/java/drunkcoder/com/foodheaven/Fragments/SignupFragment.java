@@ -256,6 +256,4 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
         return false;
     }
 
-
-
 }

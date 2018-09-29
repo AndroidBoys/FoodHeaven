@@ -2,6 +2,7 @@ package drunkcoder.com.foodheaven.Fragments;
 
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -109,17 +110,21 @@ public class VerificationFragment extends Fragment implements View.OnClickListen
     }
 
     private void signUp(){
+        kProgressHUD=KProgressHUD.create(hostingActivity)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setLabel("Please wait")
+                .setDetailsLabel("Getting you in")
+                .setCancellable(false)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f)
+                .show();
 
         if(credential!=null)
         {
-            kProgressHUD=KProgressHUD.create(hostingActivity)
-                    .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-                    .setLabel("Please wait")
-                    .setDetailsLabel("Getting you in")
-                    .setCancellable(false)
-                    .setAnimationSpeed(2)
-                    .setDimAmount(0.5f)
-                    .show();
+               registerUser();
+        }
+        else{
+            verifyVerificationCode(otpEditText.getText().toString());
             registerUser();
         }
     }
@@ -144,6 +149,10 @@ public class VerificationFragment extends Fragment implements View.OnClickListen
             //so user has to manually enter the code
             if (code != null) {
                 otpEditText.setText(code);
+                otpEditText.setFocusable(false);
+                otpEditText.setFocusableInTouchMode(false);
+
+                //generating credential
 
                 //verifying the code
                 verifyVerificationCode(code);
@@ -164,6 +173,19 @@ public class VerificationFragment extends Fragment implements View.OnClickListen
             super.onCodeSent(s, forceResendingToken);
             mVerificationId = s;
            // mResendToken = forceResendingToken;
+            //after sending the code progress bar will show till 5 sec
+            new CountDownTimer(5000, 1000) {
+                @Override
+                public void onTick(long l) {
+
+                }
+
+                @Override
+                public void onFinish() {
+
+                    progressBar.setVisibility(View.GONE);
+                }
+            }.start();
         }
     };
 
@@ -173,7 +195,6 @@ public class VerificationFragment extends Fragment implements View.OnClickListen
         //creating the credential
         credential = PhoneAuthProvider.getCredential(mVerificationId, otp);
         verificationTextView.setText("Phone number verified!");
-        Toast.makeText(hostingActivity, "Phone number verified!", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -183,58 +204,56 @@ public class VerificationFragment extends Fragment implements View.OnClickListen
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
-                if(task.isSuccessful())
-                {
+                if (task.isSuccessful()) {
                     // add phone number to the email/ password login
-                       mAuth.getCurrentUser().linkWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                           @Override
-                           public void onComplete(@NonNull Task<AuthResult> task) {
-                               if(task.isSuccessful()){
-                                   Log.d("tag","phone no. linked");
-                               }
-                               else{
+                    mAuth.getCurrentUser().linkWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Log.d("tag", "phone no. linked");
+                                addUsertoDB();
+                                hostingActivity.addDifferentFragment(SigninFragment.newInstance());
+                            } else {
+                                mAuth.getCurrentUser().delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful())
+                                            Toast.makeText(getContext(), "Please enter a valid otp", Toast.LENGTH_SHORT).show();
 
-                                   Log.d("tag","phone no. doesn't linked");
-                               }
-                           }
-                       });
-                    addUsertoDB();
-                    hostingActivity.addDifferentFragment(SigninFragment.newInstance());
+                                    }
+                                });
+                                kProgressHUD.dismiss();
+                                Toast.makeText(hostingActivity, "Sign up failed:" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                } else {
+                    kProgressHUD.dismiss();
+                    Toast.makeText(hostingActivity, "" + task.getException().toString(), Toast.LENGTH_SHORT).show();
                 }
-                else
-                {   kProgressHUD.dismiss();
-                    Toast.makeText(hostingActivity, "Sign up failed:"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                }
-
             }
         });
-
     }
 
-    private void addUsertoDB()
-    {
-        User user = new User();
-        user.setEmail(email);
-        user.setName(name);
-        user.setPhoneNumber(mobile);
-        user.setPassword(password);
-        user.setUserAddress(address);
-        user.setSubscribedPlan(null);
-        user.setWallet(null);
+            private void addUsertoDB() {
+                User user = new User();
+                user.setEmail(email);
+                user.setName(name);
+                user.setPhoneNumber(mobile);
+                user.setPassword(password);
+                user.setUserAddress(address);
+                user.setSubscribedPlan(null);
+                user.setWallet(null);
 
-        // Entry into Users table
-        FirebaseDatabase.getInstance()
-                .getReference("Users")
-                .child(mAuth.getCurrentUser().getUid())
-                .setValue(user);
-        kProgressHUD.dismiss();
+                // Entry into Users table
+                FirebaseDatabase.getInstance()
+                        .getReference("Users")
+                        .child(mAuth.getCurrentUser().getUid())
+                        .setValue(user);
+                kProgressHUD.dismiss();
 
-        Toast.makeText(hostingActivity, "Signed up successfully:Please log in", Toast.LENGTH_SHORT).show();
+                Toast.makeText(hostingActivity, "Signed up successfully:Please log in", Toast.LENGTH_SHORT).show();
 
-    }
+            }
 
-
-
-
-
-}
+        }

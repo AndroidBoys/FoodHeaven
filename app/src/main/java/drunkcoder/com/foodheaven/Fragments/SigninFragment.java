@@ -96,8 +96,7 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
                 vailidateDetails();
                 break;
             case R.id.forgotTextview:
-                //recoverPassword();
-                break;
+                recoverPassword();
 
         }
     }

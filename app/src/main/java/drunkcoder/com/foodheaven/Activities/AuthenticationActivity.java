@@ -27,7 +27,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_authentication);
         getSupportActionBar().hide();
 
-        if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
+            if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
             initCurrentUser();
         }
         else{
@@ -36,7 +36,6 @@ public class AuthenticationActivity extends AppCompatActivity {
         }
 
     }
-
     @Override
     protected void onStart() {
         super.onStart();

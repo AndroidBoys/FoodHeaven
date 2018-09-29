@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 // >>>>>>> master
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,7 +81,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         View view = inflater.inflate(R.layout.user_profile, container, false);
 
         activity=getActivity();
-        context = getContext();
+//        context = getContext();
         walletButton = view.findViewById(R.id.walletButton);
         userImage = view.findViewById(R.id.profile_image);
         userNameTextViewHeader = view.findViewById(R.id.userNameTextView);
@@ -132,11 +133,12 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
                 setNeddedContentsVisibility(1);
                 break;
             case R.id.doneImageView:
+                //UPDATE DATA INTO FIREBASE
+                if(updateProfile()) {
                 doneEditingImageView.setVisibility(View.GONE);
                 setNeddedContentsVisibility(2);
-                updateProfile();
-                //UPDATE DATA INTO FIREBASE
-                break;
+                }
+            break;
             case R.id.walletButton:
                 goTOWallet();
                 break;
@@ -150,12 +152,12 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
 
                 name.setFocusable(true);
                 phone.setFocusable(true);
-                email.setFocusable(true);
+//                email.setFocusable(true);
 //                address.setFocusable(true);
 
                 name.setFocusableInTouchMode(true);
                 phone.setFocusableInTouchMode(true);
-                email.setFocusableInTouchMode(true);
+//                email.setFocusableInTouchMode(true);
 //                address.setFocusableInTouchMode(true);
                 doneEditingImageView.setVisibility(View.VISIBLE);
                 break;
@@ -163,13 +165,13 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
             case 2:
                 name.setFocusableInTouchMode(false);
                 phone.setFocusableInTouchMode(false);
-                email.setFocusableInTouchMode(false);
+//                email.setFocusableInTouchMode(false);
 //                address.setFocusableInTouchMode(false);
                 doneEditingImageView.setVisibility(View.GONE);
 
                 name.setFocusable(false);
                 phone.setFocusable(false);
-                email.setFocusable(false);
+//                email.setFocusable(false);
 //                address.setFocusable(false);
 
                 break;
@@ -224,18 +226,18 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         ((DescriptionActivity)activity).setActionBarTitle("My Profile");
 // =======
     }
-    private void updateProfile() {
+    private boolean updateProfile() {
 
-
-        if (!(AuthUtil.isValidEmail(email.getText()))) {
-            email.setError("Enter a valid email");
-            email.requestFocus();
-            return;
-        }
+//
+//        if (!(AuthUtil.isValidEmail(email.getText()))) {
+//            email.setError("Enter a valid email");
+//            email.requestFocus();
+//            return false;
+//        }
         if (!(AuthUtil.isVailidPhone(phone.getText()))) {
             phone.setError("Enter a valid mobile number");
             phone.requestFocus();
-            return;
+            return false;
         }
 
         if(!oldPhoneNo.equals(phone.getText().toString()))
@@ -243,6 +245,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         else
             addUsertoDB();
 
+        return true;
     }
 
 
@@ -256,9 +259,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     private void verifyPhoneNumber() {
 
 
-        sendVerificationCode();
-
-        View view = LayoutInflater.from(context).inflate(R.layout.fragment_phone_no_update_verification, null);
+        View view = LayoutInflater.from(activity).inflate(R.layout.fragment_phone_no_update_verification, null);
 
         otpEditText = view.findViewById(R.id.otpEdittext);
         submitButton = view.findViewById(R.id.signupButton);
@@ -275,9 +276,12 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
             }
         });
 
+        sendVerificationCode();
 
 
-        builder = new AlertDialog.Builder(context, android.R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen)
+
+
+        builder = new AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen)
                 .setView(view)
                 .setIcon(R.drawable.thali_graphic)
                 .show();
@@ -285,16 +289,22 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     }
 
     private void submitOtp() {
+        kProgressHUD = KProgressHUD.create(activity)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setLabel("Please wait")
+                .setDetailsLabel("Updating your profile")
+                .setCancellable(false)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f)
+                .show();
 
         if (credential != null) {
-            kProgressHUD = KProgressHUD.create(context)
-                    .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-                    .setLabel("Please wait")
-                    .setDetailsLabel("Getting you in")
-                    .setCancellable(false)
-                    .setAnimationSpeed(2)
-                    .setDimAmount(0.5f)
-                    .show();
+
+            registerUser();
+        }
+
+        else{
+            verifyVerificationCode(otpEditText.getText().toString());
             registerUser();
         }
     }
@@ -311,6 +321,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
+        //this callback is called if phone no. is verified
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
             //Getting the code sent by SMS
             String code = phoneAuthCredential.getSmsCode();
@@ -320,8 +331,10 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
             //so user has to manually enter the code
             if (code != null) {
                 otpEditText.setText(code);
+                otpEditText.setFocusable(false);
+                otpEditText.setFocusableInTouchMode(false);
 
-                //verifying the code
+                //generating credential
                 verifyVerificationCode(code);
                 progressBar.setVisibility(View.GONE);
 
@@ -338,6 +351,21 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
             super.onCodeSent(s, forceResendingToken);
             mVerificationId = s;
             // mResendToken = forceResendingToken;
+
+            //after sending the code progress bar will show till 5 sec
+            new CountDownTimer(5000, 1000) {
+                @Override
+                public void onTick(long l) {
+
+                }
+
+                @Override
+                public void onFinish() {
+
+                    progressBar.setVisibility(View.GONE);
+                }
+            }.start();
+
         }
     };
 
@@ -347,7 +375,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         //creating the credential
         credential = PhoneAuthProvider.getCredential(mVerificationId, otp);
         verificationTextView.setText("Phone number verified!");
-        Toast.makeText(context, "Phone number verified!", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "Phone number verified!", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -363,7 +391,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
                     }
                     else{
 
-                        Toast.makeText(context, "Try again and please enter a valid code", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, "Try again and please enter a valid code", Toast.LENGTH_SHORT).show();
                         Log.d("tag","phone no. doesn't linked");
                         kProgressHUD.dismiss();
                         Log.d("tagexp",task.getException().toString());

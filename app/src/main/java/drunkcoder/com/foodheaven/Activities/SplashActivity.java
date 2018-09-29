@@ -40,6 +40,7 @@ public class SplashActivity extends AppCompatActivity {
         isFirstTime=sharedPreferences.getBoolean("isFirstTime",true);
 
         handler.postDelayed(runnable,4000);
+
     }
 
     @Override
