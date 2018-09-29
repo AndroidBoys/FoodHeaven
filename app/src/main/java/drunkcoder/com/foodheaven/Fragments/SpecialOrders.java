@@ -142,7 +142,7 @@ public class SpecialOrders extends Fragment {
             databaseReference.child(specialFoodArrayList.get(i).getFoodName()).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(specialFoodArrayList.get(i)).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    Toast.makeText(context, "Save Data into fb", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context, "Save Data into fb", Toast.LENGTH_SHORT).show();
                 }
             });
         }

@@ -98,6 +98,10 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         editProfileImageView = view.findViewById(R.id.editProfileImageView);
         doneEditingImageView = view.findViewById(R.id.doneImageView);
 
+        if(MyApplication.getCurrentUser().getSubscribedPlan()==null){
+            walletButton.setVisibility(View.GONE);
+        }
+
 // <<<<<<< 24-sept
 
         mAuth = FirebaseAuth.getInstance();
@@ -243,11 +247,10 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
 
 
     private void goTOWallet() {
-
-
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.descriptionFrameLayout, WalletFragment.newInstance(), null).commit();
-
+        fragmentTransaction.replace(R.id.descriptionFrameLayout, WalletFragment.newInstance(), null);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     private void verifyPhoneNumber() {

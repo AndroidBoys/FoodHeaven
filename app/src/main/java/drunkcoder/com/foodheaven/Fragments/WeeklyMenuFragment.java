@@ -38,6 +38,9 @@ public class WeeklyMenuFragment extends Fragment {
         friButton=view.findViewWithTag("Fri");
         satButton=view.findViewWithTag("Sat");
 
+//
+//        sunButton.setButtonColor(getActivity().getResources().getColor(R.color.colorPrimary));
+
         return view;
     }
 

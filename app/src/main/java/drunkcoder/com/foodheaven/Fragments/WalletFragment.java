@@ -1,5 +1,6 @@
 package drunkcoder.com.foodheaven.Fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import drunkcoder.com.foodheaven.Activities.DescriptionActivity;
 import drunkcoder.com.foodheaven.Models.Plan;
 import drunkcoder.com.foodheaven.Models.Wallet;
 import drunkcoder.com.foodheaven.Payments.PaymentsActivity;
@@ -33,13 +35,15 @@ public class WalletFragment extends Fragment {
     private TextView remainingDaysTextView;
     private TextView choosenPlanTextView;
     private NavigationView navigationView;
+    private Activity hostingActivity;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_wallet,container,false);
-
+        hostingActivity=getActivity();
         addMoneyButton = view.findViewById(R.id.addToWalletButton);
+        addMoneyButton.setVisibility(View.GONE); //no need of this button
 //        addMoneyButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -63,7 +67,7 @@ public class WalletFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Wallet wallet=dataSnapshot.getValue(Wallet.class);
                 remainingDaysTextView.setText("Remaining Days : "+wallet.getRemainingDays());
-                creditedAmountTextView.setText("Debited Amount : "+wallet.getCreditedAmount());
+                creditedAmountTextView.setText("Credited Amount : "+wallet.getCreditedAmount());
             }
 
             @Override
@@ -99,4 +103,11 @@ public class WalletFragment extends Fragment {
         return fragment;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(hostingActivity instanceof DescriptionActivity){
+            ((DescriptionActivity)hostingActivity).setActionBarTitle("My Wallet");
+        }
+    }
 }

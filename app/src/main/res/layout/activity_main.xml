@@ -13,4 +13,5 @@
         android:fontFamily="@font/josefin_bold"
         android:textColor="@color/whiteColor"
         android:textSize="100sp"/>
+    
 </LinearLayout>

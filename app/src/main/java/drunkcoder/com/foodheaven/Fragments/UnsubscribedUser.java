@@ -51,7 +51,6 @@ public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSlide
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
     }
 
     @Nullable

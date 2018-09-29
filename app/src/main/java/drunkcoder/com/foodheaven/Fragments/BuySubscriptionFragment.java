@@ -1,5 +1,6 @@
 package drunkcoder.com.foodheaven.Fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import com.squareup.picasso.Picasso;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import drunkcoder.com.foodheaven.Activities.DescriptionActivity;
 import drunkcoder.com.foodheaven.Models.Plan;
 import drunkcoder.com.foodheaven.Payments.PaymentsActivity;
 import drunkcoder.com.foodheaven.R;
@@ -40,7 +42,7 @@ public class BuySubscriptionFragment extends Fragment {
     private boolean lunchChecked=true;
     private boolean breakfastChecked=true;
     private int noOfChecks=3;
-
+    private Activity activity;
 
 
     public static BuySubscriptionFragment newInstance(Plan plan) {
@@ -58,7 +60,7 @@ public class BuySubscriptionFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_buy_subscription,container,false);
         plan = (Plan) getArguments().getSerializable("plan");
-
+        activity=getActivity();
         planImageView = view.findViewById(R.id.planImageview);
         priceTextView = view.findViewById(R.id.plan_price);
         planNameTextView = view.findViewById(R.id.plan_name);
@@ -144,7 +146,7 @@ public class BuySubscriptionFragment extends Fragment {
         return  view;
     }
 
-    public void moveToPaymentsActivity(){
+    private void moveToPaymentsActivity(){
         Intent intent = new Intent(getActivity(), PaymentsActivity.class);
         if(breakfastChecked){
             plan.includesBreakFast=true;
@@ -159,6 +161,13 @@ public class BuySubscriptionFragment extends Fragment {
         startActivity(intent);
     }
 
+// <<<<<<< arvind300
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((DescriptionActivity)activity).setActionBarTitle("Buy Subscription");
+    }
+// =======
     private int calculatePrice(){
 
 
@@ -179,4 +188,5 @@ public class BuySubscriptionFragment extends Fragment {
 
 
 
+// >>>>>>> master
 }

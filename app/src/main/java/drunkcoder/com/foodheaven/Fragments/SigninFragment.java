@@ -80,7 +80,6 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
         mAuth = FirebaseAuth.getInstance();
 
 
-
         return view;
     }
 
@@ -125,7 +124,7 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
 
     private void signIn()
     {
-        if(isPhoneNumber){
+        if(isPhoneNumber) {
             username = getEmailForPhoneNumber();
         }
         mAuth.signInWithEmailAndPassword(username,passwordEditText.getText().toString().trim())
@@ -199,7 +198,6 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // All child have been added
                 signIn();
-
             }
 
             @Override

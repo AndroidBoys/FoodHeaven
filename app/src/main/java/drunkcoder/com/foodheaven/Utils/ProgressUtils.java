@@ -12,11 +12,12 @@ public class ProgressUtils {
 
     public static void showLoadingDialog(Context context) {
         if (!(progressDialog != null && progressDialog.isShowing())) {
-            progressDialog = new Dialog(context);
+            progressDialog = new Dialog(context,R.style.AlertDialogStylePayUMoney); // second argument is used toset the color of progress bar
             progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
             progressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             progressDialog.setContentView(R.layout.progress_dialog);
-            progressDialog.setCancelable(false);
+            progressDialog.setCancelable(true);
+            progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();
         }
     }

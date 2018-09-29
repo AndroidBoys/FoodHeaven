@@ -33,7 +33,6 @@ public class MyApplication extends Application {
         checkDinnerStatus();
         checkLunchStatus();
         checkBreakFastStatus();
-
     }
 
     private void checkBreakFastStatus() {
