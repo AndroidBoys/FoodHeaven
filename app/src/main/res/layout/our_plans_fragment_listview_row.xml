@@ -18,14 +18,20 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="200dp">
+
+                <ProgressBar
+                    android:id="@+id/imageProgressBar"
+                    android:padding="68dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
 
                 <ImageView
                     android:id="@+id/packsImageView"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/ic_launcher" />
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"/>
 
                 <TextView
                     android:id="@+id/packName"

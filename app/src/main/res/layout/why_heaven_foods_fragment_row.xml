@@ -20,12 +20,27 @@
                 android:fontFamily="@fonart/josefin_bold"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 />
-            <ImageView
-                android:id="@+id/aboutImage1"
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                />
+                android:layout_height="wrap_content">
+
+                <ProgressBar
+                    android:id="@+id/imageProgressBar"
+                    android:padding="130dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <ImageView
+                    android:id="@+id/aboutImage1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    />
+
+
+            </RelativeLayout>
+
 
         </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

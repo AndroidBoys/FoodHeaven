@@ -30,6 +30,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,6 +42,7 @@ import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.kaopiz.kprogresshud.KProgressHUD;
 import com.payumoney.core.PayUmoneyConfig;
 import com.payumoney.core.PayUmoneySdkInitializer;
 import com.payumoney.core.entity.TransactionResponse;
@@ -59,12 +61,14 @@ import java.util.Map;
 
 public class PaymentsActivity extends AppCompatActivity {
 
-    private FButton paymentButton;
+    private FButton paymentButton,paymentCashButton;
     private Plan choosenPlan;
+    KProgressHUD progressHUD;
 
     private void initViews() {
         setContentView(R.layout.activity_payments);
         paymentButton = findViewById(R.id.payment_button);
+        paymentCashButton = findViewById(R.id.payment_button_cash);
     }
 
     @Override
@@ -84,6 +88,15 @@ public class PaymentsActivity extends AppCompatActivity {
                 launchPaymentFlow(priceNo);
             }
         });
+
+        paymentCashButton.setButtonColor(getResources().getColor(R.color.colorPrimary));
+        paymentCashButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               showCashPaymentAlert();
+            }
+        });
+
     }
 
     private void launchPaymentFlow(String price) {
@@ -220,6 +233,33 @@ public class PaymentsActivity extends AppCompatActivity {
             }
         });
         alertDialog.show();
+    }
+
+    private void showCashPaymentAlert(){
+        progressHUD = KProgressHUD.create(this);
+        progressHUD.setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
+        progressHUD.setCancellable(false);
+        progressHUD.setLabel("Please wait");
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle("In cash Payment");
+        alertDialog.setMessage("You can pay for this plan in cash on the first delievery and your services will be activated by our executives afterwards");
+        alertDialog.setCancelable(false);
+        alertDialog.setPositiveButton("Lets talk about it", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                processCashPayments();
+                progressHUD.show();
+            }
+        });
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        alertDialog.show();
+
     }
 
     private void onSuccesfulPayment()
@@ -360,5 +400,23 @@ public class PaymentsActivity extends AppCompatActivity {
         }
         return null;
     }
+
+    private void processCashPayments(){
+
+        DatabaseReference subRef = FirebaseDatabase.getInstance().getReference("NotificationSubscriptions");
+        NotificationSubscription subscription = new NotificationSubscription();
+        subscription.setToken(SharedPreferenceUtil.getSavedNotificationToken(this));
+        subRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(subscription).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                progressHUD.dismiss();
+               String msg="Congratulations! for your first step toward the best tiffin service. Our executives will shortly talk to you";
+               showAlert(msg);
+               // Toast.makeText(PaymentsActivity.this, msg, Toast.LENGTH_LONG).show();
+              // startActivity(new Intent(PaymentsActivity.this,HomeActivity.class));
+            }
+        });
+    }
+
 //
 }

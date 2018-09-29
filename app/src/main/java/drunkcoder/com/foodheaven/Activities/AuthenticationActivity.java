@@ -72,7 +72,10 @@ public class AuthenticationActivity extends AppCompatActivity {
 
                     }
                 });
-
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

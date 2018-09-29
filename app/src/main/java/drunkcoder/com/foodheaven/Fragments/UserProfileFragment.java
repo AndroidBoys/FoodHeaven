@@ -1,8 +1,12 @@
 package drunkcoder.com.foodheaven.Fragments;
 
+// <<<<<<< arvind100
+import android.app.Activity;
+// ===
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+// >>>>>>> master
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -50,6 +54,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
             planName, lunch, dinner, breakfast, days, price;
     private EditText name, email, phone, address;
     private Button walletButton;
+    private Activity activity;
     private Context context;
     private String oldPhoneNo;
 
@@ -74,6 +79,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.user_profile, container, false);
 
+        activity=getActivity();
         context = getContext();
         walletButton = view.findViewById(R.id.walletButton);
         userImage = view.findViewById(R.id.profile_image);
@@ -92,8 +98,12 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         editProfileImageView = view.findViewById(R.id.editProfileImageView);
         doneEditingImageView = view.findViewById(R.id.doneImageView);
 
+// <<<<<<< 24-sept
 
         mAuth = FirebaseAuth.getInstance();
+// =======
+// // >>>>>>> master
+// >>>>>>> master
         editProfileImageView.setOnClickListener(this);
         doneEditingImageView.setOnClickListener(this);
         walletButton.setOnClickListener(this);
@@ -129,7 +139,6 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
 
         }
     }
-
 
     private void setNeddedContentsVisibility(int pressed) {
         switch (pressed) {
@@ -204,6 +213,13 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         return fragment;
     }
 
+// <<<<<<< arvind100
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((DescriptionActivity)activity).setActionBarTitle("My Profile");
+// =======
+    }
     private void updateProfile() {
 
 
@@ -374,6 +390,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
 
 //                Toast.makeText(hostingActivity, "Signed up successfully:Please log in", Toast.LENGTH_SHORT).show();
 
+// >>>>>>> master
     }
 }
 

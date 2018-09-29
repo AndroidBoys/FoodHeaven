@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -171,7 +172,21 @@ public class SpecialOrders extends Fragment {
                 specialFoodViewHolder.specialFoodDescriptionTextView.setText(specialFood.getFoodDescription());
                 specialFoodViewHolder.specialFoodNameTextView.setText(specialFood.getFoodName());
 //                specialFoodViewHolder.specialFoodQuantityTextView.setText(specialFood.getFoodQuantity());
-                Picasso.with(context).load(specialFood.getImageUrl()).into(specialFoodViewHolder.specialFoodImageView);
+
+                //CallBack method is used to remove progress bar from the frame when image fetched successfully
+                Picasso.with(context).load(specialFood.getImageUrl()).into(specialFoodViewHolder.specialFoodImageView, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        if(specialFoodViewHolder.imageProgressBar!=null){
+                            specialFoodViewHolder.imageProgressBar.setVisibility(View.GONE);
+                        }
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
 
                 //if user first tick the checkBox and then he is incrementing the elegant number then also we have
                 //to save that incremented value there.
