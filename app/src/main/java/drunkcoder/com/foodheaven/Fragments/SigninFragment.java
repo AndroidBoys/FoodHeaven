@@ -1,5 +1,6 @@
 package drunkcoder.com.foodheaven.Fragments;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -103,21 +104,49 @@ public class SigninFragment extends Fragment implements View.OnClickListener {
 
     private void recoverPassword()
     {
-        Toast.makeText(hostingActivity, mAuth.getCurrentUser().getEmail(), Toast.LENGTH_SHORT).show();
-        mAuth.sendPasswordResetEmail(mAuth.getCurrentUser().getEmail()).addOnCompleteListener(hostingActivity, new OnCompleteListener<Void>() {
+        View view=LayoutInflater.from(getActivity()).inflate(R.layout.forget_password,null);
+        final EditText resetEmailEditText=view.findViewById(R.id.emailAddress);
+        Button resetLinkButton=view.findViewById(R.id.resetLinkButton);
+        resetLinkButton.setBackgroundColor(getActivity().getResources().getColor(R.color.colorPrimary));
+        final AlertDialog builder=new AlertDialog.Builder(getContext())
+                .setTitle("Reset Password")
+                .setCancelable(false)
+                .setIcon(R.drawable.thali_graphic)
+                .setView(view)
+                .setNegativeButton("Go Back",null)
+                .show();
+
+
+
+        resetLinkButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful())
-                {
-                    Toast.makeText(hostingActivity, "A Password reset email has been sent to your email "+mAuth.getCurrentUser().getEmail(), Toast.LENGTH_SHORT).show();
+            public void onClick(View view) {
+
+
+                if(resetEmailEditText.getText().toString().trim().equals("")){
+                    resetEmailEditText.setError("Please enter an email first");
+                    resetEmailEditText.requestFocus();
+
                 }
-                else
-                {
-                    Toast.makeText(hostingActivity, "Something went wrong.."+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                else {
+//        Toast.makeText(hostingActivity, mAuth.getCurrentUser().getEmail(), Toast.LENGTH_SHORT).show();
+                    mAuth.sendPasswordResetEmail(resetEmailEditText.getText().toString()).addOnCompleteListener(hostingActivity, new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(hostingActivity, "A Password reset email has been sent to your email " + resetEmailEditText.getText().toString(), Toast.LENGTH_SHORT).show();
+                                builder.dismiss();
+                            } else {
+                                Toast.makeText(hostingActivity, "Something went wrong.." + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 }
+
 
             }
         });
+
 
     }
 
