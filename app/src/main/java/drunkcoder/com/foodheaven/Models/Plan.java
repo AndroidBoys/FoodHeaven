@@ -7,8 +7,9 @@ public class Plan implements Serializable {
     public String description;
     public String planImageUrl;
     public String noOfDays;
-    public String singleTimePrice;
-    public String frequencyPerDay;
+    public String oneTimePrice;
+    public String twoTimePrice;
+    public String threeTimePrice;
     public boolean includesBreakFast;
     public boolean includesLunch;
     public boolean includesDinner;
@@ -56,22 +57,6 @@ public class Plan implements Serializable {
         this.noOfDays = noOfDays;
     }
 
-    public String getSingleTimePrice() {
-        return singleTimePrice;
-    }
-
-    public void setSingleTimePrice(String singleTimePrice) {
-        this.singleTimePrice = singleTimePrice;
-    }
-
-    public String getFrequencyPerDay() {
-        return frequencyPerDay;
-    }
-
-    public void setFrequencyPerDay(String frequencyPerDay) {
-        this.frequencyPerDay = frequencyPerDay;
-    }
-
     public boolean isIncludesBreakFast() {
         return includesBreakFast;
     }
@@ -94,5 +79,29 @@ public class Plan implements Serializable {
 
     public void setIncludesDinner(boolean includesDinner) {
         this.includesDinner = includesDinner;
+    }
+
+    public String getOneTimePrice() {
+        return oneTimePrice;
+    }
+
+    public void setOneTimePrice(String oneTimePrice) {
+        this.oneTimePrice = oneTimePrice;
+    }
+
+    public String getTwoTimePrice() {
+        return twoTimePrice;
+    }
+
+    public void setTwoTimePrice(String twoTimePrice) {
+        this.twoTimePrice = twoTimePrice;
+    }
+
+    public String getThreeTimePrice() {
+        return threeTimePrice;
+    }
+
+    public void setThreeTimePrice(String threeTimePrice) {
+        this.threeTimePrice = threeTimePrice;
     }
 }
