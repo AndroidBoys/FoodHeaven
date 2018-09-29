@@ -68,6 +68,10 @@ public class HomeActivity extends AppCompatActivity
 //                        .setAction("Action", null).show();
 //            }
 
+// <<<<<<< 24-sept
+//         if(MyApplication.getCurrentUser().getSubscribedPlan()==null) {
+//             addDifferentFragment(UnsubscribedUser.newInstance());
+// =======
 
         navigationView= findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -76,6 +80,7 @@ public class HomeActivity extends AppCompatActivity
         if(MyApplication.getCurrentUser().getSubscribedPlan()==null) {
             addDifferentFragment(UnsubscribedUser.newInstance(),"subscribe");
             navigationView.setCheckedItem(R.id.nav_home);
+// >>>>>>> master
         }
         else{
             navigationView.setCheckedItem(R.id.nav_home);

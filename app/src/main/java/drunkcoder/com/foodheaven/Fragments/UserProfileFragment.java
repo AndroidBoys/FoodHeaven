@@ -56,6 +56,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     private Button walletButton;
     private Activity activity;
     private Context context;
+    private String oldPhoneNo;
 
 
     //for phone no. verification
@@ -97,6 +98,11 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         editProfileImageView = view.findViewById(R.id.editProfileImageView);
         doneEditingImageView = view.findViewById(R.id.doneImageView);
 
+// <<<<<<< 24-sept
+
+        mAuth = FirebaseAuth.getInstance();
+// =======
+// // >>>>>>> master
 // >>>>>>> master
         editProfileImageView.setOnClickListener(this);
         doneEditingImageView.setOnClickListener(this);
@@ -173,6 +179,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
 
         userEmailTextViewHeader.setText(user.getEmail());
         phone.setText(user.getPhoneNumber());
+        oldPhoneNo=user.getPhoneNumber();
         email.setText(user.getEmail());
         userNameTextViewHeader.setText(user.getName());
         name.setText(user.getName());
@@ -227,7 +234,10 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
             return;
         }
 
-        verifyPhoneNumber();
+        if(!oldPhoneNo.equals(phone.getText().toString()))
+            verifyPhoneNumber();
+        else
+            addUsertoDB();
 
     }
 
@@ -262,7 +272,6 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
             }
         });
 
-        mAuth = FirebaseAuth.getInstance();
 
 
         builder = new AlertDialog.Builder(context, android.R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen)
@@ -346,13 +355,16 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     // add phone number to the email/ password login
-                    mAuth.getCurrentUser().linkWithCredential(credential);
-                    addUsertoDB();
-//                            hostingActivity.addDifferentFragment(SigninFragment.newInstance());
-                } else {
-                    kProgressHUD.dismiss();
-                    Toast.makeText(context, ""+task.getException(), Toast.LENGTH_SHORT).show();
-                    Log.d("exp",task.getException().toString());
+                        Log.d("tag","phone no. linked");
+                        addUsertoDB();
+                    }
+                    else{
+
+                        Toast.makeText(context, "Try again and please enter a valid code", Toast.LENGTH_SHORT).show();
+                        Log.d("tag","phone no. doesn't linked");
+                        kProgressHUD.dismiss();
+                        Log.d("tagexp",task.getException().toString());
+
                 }
             }
         });
@@ -373,6 +385,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
                 .getReference("Users")
                 .child(mAuth.getCurrentUser().getUid())
                 .setValue(user);
+       if(kProgressHUD!=null)
         kProgressHUD.dismiss();
 
 //                Toast.makeText(hostingActivity, "Signed up successfully:Please log in", Toast.LENGTH_SHORT).show();

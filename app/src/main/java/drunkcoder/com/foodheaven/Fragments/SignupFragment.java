@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +64,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
     private EditText phoneEditText;
     private EditText passwordEditText,
             nameEditText;
-    private Button signupButton;
+    private Button otpButton;
     private TextView loginTextview;
 
     private String mobileNumber;
@@ -98,7 +100,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
         emailEditText = view.findViewById(R.id.emailEdittext);
         phoneEditText = view.findViewById(R.id.phonenumberEdittext);
         passwordEditText = view.findViewById(R.id.passwordEdittext);
-        signupButton = view.findViewById(R.id.signupButton);
+        otpButton = view.findViewById(R.id.sendOtpButton);
         loginTextview = view.findViewById(R.id.loginTextview);
         nameEditText = view.findViewById(R.id.nameEdittext);
 
@@ -109,11 +111,14 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
         EditText place;
         place= ((EditText)placeAutocompleteFragment.getView().findViewById(R.id.place_autocomplete_search_input));
         place.setHint("Enter Your Address");
+        place.setTextSize(TypedValue.COMPLEX_UNIT_SP,16f);
         place.setTextColor(Color.WHITE);
+        place.setTypeface(Typeface.DEFAULT);
         placeAutocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
               userAddress= new Address((String) place.getAddress(),String.valueOf(place.getLatLng().longitude),String.valueOf(place.getLatLng().latitude));
+//            removePlaceFragment();
             }
 
             @Override
@@ -123,7 +128,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-        signupButton.setOnClickListener(this);
+        otpButton.setOnClickListener(this);
         loginTextview.setOnClickListener(this);
         return view;
     }
@@ -131,8 +136,8 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.signupButton:
-                removePlaceFragment();
+            case R.id.sendOtpButton:
+//                removePlaceFragment();
                 registerUser();
                 break;
             case R.id.loginTextview:
@@ -148,6 +153,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
     private void removePlaceFragment() {
 
         getActivity().getFragmentManager().beginTransaction().remove(getActivity().getFragmentManager().findFragmentById(R.id.addressAutoCompleteFragment)).commit();
+
     }
 
 
@@ -158,6 +164,10 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
         password = passwordEditText.getText().toString();
         name=nameEditText.getText().toString();
 
+        if(userAddress==null){
+            Toast.makeText(hostingActivity, "Please enter address first", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if( !(AuthUtil.isValidEmail(email)))
         {
             emailEditText.setError("Enter a valid email");
@@ -177,12 +187,13 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
             return;
         }
 
-
+        removePlaceFragment();
         if(!checkAlreadyExists()) {
             verifyPhoneNumber();
         }else {
             Toast.makeText(hostingActivity, "You are already registered,Please Login", Toast.LENGTH_SHORT).show();
             hostingActivity.addDifferentFragment(SigninFragment.newInstance());
+
         }
 
     }
