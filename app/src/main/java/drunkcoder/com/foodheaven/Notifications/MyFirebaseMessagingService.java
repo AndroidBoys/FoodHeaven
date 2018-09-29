@@ -7,7 +7,10 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Handler;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -75,5 +78,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onNewToken(String s) {
         super.onNewToken(s);
         SharedPreferenceUtil.saveNotificationToken(s,this);
+//        new Handler().post(new Runnable() {
+//            @Override
+//            public void run() {
+//                FirebaseDatabase.getInstance().getReference("NotificationSubscriptions").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                        .child("token").setValue(SharedPreferenceUtil.getSavedNotificationToken(MyFirebaseMessagingService.this));
+//            }
+//        });
     }
 }

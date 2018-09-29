@@ -408,11 +408,21 @@ public class PaymentsActivity extends AppCompatActivity {
         subRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(subscription).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                progressHUD.dismiss();
-               String msg="Congratulations! for your first step toward the best tiffin service. Our executives will shortly talk to you";
-               showAlert(msg);
+               buyPlanWithCash();
                // Toast.makeText(PaymentsActivity.this, msg, Toast.LENGTH_LONG).show();
               // startActivity(new Intent(PaymentsActivity.this,HomeActivity.class));
+            }
+        });
+    }
+
+    private void buyPlanWithCash(){
+        FirebaseDatabase.getInstance().getReference("Requests").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .setValue(choosenPlan).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                progressHUD.dismiss();
+                String msg="Congratulations! for your first step toward the best tiffin service. Our executives will shortly talk to you";
+                showAlert(msg);
             }
         });
     }
