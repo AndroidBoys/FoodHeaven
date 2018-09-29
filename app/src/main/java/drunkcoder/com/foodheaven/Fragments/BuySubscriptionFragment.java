@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.squareup.picasso.Picasso;
@@ -71,9 +72,8 @@ public class BuySubscriptionFragment extends Fragment {
 
         subscribeButton=view.findViewById(R.id.subscribe);
 
-        Log.i("singleTimePrice", "onCreateView:  "+plan.getSingleTimePrice());
 
-        priceTextView.setText(String.valueOf(Integer.parseInt(plan.getSingleTimePrice())*3));
+        priceTextView.setText(String.valueOf(calculatePrice()));
 
         totalPrice=Integer.valueOf(priceTextView.getText().toString());
         Picasso.with(getActivity()).load(plan.getPlanImageUrl()).into(planImageView);
@@ -81,11 +81,16 @@ public class BuySubscriptionFragment extends Fragment {
         planNameTextView.setText(plan.getPlanName());
         planDescriptionTextView.setText(plan.getDescription());
 
+
         subscribeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //SUBSCRIBE THIS PLAN
-                moveToPaymentsActivity();
+                if(noOfChecks!=0) {
+                    moveToPaymentsActivity();
+                }else{
+                    Toast.makeText(getContext(), "Please choose the one time plan atleast", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -96,16 +101,14 @@ public class BuySubscriptionFragment extends Fragment {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(breakfastChecked){
                     breakfastChecked=false;
-                    totalPrice-=Integer.parseInt(plan.getSingleTimePrice());
                     noOfChecks--;
                 }
                 else {
                     breakfastChecked=true;
-                    totalPrice+=Integer.parseInt(plan.getSingleTimePrice());
                     noOfChecks++;
                 }
 
-                priceTextView.setText(""+totalPrice);
+                priceTextView.setText(""+calculatePrice());
 
             }
         });
@@ -114,16 +117,14 @@ public class BuySubscriptionFragment extends Fragment {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(lunchChecked){
                     lunchChecked = false;
-                    totalPrice-=Integer.parseInt(plan.getSingleTimePrice());
                     noOfChecks--;
                 }
                 else {
                     lunchChecked = true;
-                    totalPrice+=Integer.parseInt(plan.getSingleTimePrice());
                     noOfChecks++;
                 }
 
-                priceTextView.setText(""+totalPrice);
+                priceTextView.setText(""+calculatePrice());
             }
         });
         dinnerCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -131,16 +132,14 @@ public class BuySubscriptionFragment extends Fragment {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(dinnerChecked){
                     dinnerChecked=false;
-                    totalPrice-=Integer.parseInt(plan.getSingleTimePrice());
                     noOfChecks--;
                 }
                 else {
                     dinnerChecked=true;
-                    totalPrice+=Integer.parseInt(plan.getSingleTimePrice());
                     noOfChecks++;
                 }
 
-                priceTextView.setText(""+totalPrice);
+                priceTextView.setText(""+calculatePrice());
             }
         });
 
@@ -149,7 +148,6 @@ public class BuySubscriptionFragment extends Fragment {
 
     private void moveToPaymentsActivity(){
         Intent intent = new Intent(getActivity(), PaymentsActivity.class);
-        plan.setFrequencyPerDay(String.valueOf(noOfChecks));
         if(breakfastChecked){
             plan.includesBreakFast=true;
         }
@@ -163,9 +161,32 @@ public class BuySubscriptionFragment extends Fragment {
         startActivity(intent);
     }
 
+// <<<<<<< arvind300
     @Override
     public void onResume() {
         super.onResume();
         ((DescriptionActivity)activity).setActionBarTitle("Buy Subscription");
     }
+// =======
+    private int calculatePrice(){
+
+
+        if(noOfChecks==1){
+            return getInt(plan.oneTimePrice);
+        }else if(noOfChecks==2){
+            return getInt(plan.twoTimePrice);
+        }else if(noOfChecks==3) {
+            return getInt(plan.threeTimePrice);
+        }
+        return 0;
+    }
+
+    private int getInt(String s){
+        return  Integer.parseInt(s);
+    }
+
+
+
+
+// >>>>>>> master
 }

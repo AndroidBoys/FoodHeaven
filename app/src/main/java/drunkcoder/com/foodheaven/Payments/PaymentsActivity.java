@@ -77,7 +77,7 @@ public class PaymentsActivity extends AppCompatActivity {
         initViews();
 
         choosenPlan = (Plan) getIntent().getSerializableExtra("choosenPlan");
-        final String priceNo = String.valueOf(Integer.parseInt(choosenPlan.getSingleTimePrice())*Integer.parseInt(choosenPlan.getFrequencyPerDay()));
+        final String priceNo = calculatePrice(choosenPlan);
         String price = getResources().getString(R.string.Rupees) + priceNo;
         Log.i("price", "onCreate: "+price);
         paymentButton.setButtonColor(getResources().getColor(R.color.colorPrimary));
@@ -337,8 +337,7 @@ public class PaymentsActivity extends AppCompatActivity {
 
     private void updateUserWallet(){
 
-        String amount = String.valueOf(Integer.parseInt(choosenPlan.getNoOfDays())*
-                (Integer.parseInt(choosenPlan.getSingleTimePrice())*Integer.parseInt(choosenPlan.getFrequencyPerDay())));
+        String amount = calculatePrice(choosenPlan);
 
         String dueDate = calculateDueDate1();
 
@@ -416,6 +415,33 @@ public class PaymentsActivity extends AppCompatActivity {
               // startActivity(new Intent(PaymentsActivity.this,HomeActivity.class));
             }
         });
+    }
+
+    private String calculatePrice(Plan plan){
+        int frequency =0;
+        if(plan.includesBreakFast){
+            frequency++;
+        }
+        if(plan.includesLunch){
+            frequency++;
+        }
+        if(plan.includesDinner){
+            frequency++;
+        }
+
+        switch (frequency){
+            case 1:
+                return plan.getOneTimePrice();
+            case 2:
+                return plan.getTwoTimePrice();
+            case 3:
+                return plan.getThreeTimePrice();
+        }
+
+        return "";
+    }
+    private int getInt(String s){
+        return  Integer.parseInt(s);
     }
 
 //
