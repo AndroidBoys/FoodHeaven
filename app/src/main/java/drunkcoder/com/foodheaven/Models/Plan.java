@@ -9,7 +9,7 @@ public class Plan implements Serializable {
     public String noOfDays;
     public String oneTimePrice;
     public String twoTimePrice;
-    public String threeTimePrice;
+    public String   threeTimePrice;
     public boolean includesBreakFast;
     public boolean includesLunch;
     public boolean includesDinner;
