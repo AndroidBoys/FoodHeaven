@@ -49,7 +49,7 @@ public class VerificationFragment extends Fragment implements View.OnClickListen
     private AuthenticationActivity hostingActivity;
     private ProgressBar progressBar;
     private KProgressHUD kProgressHUD;
-    private String code;
+
     private String mobile,name;
     private String email;
     private String password;
@@ -121,10 +121,6 @@ public class VerificationFragment extends Fragment implements View.OnClickListen
                     .setDimAmount(0.5f)
                     .show();
             registerUser();
-        }else{
-            code=otpEditText.getText().toString();
-            verifyVerificationCode(code);
-            signUp();
         }
     }
 
@@ -141,7 +137,7 @@ public class VerificationFragment extends Fragment implements View.OnClickListen
         @Override
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
             //Getting the code sent by SMS
-             code = phoneAuthCredential.getSmsCode();
+            String code = phoneAuthCredential.getSmsCode();
 
             //sometime the code is not detected automatically
             //in this case the code will be null
@@ -151,8 +147,7 @@ public class VerificationFragment extends Fragment implements View.OnClickListen
 
                 //verifying the code
                 verifyVerificationCode(code);
-                verificationTextView.setText("Phone number verified!");
-                Toast.makeText(hostingActivity, "Phone number verified!", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
 
             }
 
@@ -168,21 +163,17 @@ public class VerificationFragment extends Fragment implements View.OnClickListen
         public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);
             mVerificationId = s;
-            progressBar.setVisibility(View.GONE);
-            Log.d("force",forceResendingToken.toString());
-            Log.d("string",s);
-            // mResendToken = forceResendingToken;
+           // mResendToken = forceResendingToken;
         }
     };
 
 
     private void verifyVerificationCode(String otp) {
 
-
         //creating the credential
         credential = PhoneAuthProvider.getCredential(mVerificationId, otp);
-       if(credential.zza())
-
+        verificationTextView.setText("Phone number verified!");
+        Toast.makeText(hostingActivity, "Phone number verified!", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -195,7 +186,18 @@ public class VerificationFragment extends Fragment implements View.OnClickListen
                 if(task.isSuccessful())
                 {
                     // add phone number to the email/ password login
-                    mAuth.getCurrentUser().linkWithCredential(credential);
+                       mAuth.getCurrentUser().linkWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                           @Override
+                           public void onComplete(@NonNull Task<AuthResult> task) {
+                               if(task.isSuccessful()){
+                                   Log.d("tag","phone no. linked");
+                               }
+                               else{
+
+                                   Log.d("tag","phone no. doesn't linked");
+                               }
+                           }
+                       });
                     addUsertoDB();
                     hostingActivity.addDifferentFragment(SigninFragment.newInstance());
                 }
@@ -230,15 +232,6 @@ public class VerificationFragment extends Fragment implements View.OnClickListen
         Toast.makeText(hostingActivity, "Signed up successfully:Please log in", Toast.LENGTH_SHORT).show();
 
     }
-
-
-
-
-
-
-
-
-
 
 
 
