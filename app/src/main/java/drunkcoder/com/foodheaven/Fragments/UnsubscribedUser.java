@@ -42,7 +42,7 @@ public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSlide
                     weeklyMenuButton;
     private TextView whyHeavenFoodsTextView,
             faqTextView,
-            callForAssistanceTextView,
+            callForAssistanceTextView,HeavensFoodTitle,
             attractUserTextView;
     private Context context;
     private ProgressBar imageProgressBar;
@@ -68,6 +68,7 @@ public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSlide
         callForAssistanceTextView=view.findViewById(R.id.callForAssistenceTextView);
         faqTextView=view.findViewById(R.id.faqTextView);
         attractUserTextView=view.findViewById(R.id.attractUser);
+        HeavensFoodTitle=view.findViewById(R.id.HeavensFoodTitle);
 
         //customize button color
         ourPlansButton.setButtonColor(getActivity().getResources().getColor(R.color.colorPrimary));
@@ -83,10 +84,34 @@ public class UnsubscribedUser extends Fragment implements BaseSliderView.OnSlide
         getBannerFromFirebase();
         getpackImageFromFirebase();
         getAttractiveSloganFromFirebase();
+        getHeavensFoodTitle();
 
 
 
         return view;
+    }
+
+    private void getHeavensFoodTitle() {
+        FirebaseDatabase.getInstance().getReference("HeavansFoodTitle").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                HeavensFoodTitle.setText(dataSnapshot.getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(bannerSlider!=null)
+        bannerSlider.startAutoCycle();
+
     }
 
     private void getAttractiveSloganFromFirebase() {

@@ -42,7 +42,7 @@ public class BuySubscriptionFragment extends Fragment {
     private boolean lunchChecked=true;
     private boolean breakfastChecked=true;
     private int noOfChecks=3;
-    private Activity activity;
+    private DescriptionActivity activity;
 
 
     public static BuySubscriptionFragment newInstance(Plan plan) {
@@ -60,7 +60,7 @@ public class BuySubscriptionFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_buy_subscription,container,false);
         plan = (Plan) getArguments().getSerializable("plan");
-        activity=getActivity();
+        activity=(DescriptionActivity)getActivity();
         planImageView = view.findViewById(R.id.planImageview);
         priceTextView = view.findViewById(R.id.plan_price);
         planNameTextView = view.findViewById(R.id.plan_name);
@@ -68,6 +68,8 @@ public class BuySubscriptionFragment extends Fragment {
         breakfastCheckBox = view.findViewById(R.id.BreakFastCheckbox);
         lunchCheckBox = view.findViewById(R.id.lunchChekbox);
         dinnerCheckBox = view.findViewById(R.id.dinnerCheckbox);
+
+        activity.getSupportActionBar().hide();
 
 
         subscribeButton=view.findViewById(R.id.subscribe);

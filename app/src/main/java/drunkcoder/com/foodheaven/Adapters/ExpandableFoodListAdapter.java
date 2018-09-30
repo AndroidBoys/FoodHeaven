@@ -10,7 +10,10 @@ import android.widget.CheckBox;
 import android.widget.CheckedTextView;
 import android.widget.CompoundButton;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,8 +59,11 @@ public class ExpandableFoodListAdapter extends BaseExpandableListAdapter {
 //        }
         final TextView txtListChild = (TextView) convertView.findViewById(R.id.lblListItem);
         CheckBox checkBox=(CheckBox) convertView.findViewById(R.id.checkbox3);
+        ImageView foodImage=(ImageView) convertView.findViewById(R.id.foodImageViewnew);
+        Picasso.with(_context).load(childText.getImageUrl()).into(foodImage);
         txtListChild.setText(childText.getFoodName());
         checkBox.setChecked(childText.marked);
+
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {

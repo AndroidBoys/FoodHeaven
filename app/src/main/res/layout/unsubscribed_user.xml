@@ -40,8 +40,9 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/HeavensFoodTitle"
             android:layout_margin="8dp"
-            android:text="FoodHeaven-Title"
+            android:text="FoodHeaven"
             android:textStyle="bold"
             android:textSize="@dimen/material_text_headline"
             android:fontFamily="@font/josefin_bold"
@@ -71,7 +72,7 @@
                     <TextView
                         android:id="@+id/attractUser"
                         android:layout_margin="8dp"
-                        android:text="some random text \n here"
+                        android:text=""
                         android:textStyle="bold"
                         android:textSize="@dimen/material_text_headline"
                         android:fontFamily="@font/josefin_bold"

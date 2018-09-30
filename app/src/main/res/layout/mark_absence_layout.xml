@@ -1,82 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:minHeight="400dp"
-    android:minWidth="250dp"
-    android:background="@drawable/background_xml"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="Mark Your Absence Here"
-        android:gravity="center"
-        android:layout_weight="3"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
-        android:fontFamily="@font/josefin_bold"
-        android:textColor="@color/md_white_1000"/>
+    android:elevation="4dp"
+    >
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_weight="2"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:minHeight="400dp"
+        android:minWidth="250dp"
+        android:background="@drawable/background_xml"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
+        android:layout_height="match_parent">
 
-        <info.hoang8f.widget.FButton
-            android:id="@+id/startDateButton"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="Mark Your Absence \n Here"
+            android:gravity="center"
             android:layout_weight="1"
-            android:textColor="@color/md_white_1000"
-            android:background="@drawable/button_background"
+            android:textAlignment="center"
+            android:textSize="30sp"
             android:textStyle="bold"
-            android:text="Start Date"/>
+            android:layout_margin="16dp"
+            android:fontFamily="@font/josefin_bold"
+            android:textColor="@color/colorPrimary"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/startDateButton"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="30sp"
+                android:elevation="4dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="@color/md_white_1000"
+                android:background="@drawable/button_background"
+                android:text="Start Date"/>
 
 
-        <info.hoang8f.widget.FButton
-            android:id="@+id/endDateButton"
-            android:background="@drawable/button_background"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_weight="1"
-            android:textStyle="bold"
-            android:textColor="@color/md_white_1000"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="End Date"/>
+            <com.google.android.material.button.MaterialButton
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="30sp"
+                android:elevation="4dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:id="@+id/endDateButton"
+                android:background="@drawable/button_background"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:textColor="@color/md_white_1000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End Date"/>
 
-    </LinearLayout>
+        </LinearLayout>
 
 
 
-    <!--<TextView-->
+        <!--<TextView-->
         <!--android:layout_weight="1"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="0dp"-->
         <!--android:text="You need to mark absence before 8 hour of any food"/>-->
 
-
-    <info.hoang8f.widget.FButton
-        android:id="@+id/submitButton"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="50dp"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:textColor="@color/md_white_1000"
-        android:layout_marginEnd="30dp"
-        android:layout_marginStart="30dp"
-        android:text="Submit"
-        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2">
 
 
+            <com.google.android.material.button.MaterialButton
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:layout_gravity="center"
+                android:gravity="center"
 
-</LinearLayout>
+                android:elevation="4dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:id="@+id/submitButton"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="40sp"
+                android:textColor="@color/md_white_1000"
+                android:text="Submit"
+                />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
