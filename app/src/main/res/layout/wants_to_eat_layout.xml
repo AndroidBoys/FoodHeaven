@@ -26,15 +26,18 @@
     </com.baoyz.widget.PullRefreshLayout>
 
 
-    <info.hoang8f.widget.FButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/wantsSubmitButton"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="Submit"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:layout_weight="1"
         android:layout_marginTop="3dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         android:layout_marginBottom="3dp"
         android:fontFamily="@font/josefin_bold"
         />
