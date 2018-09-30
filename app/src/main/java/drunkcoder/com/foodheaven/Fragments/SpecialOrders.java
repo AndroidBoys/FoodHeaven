@@ -60,6 +60,7 @@ public class SpecialOrders extends Fragment {
         View view=inflater.inflate(R.layout.special_order_fragment,container,false);
         context=getContext();
         specialFoodArrayList=new ArrayList<>();
+        ProgressUtils.showLoadingDialog(context);
         mealTimeArray=getResources().getStringArray(R.array.mealTime);
         specialOrderRecyclerView=view.findViewById(R.id.specialFoodRecyclerView);
         orderNowButton=view.findViewById(R.id.orderNowButton);
@@ -188,6 +189,7 @@ public class SpecialOrders extends Fragment {
                     }
                 });
 
+                ProgressUtils.cancelLoading();
                 //if user first tick the checkBox and then he is incrementing the elegant number then also we have
                 //to save that incremented value there.
                 specialFoodViewHolder.elegantNumberButton.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {

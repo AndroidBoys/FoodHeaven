@@ -23,7 +23,10 @@
 
             <ProgressBar
                 android:id="@+id/imageProgressBar"
-                android:padding="85dp"
+                android:padding="94dp"
+                android:indeterminateTint="@color/colorPrimary"
+                android:indeterminate="true"
+                android:indeterminateTintMode="src_atop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 

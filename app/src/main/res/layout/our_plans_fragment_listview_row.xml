@@ -18,11 +18,14 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="240dp">
 
                 <ProgressBar
                     android:id="@+id/imageProgressBar"
-                    android:padding="68dp"
+                    android:indeterminateTint="@color/colorPrimary"
+                    android:indeterminate="true"
+                    android:indeterminateTintMode="src_atop"
+                    android:padding="100dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
 

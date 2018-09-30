@@ -114,7 +114,6 @@ import drunkcoder.com.foodheaven.ViewHolders.FoodMenuViewHolder;
         setRecyclerView(lunchRecyclerView);
         setRecyclerView(dinnerRecyclerView);
 
-
         markAbsenceTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -537,17 +536,29 @@ import drunkcoder.com.foodheaven.ViewHolders.FoodMenuViewHolder;
                  dinnerArrayList.add(dataSnapshot.getValue(Food.class));
                  if(dinnerAdapter!=null)
                      dinnerAdapter.notifyDataSetChanged();
+                 if(dinnerProgressBar!=null){
+                        dinnerProgressBar.setVisibility(View.GONE);
+                 }
                 }
                 else if(mealTime.equals("Lunch")){
                     lunchArrayList.add(dataSnapshot.getValue(Food.class));
                     if(lunchAdpater!=null)
                         lunchAdpater.notifyDataSetChanged();
+
+                    if(lunchProgressBar!=null){
+                        lunchProgressBar.setVisibility(View.GONE);
+                    }
                 }
                 else if(mealTime.equals("BreakFast")){
                     breakFastArrayList.add(dataSnapshot.getValue(Food.class));
                     if(breakFastAdapter!=null)
                         breakFastAdapter.notifyDataSetChanged();
+
+                    if(breakFastProgressBar!=null){
+                        breakFastProgressBar.setVisibility(View.GONE);
+                    }
                 }
+
             }
 
             @Override
