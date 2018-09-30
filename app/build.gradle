@@ -57,7 +57,7 @@ dependencies {
     //khat khat button
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
 
-    //textDrawable
+    //textDrawablerrrr
     implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
 
     //Date Picker

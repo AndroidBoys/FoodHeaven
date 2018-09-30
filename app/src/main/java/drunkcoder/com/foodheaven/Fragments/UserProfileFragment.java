@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 // >>>>>>> master
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -62,18 +63,18 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
 
     //for phone no. verification
 
-    AlertDialog builder;
-    EditText otpEditText;
-    TextView verificationTextView;
-    Button submitButton;
+    private AlertDialog builder;
+    private EditText otpEditText;
+    private TextView verificationTextView;
+    private Button submitButton;
 
     //verification id that will be sent to the user
-    String mVerificationId;
-    FirebaseAuth mAuth;
-    PhoneAuthCredential credential;
+    private String mVerificationId;
+    private FirebaseAuth mAuth;
+    private PhoneAuthCredential credential;
 
-    ProgressBar progressBar;
-    KProgressHUD kProgressHUD;
+    private ProgressBar progressBar;
+    private KProgressHUD kProgressHUD;
 
     @Nullable
     @Override
@@ -98,6 +99,8 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         address = view.findViewById(R.id.addressEditText);
         editProfileImageView = view.findViewById(R.id.editProfileImageView);
         doneEditingImageView = view.findViewById(R.id.doneImageView);
+
+        walletButton.getBackground().setColorFilter(getActivity().getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
 
         if(MyApplication.getCurrentUser().getSubscribedPlan()==null){
             walletButton.setVisibility(View.GONE);
@@ -435,7 +438,6 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         if(plan.includesDinner){
             frequency++;
         }
-
         switch (frequency){
             case 1:
                 return getInt(plan.getOneTimePrice());

@@ -41,6 +41,7 @@
 
     <item android:title="Communicate">
         <menu>
+
             <item
                 android:id="@+id/nav_contactUs"
                 android:icon="@drawable/contactus"
@@ -54,6 +55,14 @@
                 android:checkable="true"
                 android:checked="false"
                 android:title="Rate Us"/>
+
+            <item
+                android:id="@+id/nav_shareTheApp"
+                android:icon="@drawable/share_image"
+                android:checkable="true"
+                android:checked="false"
+                android:title="Share With Friends"/>
+
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_exit_to_app_black_24dp"

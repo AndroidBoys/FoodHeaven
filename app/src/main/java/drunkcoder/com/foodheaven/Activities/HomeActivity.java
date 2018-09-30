@@ -1,7 +1,9 @@
 package drunkcoder.com.foodheaven.Activities;
 
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -162,6 +164,7 @@ public class HomeActivity extends AppCompatActivity
                 }
             }
             else if (id == R.id.nav_contactUs) {
+                addDifferentFragment(UnsubscribedUser.newInstance(),"unsubscribe");
             }
             else if (id == R.id.nav_logout) {
                 logOutDialog();
@@ -177,17 +180,39 @@ public class HomeActivity extends AppCompatActivity
                     Toast.makeText(this, "Please subscribe for our plans first!", Toast.LENGTH_SHORT).show();
                 }
             }else if (id == R.id.nav_rate) {
-                addDifferentFragment(UnsubscribedUser.newInstance(),"unsubscribe");
+
+                //it will send an intent to google play store for rating the app
+
+                try{
+                    //if the app is not released on google play store
+                    startActivity(new Intent("android.intent.action.VIEW", Uri.parse("market://details?id="+getPackageName())));
+                }
+                catch (ActivityNotFoundException e){
+                    //if the app is released on google play store.
+                    startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://play.google.com/store/apps/details?id="+getPackageName())));
+                }
             }else if (id == R.id.nav_profile) {
 
                 Intent intent = new Intent(HomeActivity.this, DescriptionActivity.class);
                 intent.putExtra("ID", R_id_profileId);//since we have to show the profile on the screen which will be host by the description activity
                 startActivity(intent);
+            }else if(id==R.id.nav_shareTheApp){
+                shareTheApp();
             }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
 
+    }
+
+    private void shareTheApp(){
+        String appUrl="https://play.google.com/store/apps/details?id="+getPackageName();
+        String shareBody = "One of the best food delivery app : "+appUrl;
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Food Delivery App");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        startActivity(Intent.createChooser(sharingIntent,"Share link!"));
     }
 
     private void setCurrentUserInfoInNavigationBar() {

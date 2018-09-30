@@ -25,6 +25,7 @@ import drunkcoder.com.foodheaven.Activities.DescriptionActivity;
 import drunkcoder.com.foodheaven.Adapters.CallForAssistanceArrayAdapter;
 import drunkcoder.com.foodheaven.Models.Assistance;
 import drunkcoder.com.foodheaven.R;
+import drunkcoder.com.foodheaven.Utils.ProgressUtils;
 
 public class CallForAssistanceFragment extends Fragment {
 
@@ -40,6 +41,7 @@ public class CallForAssistanceFragment extends Fragment {
         listView=view.findViewById(R.id.callForAssistenceListView);
         callForAssistanceArrayAdapter=new CallForAssistanceArrayAdapter(getContext(),assistanceList);
         listView.setAdapter(callForAssistanceArrayAdapter);
+        ProgressUtils.showLoadingDialog(activity);
         fetchAssistanceFromFirebase();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -63,6 +65,7 @@ public class CallForAssistanceFragment extends Fragment {
                 assistanceList.add(dataSnapshot.getValue(Assistance.class));
                 if(callForAssistanceArrayAdapter!=null)
                 callForAssistanceArrayAdapter.notifyDataSetChanged();
+                ProgressUtils.cancelLoading();
             }
 
             @Override
