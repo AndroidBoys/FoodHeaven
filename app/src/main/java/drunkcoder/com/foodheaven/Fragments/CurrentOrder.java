@@ -21,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.kaopiz.kprogresshud.KProgressHUD;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -44,13 +45,22 @@ public class CurrentOrder extends Fragment {
     private ListView currentOrderListView;
     private Context context;
     private DatabaseReference specialFoodDatabaseReference;
-    private ArrayList<Food> foodArrayList=new ArrayList<>();
+    private ArrayList<Food> foodArrayList;
+    private KProgressHUD kProgressHUD;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.current_order,container,false);
         context=getContext();
-
+        kProgressHUD=KProgressHUD.create(context)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setLabel("Please wait")
+//                .setDetailsLabel("Getting you in")
+                .setCancellable(false)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f)
+                .show();
+        foodArrayList=new ArrayList<>();
         fetchCurrentOrderList();
         currentOrderListView=view.findViewById(R.id.currentOrdersListView);
         currentOrderArrayAdapter=new CurrentOrderArrayAdapter(context,foodArrayList);
@@ -61,7 +71,8 @@ public class CurrentOrder extends Fragment {
     }
 
     private void fetchCurrentOrderList() {
-    FirebaseDatabase.getInstance().getReference("Orders").child("NewFoodOrders").addChildEventListener(new ChildEventListener() {
+
+        FirebaseDatabase.getInstance().getReference("Orders").child("NewFoodOrders").addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                     if(dataSnapshot.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
@@ -70,6 +81,8 @@ public class CurrentOrder extends Fragment {
                             foodArrayList.add(order.getFoodArrayList().get(i));
                             if(currentOrderArrayAdapter!=null)
                                 currentOrderArrayAdapter.notifyDataSetChanged();
+                            if(kProgressHUD!=null)
+                                kProgressHUD.dismiss();
                         }
                     }
                 }

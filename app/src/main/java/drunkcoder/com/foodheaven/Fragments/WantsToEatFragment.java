@@ -61,14 +61,14 @@ public class WantsToEatFragment extends Fragment implements View.OnCreateContext
     private FirebaseRecyclerAdapter<Category, WantsToEatCategoryViewHolder> wantsToEatFoodAdapter;
     private DatabaseReference wantsToEatDatabaseReference;
     //    private int maxLimit;
-    private ArrayList<Food> foodArrayList=new ArrayList<>();
-    private ArrayList<Food> selectedFoodArrayList=new ArrayList<>();
-    private ArrayList<String> foodNamesArrayList=new ArrayList<>();
-    private ArrayList<String> foodItemUid=new ArrayList<>();
+    private ArrayList<Food> foodArrayList;
+    private ArrayList<Food> selectedFoodArrayList;
+    private ArrayList<String> foodNamesArrayList;
+    private ArrayList<String> foodItemUid;
     //    private ArrayList<Category> categoryList=new ArrayList<>();
-    private ArrayList<String> categoryNameList=new ArrayList<>();
-    private HashMap<String,ArrayList<Food>> listFoodChild=new HashMap<>();
-    private ArrayList<Integer> maxLimitOfCategory=new ArrayList<>();
+    private ArrayList<String> categoryNameList;
+    private HashMap<String,ArrayList<Food>> listFoodChild;
+    private ArrayList<Integer> maxLimitOfCategory;
     private ExpandableFoodListAdapter expandableFoodListAdapter;
     //    private int selectedCategory;
 //    private Button wantAlertSelectButton;
@@ -96,6 +96,16 @@ public class WantsToEatFragment extends Fragment implements View.OnCreateContext
 //        fetchUserList();
         context=getContext();
 
+        foodArrayList=new ArrayList<>();
+        selectedFoodArrayList=new ArrayList<>();
+        foodNamesArrayList=new ArrayList<>();
+        foodItemUid=new ArrayList<>();
+        categoryNameList=new ArrayList<>();
+         listFoodChild=new HashMap<>();
+        maxLimitOfCategory=new ArrayList<>();
+
+
+
 
 //        fetchAllFoodItems();
 
@@ -117,14 +127,14 @@ public class WantsToEatFragment extends Fragment implements View.OnCreateContext
             }
         });
 
-        PullRefreshLayout wantsRefreshLayout=view.findViewById(R.id.wantsRefreshLayout);
-        wantsRefreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                loadWantToEatImages(mealTime);
-            }
-        });
-        wantsRefreshLayout.setColor(R.color.colorPrimary);//set the color of refresh circle.
+//        PullRefreshLayout wantsRefreshLayout=view.findViewById(R.id.wantsRefreshLayout);
+//        wantsRefreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                loadWantToEatImages(mealTime);
+//            }
+//        });
+//        wantsRefreshLayout.setColor(R.color.colorPrimary);//set the color of refresh circle.
 
 //        wantsSubmitButton.setButtonColor(getActivity().getResources().getColor(R.color.colorPrimary));
 
@@ -380,14 +390,21 @@ public class WantsToEatFragment extends Fragment implements View.OnCreateContext
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                orderedFoodList=new ArrayList[(int) dataSnapshot.getChildrenCount()];
-                Log.d("childerencount",""+dataSnapshot.getChildrenCount());
-                Log.d("orderfoodlistsize",""+orderedFoodList.length);
-                for(int i=0;i<orderedFoodList.length;i++)
-                    orderedFoodList[i]=new ArrayList<>();
-                Log.d("listor",""+categoryNameList.size());
+                orderedFoodList = new ArrayList[(int) dataSnapshot.getChildrenCount()];
+                Log.d("childerencount", "" + dataSnapshot.getChildrenCount());
+                Log.d("orderfoodlistsize", "" + orderedFoodList.length);
+                for (int i = 0; i < orderedFoodList.length; i++)
+                    orderedFoodList[i] = new ArrayList<>();
+                Log.d("listor", "" + categoryNameList.size());
                 expandableFoodListAdapter.notifyDataSetChanged();
 
+                for (int i = 0; i < listFoodChild.size(); i++) {
+                    ArrayList<Food> tempArrayList = listFoodChild.get(categoryNameList.get(i));
+                    for (int j = 0; j < tempArrayList.size(); j++) {
+                        if (tempArrayList.get(j).byDefault)
+                            orderedFoodList[i].add(tempArrayList.get(j));
+                    }
+                }
             }
 
             @Override

@@ -13,14 +13,17 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="144dp"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:textSize="56sp"
             android:layout_height="86dp"
             android:layout_gravity="center"
             android:layout_margin="8dp"
-            android:drawableRight="@drawable/ic_gold_medal"
-            android:fontFamily="@font/josefin_bold"
+            android:textColor="@color/white"
+            android:fontFamily="@font/righteous"
             android:gravity="center"
-            android:text="Your orders"
+            android:text="My Orders"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
              />
 

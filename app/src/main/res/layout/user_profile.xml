@@ -387,7 +387,6 @@
                     android:backgroundTint="@color/colorPrimary"
                     android:gravity="center"
                     android:textColor="@color/white"
-                    android:backgroundTint="@color/colorPrimary"
                     android:text="My Wallet"/>
             </LinearLayout>
         </LinearLayout>
