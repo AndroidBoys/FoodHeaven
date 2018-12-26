@@ -10,7 +10,9 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.util.Patterns;
 import android.util.TypedValue;
@@ -20,6 +22,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,18 +65,23 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
     private AuthenticationActivity hostingActivity;
     private EditText emailEditText;
     private EditText phoneEditText;
-    private EditText passwordEditText,
+    private EditText passwordEditText,passwordVerificationEditText,
             nameEditText;
     private Button otpButton;
     private TextView loginTextview;
 
     private String mobileNumber;
     private String email;
+    private boolean passwordVisible=false;
     private String password,name;
     private Address userAddress;
 
+    private ImageView passwordVerificationImageView,passwordImageView;
+
     private PlaceAutocompleteFragment placeAutocompleteFragment;
     private List<User> users;
+    private  boolean passwordVerificationVisible=false;
+
 
 
     public static SignupFragment newInstance() {
@@ -95,6 +103,10 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
 
 
         fetchUsers();
+
+        passwordVerificationEditText=view.findViewById(R.id.passwordVerificationEdittext);
+        passwordVerificationImageView=view.findViewById(R.id.passwordVerificationImageView);
+        passwordImageView=view.findViewById(R.id.passwordImageView);
 
 
         emailEditText = view.findViewById(R.id.emailEdittext);
@@ -128,6 +140,8 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
             }
         });
 
+        passwordVerificationImageView.setOnClickListener(this);
+        passwordImageView.setOnClickListener(this);
         otpButton.setOnClickListener(this);
         loginTextview.setOnClickListener(this);
         return view;
@@ -135,7 +149,9 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+        int start,end;
         switch (view.getId()) {
+
             case R.id.sendOtpButton:
 //                removePlaceFragment();
                 registerUser();
@@ -145,6 +161,46 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
                 removePlaceFragment();
                 hostingActivity.addDifferentFragment(SigninFragment.newInstance());
                 break;
+
+            case R.id.passwordImageView:
+
+                //saving cursor's positions
+                start =passwordEditText.getSelectionStart();
+                end=passwordEditText.getSelectionEnd();
+
+                if(passwordVisible){
+                    passwordVisible=false;
+                    passwordImageView.setImageResource(R.drawable.ic_visibility_off_black_24dp);
+                    passwordEditText.setTransformationMethod(new PasswordTransformationMethod());
+                }
+                else{
+                    passwordVisible=true;
+                    passwordEditText.setTransformationMethod(null);
+                    passwordImageView.setImageResource(R.drawable.ic_visibility_black_24dp);
+                    passwordEditText.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                }
+                passwordEditText.setSelection(start, end);
+                break;
+
+            case R.id.passwordVerificationImageView:
+                //saving cursor's positions
+                start =passwordVerificationEditText.getSelectionStart();
+                end=passwordVerificationEditText.getSelectionEnd();
+
+                if(passwordVerificationVisible){
+                    passwordVerificationVisible=false;
+                    passwordVerificationImageView.setImageResource(R.drawable.ic_visibility_off_black_24dp);
+                    passwordVerificationEditText.setTransformationMethod(new PasswordTransformationMethod());
+                }
+                else{
+                    passwordVerificationVisible=true;
+                    passwordVerificationEditText.setTransformationMethod(null);
+                    passwordVerificationImageView.setImageResource(R.drawable.ic_visibility_black_24dp);
+                    passwordVerificationEditText.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                }
+                passwordVerificationEditText.setSelection(start, end);
+                break;
+
 
         }
 
@@ -180,10 +236,15 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
             return;
         }
 
-        if(passwordEditText.getText().toString().trim().length()<6)
+        if(passwordEditText.getText().toString().length()<6)
         {
             passwordEditText.setError("Password should have atleast 6 characters");
             passwordEditText.requestFocus();
+            return;
+        }
+        if(!passwordVerificationEditText.getText().toString().equals(passwordEditText.getText().toString())) {
+            passwordVerificationEditText.setError("Password mismatched");
+            passwordVerificationEditText.requestFocus();
             return;
         }
 

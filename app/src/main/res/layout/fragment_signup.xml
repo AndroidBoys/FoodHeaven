@@ -10,7 +10,7 @@
 
         <TextView
             android:gravity="center"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:id="@+id/signupLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,13 +81,19 @@
             android:textColorHint="@android:color/white"
             android:hint="@string/phone_number_hint"/>
 
+    <LinearLayout
+        android:layout_weight=".5"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
         <EditText
             android:layout_weight=".5"
             android:id="@+id/passwordEdittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
+            android:layout_marginStart="16dp"
             android:backgroundTint="#33ffffff"
             android:fontFamily="@font/josefin_regular"
             android:hint="@string/hint_password"
@@ -95,8 +101,43 @@
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white"/>
 
+        <ImageView
 
+            android:id="@+id/passwordImageView"
+            android:src="@drawable/ic_visibility_off_black_24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight=".5"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+    <EditText
+            android:layout_weight=".5"
+            android:id="@+id/passwordVerificationEdittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:backgroundTint="#33ffffff"
+            android:fontFamily="@font/josefin_regular"
+            android:hint="VerifyPassword"
+            android:inputType="textPassword"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"/>
+        <ImageView
+            android:id="@+id/passwordVerificationImageView"
+            android:src="@drawable/ic_visibility_off_black_24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
     <LinearLayout
             android:layout_weight="2"
             android:layout_width="match_parent"
