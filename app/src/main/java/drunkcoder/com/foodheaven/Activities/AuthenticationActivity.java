@@ -9,7 +9,9 @@ import drunkcoder.com.foodheaven.Models.User;
 import drunkcoder.com.foodheaven.MyApplication;
 import drunkcoder.com.foodheaven.R;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -27,7 +29,11 @@ public class AuthenticationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_authentication);
         getSupportActionBar().hide();
 
-            if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
+
+        SharedPreferences sharedPreferences=getSharedPreferences("REMEMBERME",Context.MODE_PRIVATE);
+        boolean rememberMe=sharedPreferences.getBoolean("SAVED",false);
+
+        if(FirebaseAuth.getInstance().getCurrentUser()!=null&&rememberMe) {
             initCurrentUser();
         }
         else{
