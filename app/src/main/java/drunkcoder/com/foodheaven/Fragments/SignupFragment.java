@@ -236,10 +236,15 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
             return;
         }
 
-        if(passwordEditText.getText().toString().trim().length()<6)
+        if(passwordEditText.getText().toString().length()<6)
         {
             passwordEditText.setError("Password should have atleast 6 characters");
             passwordEditText.requestFocus();
+            return;
+        }
+        if(!passwordVerificationEditText.getText().toString().equals(passwordEditText.getText().toString())) {
+            passwordVerificationEditText.setError("Password mismatched");
+            passwordVerificationEditText.requestFocus();
             return;
         }
 
