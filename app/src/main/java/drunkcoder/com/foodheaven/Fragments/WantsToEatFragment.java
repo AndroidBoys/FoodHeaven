@@ -304,10 +304,7 @@ public class WantsToEatFragment extends Fragment implements View.OnCreateContext
 //        }
 //
 //        @Override
-//        public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//        }
-//    });
+//        public void onCancelledpppppppppppppppppppppppppppppppppppppppp
 //
 //    }
 

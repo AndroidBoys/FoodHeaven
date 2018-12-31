@@ -80,12 +80,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onNewToken(String s) {
         super.onNewToken(s);
         SharedPreferenceUtil.saveNotificationToken(s,this);
-//        new Handler().post(new Runnable() {
-//            @Override
-//            public void run() {
-//                FirebaseDatabase.getInstance().getReference("NotificationSubscriptions").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//                        .child("token").setValue(SharedPreferenceUtil.getSavedNotificationToken(MyFirebaseMessagingService.this));
-//            }
-//        });
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                FirebaseDatabase.getInstance().getReference("NotificationSubscriptions").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .child("token").setValue(SharedPreferenceUtil.getSavedNotificationToken(MyFirebaseMessagingService.this));
+            }
+        });
     }
 }

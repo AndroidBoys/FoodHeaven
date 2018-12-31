@@ -109,7 +109,7 @@ import drunkcoder.com.foodheaven.ViewHolders.FoodMenuViewHolder;
         context=getContext();
 
         FoodMenuFirebaseDatabase=FirebaseDatabase.getInstance();
-       // linearLayoutManager=new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
+      // linearLayoutManager=new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
         setRecyclerView(breakFastRecyclerView);
         setRecyclerView(lunchRecyclerView);
         setRecyclerView(dinnerRecyclerView);

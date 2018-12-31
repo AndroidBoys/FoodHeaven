@@ -126,7 +126,7 @@
             android:layout_marginStart="16dp"
             android:backgroundTint="#33ffffff"
             android:fontFamily="@font/josefin_regular"
-            android:hint="VerifyPassword"
+            android:hint="Password"
             android:inputType="textPassword"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white"/>
